@@ -402,9 +402,11 @@
         font-size: 0.75rem;
     }
 
-    /* Allow achievements to wrap on mobile */
+    /* Allow achievements to stack vertically on mobile */
     .achievements-grid.few-items {
         flex-wrap: wrap;
+        flex-direction: column;
+        align-items: center;
     }
 
     /* Few items on mobile should still use smaller padding */
