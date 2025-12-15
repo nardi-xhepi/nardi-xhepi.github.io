@@ -52,13 +52,14 @@
 .author-avatar {
     width: 48px;
     height: 48px;
-    border-radius: var(--radius-full);
+    border-radius: 50%;
     background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-secondary));
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 700;
     color: white;
+    overflow: hidden;
 }
 
 .author-info {
@@ -249,15 +250,18 @@
 .bio-avatar {
     width: 80px;
     height: 80px;
+    border-radius: 50%;
+    background: var(--color-bg-tertiary);
+    /* Fallback */
+    border: 3px solid var(--color-accent-secondary);
+    overflow: hidden;
     flex-shrink: 0;
-    border-radius: var(--radius-full);
-    background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-secondary));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: white;
+}
+
+.bio-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .bio-content h4 {

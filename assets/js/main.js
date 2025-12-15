@@ -55,13 +55,11 @@ const typedTextElement = document.querySelector('.typed-text');
 const titles = [
     'Data Scientist',
     'ML Engineer',
-    'LLM Specialist',
-    'Time Series Expert'
 ];
 let titleIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
-let typingSpeed = 100;
+let typingSpeed = 1000;
 
 function typeText() {
     const currentTitle = titles[titleIndex];
@@ -79,11 +77,11 @@ function typeText() {
         setTimeout(() => {
             isDeleting = true;
         }, 2000);
-        typingSpeed = 100;
+        typingSpeed = 1000;
     } else if (isDeleting && charIndex === 0) {
         isDeleting = false;
         titleIndex = (titleIndex + 1) % titles.length;
-        typingSpeed = 500;
+        typingSpeed = 1000;
     }
 
     setTimeout(typeText, isDeleting ? 50 : typingSpeed);
