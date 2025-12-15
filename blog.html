@@ -69,43 +69,22 @@
 
             <!-- Blog Posts Grid -->
             <div class="blog-posts">
-                <!-- Post 1 -->
-                <article class="blog-post-card glass-card" data-category="llm">
-                    <div class="blog-post-image">
-                        <i class="fas fa-robot"></i>
-                        <span class="blog-post-category">LLM</span>
+                <!-- No posts placeholder -->
+                <div class="no-posts-message" style="grid-column: 1 / -1; text-align: center; padding: 4rem 1rem;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem; color: var(--color-text-muted);">
+                        <i class="fas fa-pencil-alt"></i>
                     </div>
-                    <div class="blog-post-content">
-                        <div class="blog-post-meta">
-                            <span><i class="far fa-calendar"></i> Dec 15, 2025</span>
-                            <span><i class="far fa-clock"></i> 8 min read</span>
-                        </div>
-                        <h2><a href="blog/posts/building-production-rag-systems.html">Building Production-Ready RAG
-                                Systems</a></h2>
-                        <p class="blog-post-excerpt">A deep dive into designing scalable RAG pipelines with vector
-                            databases and knowledge graphs. Lessons from implementing enterprise-grade solutions.</p>
-                        <a href="blog/posts/building-production-rag-systems.html" class="blog-post-link">
-                            Read More <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </article>
+                    <h3>Insights Coming Soon</h3>
+                    <p style="color: var(--color-text-secondary);">
+                        I'm currently working on some detailed articles about LLMs, RAG, and Time Series.
+                        <br>Stay tuned!
+                    </p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Newsletter Subscription -->
-    <section class="subscription-section">
-        <div class="container">
-            <div class="subscription-content">
-                <h3>Stay Updated</h3>
-                <p>Subscribe to get notified when new posts are published. No spam, just data science insights.</p>
-                <form class="subscription-form">
-                    <input type="email" placeholder="Enter your email" required>
-                    <button type="submit" class="btn btn-primary">Subscribe</button>
-                </form>
-            </div>
-        </div>
-    </section>
+
 
     <!-- Footer -->
     <footer class="footer">
@@ -187,12 +166,7 @@
             }, 100 + index * 100);
         });
 
-        // Subscription form
-        document.querySelector('.subscription-form')?.addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Thanks for subscribing! You\'ll receive updates when new posts are published.');
-            e.target.reset();
-        });
+
     </script>
 </body>
 

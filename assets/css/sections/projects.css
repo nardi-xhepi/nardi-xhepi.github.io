@@ -29,44 +29,152 @@
     border-color: transparent;
 }
 
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+/* ===================================
+   HORIZONTAL SCROLL CAROUSEL BASE
+   Shared styles for all carousels
+   =================================== */
+
+.projects-grid,
+.achievements-grid,
+.skills-grid,
+.education-grid {
+    display: flex;
+    overflow-x: auto;
     gap: var(--spacing-xl);
+    padding: var(--spacing-md) var(--spacing-md) var(--spacing-xl);
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+
+    /* Hide scrollbar but keep functionality */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE/Edge */
 }
 
-/* Achievements Section */
+.projects-grid::-webkit-scrollbar,
+.achievements-grid::-webkit-scrollbar,
+.skills-grid::-webkit-scrollbar,
+.education-grid::-webkit-scrollbar {
+    display: none;
+    /* Chrome/Safari */
+}
+
+/* Card sizing */
+.projects-grid>* {
+    flex: 0 0 350px;
+    scroll-snap-align: start;
+}
+
+.achievements-grid>* {
+    flex: 0 0 420px;
+    scroll-snap-align: start;
+}
+
+.skills-grid>* {
+    flex: 0 0 300px;
+    scroll-snap-align: start;
+}
+
+.education-grid>* {
+    flex: 0 0 380px;
+    scroll-snap-align: start;
+}
+
+/* ===================================
+   CAROUSEL WRAPPER WITH FADE EDGES
+   =================================== */
+
+.projects,
+.achievements,
+.skills,
+.education {
+    position: relative;
+}
+
+/* Fade edges to indicate scrollable content */
+.projects .container::before,
+.projects .container::after,
+.achievements .container::before,
+.achievements .container::after,
+.skills .container::before,
+.skills .container::after,
+.education .container::before,
+.education .container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 60px;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.projects .container::before,
+.skills .container::before {
+    left: 0;
+    background: linear-gradient(to right, var(--color-bg-primary), transparent);
+}
+
+.projects .container::after,
+.skills .container::after {
+    right: 0;
+    background: linear-gradient(to left, var(--color-bg-primary), transparent);
+}
+
+.achievements .container::before,
+.education .container::before {
+    left: 0;
+    background: linear-gradient(to right, var(--color-bg-secondary), transparent);
+}
+
+.achievements .container::after,
+.education .container::after {
+    right: 0;
+    background: linear-gradient(to left, var(--color-bg-secondary), transparent);
+}
+
+/* Section backgrounds */
 .achievements {
     background: var(--color-bg-secondary);
 }
 
-.achievements-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: var(--spacing-xl);
-}
-
-/* Skills Section */
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--spacing-xl);
-}
-
-/* Education Section */
 .education {
     background: var(--color-bg-secondary);
 }
 
-.education-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: var(--spacing-xl);
+/* ===================================
+   SMART CAROUSEL: FEW ITEMS MODE
+   Center cards when 3 or less
+   =================================== */
+
+.projects-grid.few-items,
+.achievements-grid.few-items,
+.skills-grid.few-items,
+.education-grid.few-items {
+    justify-content: center;
+    overflow-x: visible;
+    flex-wrap: wrap;
 }
 
+/* Hide fade edges when not scrollable */
+.no-scroll-fade .container::before,
+.no-scroll-fade .container::after {
+    display: none !important;
+}
+
+/* ===================================
+   RESPONSIVE
+   =================================== */
+
 @media (max-width: 768px) {
-    .projects-grid {
-        grid-template-columns: 1fr;
+
+    .projects-grid>*,
+    .achievements-grid>*,
+    .skills-grid>*,
+    .education-grid>* {
+        flex: 0 0 280px;
     }
 
     .project-filters {
@@ -76,5 +184,16 @@
     .filter-btn {
         padding: var(--spacing-xs) var(--spacing-md);
         font-size: 0.8rem;
+    }
+
+    .projects .container::before,
+    .projects .container::after,
+    .achievements .container::before,
+    .achievements .container::after,
+    .skills .container::before,
+    .skills .container::after,
+    .education .container::before,
+    .education .container::after {
+        width: 30px;
     }
 }

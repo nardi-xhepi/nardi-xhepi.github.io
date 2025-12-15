@@ -59,7 +59,7 @@ const titles = [
 let titleIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
-let typingSpeed = 1000;
+let typingSpeed = 100;
 
 function typeText() {
     const currentTitle = titles[titleIndex];
@@ -77,14 +77,14 @@ function typeText() {
         setTimeout(() => {
             isDeleting = true;
         }, 2000);
-        typingSpeed = 1000;
+        typingSpeed = 100;
     } else if (isDeleting && charIndex === 0) {
         isDeleting = false;
         titleIndex = (titleIndex + 1) % titles.length;
-        typingSpeed = 1000;
+        typingSpeed = 100;
     }
 
-    setTimeout(typeText, isDeleting ? 50 : typingSpeed);
+    setTimeout(typeText, isDeleting ? 30 : typingSpeed);
 }
 
 // Start typing animation
@@ -164,31 +164,43 @@ animateElements.forEach(el => {
 // ===================================
 // 5. CONTACT FORM
 // ===================================
-const contactForm = document.getElementById('contact-form');
 
-contactForm?.addEventListener('submit', (e) => {
-    e.preventDefault();
 
-    // Get form data
-    const formData = new FormData(contactForm);
-    const name = formData.get('name');
-    const email = formData.get('email');
-    const message = formData.get('message');
+// ===================================
+// 5.5 SMART CAROUSEL DISPLAY
+// Show all cards if 3 or less, otherwise enable scroll with blur
+// ===================================
+function initSmartCarousels() {
+    const carousels = [
+        { grid: '.projects-grid', section: '.projects' },
+        { grid: '.achievements-grid', section: '.achievements' },
+        { grid: '.skills-grid', section: '.skills' },
+        { grid: '.education-grid', section: '.education' }
+    ];
 
-    // Create mailto link
-    const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
-    const mailtoLink = `mailto:nardi.xhepi@polytechnique.edu?subject=${subject}&body=${body}`;
+    carousels.forEach(({ grid, section }) => {
+        const gridEl = document.querySelector(grid);
+        const sectionEl = document.querySelector(section);
 
-    // Open email client
-    window.location.href = mailtoLink;
+        if (gridEl && sectionEl) {
+            const cardCount = gridEl.children.length;
 
-    // Reset form
-    contactForm.reset();
+            if (cardCount <= 3) {
+                // Few items - center them, no scroll
+                gridEl.classList.add('few-items');
+                sectionEl.classList.add('no-scroll-fade');
+            } else {
+                // Many items - enable scroll with blur
+                gridEl.classList.remove('few-items');
+                sectionEl.classList.remove('no-scroll-fade');
+            }
+        }
+    });
+}
 
-    // Show success message (optional - could add a toast notification)
-    alert('Opening email client...');
-});
+// Initialize on DOM ready
+document.addEventListener('DOMContentLoaded', initSmartCarousels);
+
 
 // ===================================
 // 6. ACTIVE NAV LINK ON SCROLL
@@ -441,7 +453,7 @@ updateFloatingNav();
 
 // ===================================
 // 12. HERO PHOTO MORPH TRANSITION
-// Circle → Square (CPU-based, no GPU transforms)
+// Circle → Square (GPU Accelerated)
 // ===================================
 
 const heroPhoto = document.getElementById('hero-photo');
@@ -450,13 +462,12 @@ const aboutTarget = document.getElementById('about-photo-target');
 if (heroPhoto && aboutTarget) {
     const heroFrame = heroPhoto.querySelector('.hero-photo-frame');
     const heroImg = heroPhoto.querySelector('img');
-    const aboutFrame = aboutTarget.querySelector('.image-frame');
 
     // Create ghost element
     const ghost = document.createElement('div');
     const ghostImg = document.createElement('img');
 
-    // Simple CSS - no GPU hints
+    // GPU-optimized styles
     ghost.style.cssText = `
         position: fixed;
         z-index: 9999;
@@ -465,6 +476,8 @@ if (heroPhoto && aboutTarget) {
         overflow: hidden;
         display: none;
         border: 2px solid rgba(99, 102, 241, 0.5);
+        transform-origin: top left;
+        will-change: transform, border-radius;
     `;
 
     ghostImg.src = heroImg.src;
@@ -479,13 +492,37 @@ if (heroPhoto && aboutTarget) {
 
     function recalc() {
         const h = heroFrame.getBoundingClientRect();
-        const a = aboutFrame.getBoundingClientRect();
-        const scrollY = window.scrollY;
+        const a = aboutTarget.querySelector('.image-frame').getBoundingClientRect();
+        const scrollY = window.scrollY; // Use current scrollY for absolute positioning calculation if needed, but primarily we want initial positions relative to viewport? 
+        // Actually, getBoundingClientRect is relative to viewport. 
+        // We want to animate from Hero (fixed/sticky behavior effectively) to About (scrolling up).
+        // Wait, the original implementation added scrollY to top. Let's stick to that logic but use transforms.
+
+        // Initial state (Hero)
+        const startTop = h.top + scrollY;
+        const startLeft = h.left;
+        const startW = h.width;
+        const startH = h.height;
+
+        // Target state (About)
+        const endTop = a.top + scrollY;
+        const endLeft = a.left;
+        const endW = a.width;
+        const endH = a.height;
+
         cache = {
-            hTop: h.top + scrollY, hLeft: h.left, hW: h.width, hH: h.height,
-            aTop: a.top + scrollY, aLeft: a.left, aW: a.width, aH: a.height,
-            start: 10, end: window.innerHeight * 0.8
+            startTop, startLeft, startW, startH,
+            endTop, endLeft, endW, endH,
+            scrollStart: 10,
+            scrollEnd: window.innerHeight * 0.8
         };
+
+        // Set initial position once
+        ghost.style.top = '0px';
+        ghost.style.left = '0px';
+        ghost.style.width = startW + 'px';
+        ghost.style.height = startH + 'px';
+
         dirty = false;
     }
 
@@ -499,7 +536,7 @@ if (heroPhoto && aboutTarget) {
         if (dirty || !cache) recalc();
 
         const scrollY = window.scrollY;
-        let p = (scrollY - cache.start) / (cache.end - cache.start);
+        let p = (scrollY - cache.scrollStart) / (cache.scrollEnd - cache.scrollStart);
         p = p < 0 ? 0 : p > 1 ? 1 : p;
 
         if (p <= 0) {
@@ -521,7 +558,7 @@ if (heroPhoto && aboutTarget) {
                 state = 2;
             }
         } else {
-            const t = p * p * (3 - 2 * p);
+            const t = p * p * (3 - 2 * p); // Smoothstep
 
             if (state !== 1) {
                 ghost.style.display = 'block';
@@ -532,18 +569,46 @@ if (heroPhoto && aboutTarget) {
                 state = 1;
             }
 
-            // Use top/left/width/height instead of transforms
-            const top = (cache.hTop - scrollY) + ((cache.aTop - scrollY) - (cache.hTop - scrollY)) * t;
-            const left = cache.hLeft + (cache.aLeft - cache.hLeft) * t;
-            const width = cache.hW + (cache.aW - cache.hW) * t;
-            const height = cache.hH + (cache.aH - cache.hH) * t;
-            const radius = 50 - 48 * t;
+            // Calculate Interpolation
+            // Current Target Position (where it should be visually)
+            // Hero is effectively static in the flow, but we are scrolling.
+            // Wait, the ghost is fixed position. 
+            // So we need to calculate where the visual elements are relative to the VIEWPORT.
 
-            ghost.style.top = top + 'px';
-            ghost.style.left = left + 'px';
-            ghost.style.width = width + 'px';
-            ghost.style.height = height + 'px';
+            // Hero position relative to viewport:
+            // The original used (hTop + scrollY) - scrollY = hTop (constant relative to viewport if it wasn't scrolling? No, hTop is rect.top).
+            // Original: const top = (cache.hTop - scrollY) + ...
+            // cache.hTop was (rect.top + scrollY). So cache.hTop - scrollY is indeed the current viewport-relative Top of the element position in flow.
+
+            const currentHeroTop = cache.startTop - scrollY;
+            const currentAboutTop = cache.endTop - scrollY;
+
+            const targetY = currentHeroTop + (currentAboutTop - currentHeroTop) * t;
+            const targetX = cache.startLeft + (cache.endLeft - cache.startLeft) * t;
+            const targetW = cache.startW + (cache.endW - cache.startW) * t;
+            const targetH = cache.startH + (cache.endH - cache.startH) * t;
+
+            // GPU Transform Calculations
+            // Base is set to Cache Start values (startW, startH) at 0,0 (top/left set to 0,0, but we use transform for position)
+            // Wait, I set ghost.style.width = startW.
+
+            const scaleX = targetW / cache.startW;
+            const scaleY = targetH / cache.startH;
+
+            // Translate
+            // Since we set top:0, left:0, the transform is just x,y
+            // BUT we need to account for the fact that we sized it to startW/startH
+            // The transform-origin is top-left, so scaling extends right/down. This matches our needs.
+
+            ghost.style.transform = `translate3d(${targetX}px, ${targetY}px, 0) scale(${scaleX}, ${scaleY})`;
+
+            // BorderRadius triggers paint but not layout
+            const radius = 50 - 48 * t;
             ghost.style.borderRadius = radius + '%';
+
+            // Adjust border width inversely to scale to keep it looking consistent? 
+            // Or just let it scale. The previous one didn't scale border.
+            // Let's keep it simple for now.
         }
     }
 
@@ -557,4 +622,5 @@ if (heroPhoto && aboutTarget) {
 
     requestAnimationFrame(() => { recalc(); update(); });
 }
+
 
