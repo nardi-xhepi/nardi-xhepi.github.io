@@ -4,11 +4,11 @@
    =================================== */
 
 :root {
-    /* Colors - Dark Theme */
-    --color-bg-primary: #0a0a0f;
-    --color-bg-secondary: #12121a;
-    --color-bg-tertiary: #1a1a25;
-    --color-bg-card: rgba(25, 25, 40, 0.6);
+    /* Colors - Dark Theme (slightly lighter) */
+    --color-bg-primary: #13141a;
+    --color-bg-secondary: #1a1b24;
+    --color-bg-tertiary: #242530;
+    --color-bg-card: rgba(35, 36, 50, 0.7);
 
     /* Accent Colors */
     --color-accent-primary: #6366f1;
