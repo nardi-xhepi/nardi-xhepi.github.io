@@ -3,15 +3,16 @@
    Flowing elements between sections
    =================================== */
 
-/* Flowing gradient orbs */
+/* Flowing gradient orbs - GPU accelerated */
 .flow-orb {
     position: fixed;
     border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0.4;
+    filter: blur(60px);
+    opacity: 0.25;
     pointer-events: none;
     z-index: -1;
-    transition: transform 0.1s ease-out;
+    will-change: transform;
+    transform: translateZ(0);
 }
 
 .flow-orb-1 {

@@ -266,7 +266,7 @@ function updateScrollProgress() {
     }
 }
 
-// Flowing orbs movement based on scroll
+// Flowing orbs movement based on scroll - optimized for GPU
 const orb1 = document.getElementById('orb1');
 const orb2 = document.getElementById('orb2');
 const orb3 = document.getElementById('orb3');
@@ -276,27 +276,13 @@ function updateFlowingOrbs() {
     const scrollPercent = scrollY / (document.documentElement.scrollHeight - window.innerHeight);
 
     if (orb1) {
-        orb1.style.transform = `translate(${scrollPercent * 200}px, ${scrollPercent * 300}px)`;
+        orb1.style.transform = `translate3d(${scrollPercent * 200}px, ${scrollPercent * 300}px, 0)`;
     }
     if (orb2) {
-        orb2.style.transform = `translate(${-scrollPercent * 150}px, ${scrollPercent * 400}px)`;
+        orb2.style.transform = `translate3d(${-scrollPercent * 150}px, ${scrollPercent * 400}px, 0)`;
     }
     if (orb3) {
-        orb3.style.transform = `translate(${scrollPercent * 100}px, ${-scrollPercent * 200}px)`;
-    }
-}
-
-// Accent line follows scroll
-const accentLine = document.getElementById('accent-line');
-
-function updateAccentLine() {
-    const scrollY = window.scrollY;
-    const viewportHeight = window.innerHeight;
-
-    if (accentLine) {
-        // Move the accent line based on scroll position
-        const linePosition = (scrollY % viewportHeight);
-        accentLine.style.top = `${linePosition}px`;
+        orb3.style.transform = `translate3d(${scrollPercent * 100}px, ${-scrollPercent * 200}px, 0)`;
     }
 }
 
@@ -318,17 +304,7 @@ allSections.forEach(section => {
     sectionObserver.observe(section);
 });
 
-// Moving dots parallax
-const movingDots = document.querySelector('.moving-dots');
-
-function updateMovingDots() {
-    const scrollY = window.scrollY;
-    if (movingDots) {
-        movingDots.style.backgroundPosition = `${scrollY * 0.1}px ${scrollY * 0.1}px`;
-    }
-}
-
-// Combined scroll handler for performance
+// Optimized scroll handler - reduced updates
 let ticking = false;
 
 function onScroll() {
@@ -336,8 +312,6 @@ function onScroll() {
         window.requestAnimationFrame(() => {
             updateScrollProgress();
             updateFlowingOrbs();
-            updateAccentLine();
-            updateMovingDots();
             ticking = false;
         });
         ticking = true;
