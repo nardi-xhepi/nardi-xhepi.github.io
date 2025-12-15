@@ -557,189 +557,89 @@ window.addEventListener('scroll', updateFloatingNav, { passive: true });
 updateFloatingNav();
 
 // ===================================
-// 12. HERO PHOTO MORPH TRANSITION
-// Circle → Square (CPU Optimized, No GPU)
-// Disabled on mobile for better UX
+// 12. HERO PHOTO TRANSITION
+// Fancy crossfade with scale, blur & glow effects
 // ===================================
 
 const heroPhoto = document.getElementById('hero-photo');
 const aboutTarget = document.getElementById('about-photo-target');
 
 if (heroPhoto && aboutTarget) {
-    const heroFrame = heroPhoto.querySelector('.hero-photo-frame');
-    const heroImg = heroPhoto.querySelector('img');
-
-    // Check if mobile - disable morph on small screens
+    // Check if mobile - show both photos normally
     function isMobile() {
         return window.innerWidth < 968;
     }
 
-    // Reset to normal state for mobile
+    // Reset for mobile
     function resetForMobile() {
-        if (ghost) ghost.style.display = 'none';
         heroPhoto.style.opacity = '1';
         heroPhoto.style.visibility = 'visible';
-        heroPhoto.style.animation = '';
+        heroPhoto.style.transform = '';
+        heroPhoto.style.filter = '';
         aboutTarget.style.opacity = '1';
         aboutTarget.style.visibility = 'visible';
+        aboutTarget.style.transform = '';
+        aboutTarget.style.filter = '';
     }
 
-    // Create ghost element
-    const ghost = document.createElement('div');
-    const ghostImg = document.createElement('img');
+    // Scroll thresholds
+    const scrollStart = 50;
+    let scrollEnd = window.innerHeight * 0.6;
 
-    // CPU-optimized styles (No transforms)
-    ghost.style.cssText = `
-        position: fixed;
-        z-index: 9999;
-        pointer-events: none;
-        box-shadow: 0 0 40px rgba(99, 102, 241, 0.4);
-        overflow: hidden;
-        display: none;
-        border: 2px solid rgba(99, 102, 241, 0.5);
-        /* No will-change needed for layout properties in this context */
-    `;
+    // Update scroll end on resize
+    window.addEventListener('resize', () => {
+        scrollEnd = window.innerHeight * 0.6;
+        if (isMobile()) resetForMobile();
+    }, { passive: true });
 
-    ghostImg.src = heroImg.src;
-    ghostImg.style.cssText = 'width: 100%; height: 100%; object-fit: cover;';
-
-    ghost.appendChild(ghostImg);
-    document.body.appendChild(ghost);
-
-    // Cache layout
-    let cache = null;
-    let dirty = true;
-
-    function recalc() {
-        // On mobile, skip recalculation
-        if (isMobile()) return;
-
-        const h = heroFrame.getBoundingClientRect();
-        const a = aboutTarget.querySelector('.image-frame').getBoundingClientRect();
-        const scrollY = window.scrollY;
-
-        // Initial state (Hero)
-        const startTop = h.top + scrollY;
-        const startLeft = h.left;
-        const startW = h.width;
-        const startH = h.height;
-
-        // Target state (About)
-        const endTop = a.top + scrollY;
-        const endLeft = a.left;
-        const endW = a.width;
-        const endH = a.height;
-
-        cache = {
-            startTop, startLeft, startW, startH,
-            endTop, endLeft, endW, endH,
-            scrollStart: 10,
-            scrollEnd: window.innerHeight * 0.8
-        };
-
-        dirty = false;
-    }
-
-    let state = -1;
-
-    // Only apply initial hiding on desktop
-    if (!isMobile()) {
-        heroPhoto.style.animation = 'none';
-        aboutTarget.style.opacity = '0';
-        aboutTarget.style.visibility = 'hidden';
-    }
-
-    function update() {
-        // On mobile, reset and skip
+    // Fancy transition update
+    function updateFade() {
         if (isMobile()) {
             resetForMobile();
-            state = -1;
             return;
         }
 
-        if (dirty || !cache) recalc();
-
         const scrollY = window.scrollY;
-        let p = (scrollY - cache.scrollStart) / (cache.scrollEnd - cache.scrollStart);
-        p = p < 0 ? 0 : p > 1 ? 1 : p;
+        let p = (scrollY - scrollStart) / (scrollEnd - scrollStart);
+        p = Math.max(0, Math.min(1, p));
 
-        if (p <= 0) {
-            if (state !== 0) {
-                ghost.style.display = 'none';
-                heroPhoto.style.opacity = '1';
-                heroPhoto.style.visibility = 'visible';
-                aboutTarget.style.opacity = '0';
-                aboutTarget.style.visibility = 'hidden';
-                state = 0;
-            }
-        } else if (p >= 1) {
-            if (state !== 2) {
-                ghost.style.display = 'none';
-                heroPhoto.style.opacity = '0';
-                heroPhoto.style.visibility = 'hidden';
-                aboutTarget.style.opacity = '1';
-                aboutTarget.style.visibility = 'visible';
-                state = 2;
-            }
-        } else {
-            const t = p * p * (3 - 2 * p); // Smoothstep
+        // Easing for smoother feel
+        const t = p * p * (3 - 2 * p);
 
-            if (state !== 1) {
-                ghost.style.display = 'block';
-                heroPhoto.style.opacity = '0';
-                heroPhoto.style.visibility = 'hidden';
-                aboutTarget.style.opacity = '0';
-                aboutTarget.style.visibility = 'hidden';
-                state = 1;
-            }
+        // Hero: fade out + shrink + blur
+        const heroScale = 1 - (t * 0.15); // Scale from 1 to 0.85
+        const heroBlur = t * 6; // Blur from 0 to 6px
 
-            // Calculate Interpolation (CPU)
-            // Use integer rounding!
+        heroPhoto.style.opacity = 1 - t;
+        heroPhoto.style.visibility = t >= 1 ? 'hidden' : 'visible';
+        heroPhoto.style.transform = `scale(${heroScale})`;
+        heroPhoto.style.filter = `blur(${heroBlur}px)`;
 
-            const currentHeroTop = cache.startTop - scrollY;
-            const currentAboutTop = cache.endTop - scrollY;
+        // About: fade in + grow + sharpen
+        const aboutScale = 0.9 + (t * 0.1); // Scale from 0.9 to 1
+        const aboutBlur = (1 - t) * 4; // Blur from 4 to 0
 
-            const targetY = currentHeroTop + (currentAboutTop - currentHeroTop) * t;
-            const targetX = cache.startLeft + (cache.endLeft - cache.startLeft) * t;
-            const targetW = cache.startW + (cache.endW - cache.startW) * t;
-            const targetH = cache.startH + (cache.endH - cache.startH) * t;
-
-            // Direct DOM manipulation - costly but requested
-            ghost.style.top = Math.round(targetY) + 'px';
-            ghost.style.left = Math.round(targetX) + 'px';
-            ghost.style.width = Math.round(targetW) + 'px';
-            ghost.style.height = Math.round(targetH) + 'px';
-
-            const radius = 50 - 48 * t;
-            ghost.style.borderRadius = Math.round(radius) + '%';
-        }
+        aboutTarget.style.opacity = t;
+        aboutTarget.style.visibility = t <= 0 ? 'hidden' : 'visible';
+        aboutTarget.style.transform = `scale(${aboutScale})`;
+        aboutTarget.style.filter = `blur(${aboutBlur}px)`;
     }
 
-    window.updateHeroMorph = update;
+    // Expose for scroll handler
+    window.updateHeroMorph = updateFade;
 
-    let rto;
-    window.addEventListener('resize', () => {
-        clearTimeout(rto);
-        rto = setTimeout(() => {
-            dirty = true;
-            // On resize to mobile, reset immediately
-            if (isMobile()) {
-                resetForMobile();
-                state = -1;
-            } else {
-                update();
-            }
-        }, 100);
-    }, { passive: true });
+    // Initial setup
+    if (!isMobile()) {
+        aboutTarget.style.opacity = '0';
+        aboutTarget.style.visibility = 'hidden';
+        aboutTarget.style.transform = 'scale(0.9)';
+        aboutTarget.style.filter = 'blur(4px)';
+    } else {
+        resetForMobile();
+    }
 
-    requestAnimationFrame(() => {
-        if (!isMobile()) {
-            recalc();
-            update();
-        } else {
-            resetForMobile();
-        }
-    });
+    // Initial call
+    updateFade();
 }
 
 
