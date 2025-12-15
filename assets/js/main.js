@@ -244,6 +244,77 @@ window.addEventListener('load', () => {
 });
 
 // ===================================
+// 8.5 ANIMATED STAT COUNTERS
+// ===================================
+const statNumbers = document.querySelectorAll('.stat-number');
+let statsAnimated = false;
+
+function animateCounter(element) {
+    const text = element.textContent;
+    const hasPlus = text.includes('+');
+    const target = parseInt(text.replace(/\D/g, ''));
+
+    if (isNaN(target)) return;
+
+    let current = 0;
+    const duration = 1500;
+    const step = target / (duration / 16);
+
+    const timer = setInterval(() => {
+        current += step;
+        if (current >= target) {
+            current = target;
+            clearInterval(timer);
+        }
+        element.textContent = Math.floor(current) + (hasPlus ? '+' : '');
+    }, 16);
+}
+
+function checkStatsInView() {
+    if (statsAnimated) return;
+
+    const aboutSection = document.getElementById('about');
+    if (!aboutSection) return;
+
+    const rect = aboutSection.getBoundingClientRect();
+    const inView = rect.top < window.innerHeight * 0.8 && rect.bottom > 0;
+
+    if (inView) {
+        statsAnimated = true;
+        statNumbers.forEach((stat, index) => {
+            setTimeout(() => animateCounter(stat), index * 200);
+        });
+    }
+}
+
+window.addEventListener('scroll', checkStatsInView, { passive: true });
+checkStatsInView();
+
+// ===================================
+// 8.6 CARD TILT EFFECT
+// ===================================
+const tiltCards = document.querySelectorAll('.glass-card');
+
+tiltCards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = (y - centerY) / 20;
+        const rotateY = (centerX - x) / 20;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+    });
+});
+
+// ===================================
 // 9. CONSOLE EASTER EGG
 // ===================================
 console.log('%c👋 Hello there, fellow developer!', 'font-size: 24px; font-weight: bold; color: #6366f1;');

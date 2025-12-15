@@ -41,6 +41,50 @@
     -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 0%, transparent 100%);
 }
 
+/* ✨ Floating particles */
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(2px 2px at 10% 20%, rgba(99, 102, 241, 0.5), transparent),
+        radial-gradient(2px 2px at 20% 50%, rgba(139, 92, 246, 0.4), transparent),
+        radial-gradient(3px 3px at 30% 80%, rgba(6, 182, 212, 0.5), transparent),
+        radial-gradient(2px 2px at 40% 10%, rgba(99, 102, 241, 0.4), transparent),
+        radial-gradient(2px 2px at 50% 60%, rgba(139, 92, 246, 0.5), transparent),
+        radial-gradient(3px 3px at 60% 30%, rgba(6, 182, 212, 0.4), transparent),
+        radial-gradient(2px 2px at 70% 70%, rgba(99, 102, 241, 0.5), transparent),
+        radial-gradient(2px 2px at 80% 40%, rgba(139, 92, 246, 0.4), transparent),
+        radial-gradient(3px 3px at 90% 90%, rgba(6, 182, 212, 0.5), transparent),
+        radial-gradient(2px 2px at 15% 75%, rgba(99, 102, 241, 0.4), transparent),
+        radial-gradient(2px 2px at 85% 15%, rgba(6, 182, 212, 0.4), transparent);
+    animation: floatParticles 20s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes floatParticles {
+    0% {
+        transform: translateY(0) translateX(0);
+    }
+
+    25% {
+        transform: translateY(-20px) translateX(10px);
+    }
+
+    50% {
+        transform: translateY(-10px) translateX(-15px);
+    }
+
+    75% {
+        transform: translateY(-30px) translateX(5px);
+    }
+
+    100% {
+        transform: translateY(0) translateX(0);
+    }
+}
+
 /* Hero wrapper - side by side layout */
 .hero-wrapper {
     display: flex;
