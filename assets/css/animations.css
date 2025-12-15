@@ -33,11 +33,11 @@
 
 .name {
     background: linear-gradient(90deg,
-            #6366f1 0%,
-            #8b5cf6 25%,
-            #06b6d4 50%,
-            #8b5cf6 75%,
-            #6366f1 100%);
+            #3b82f6 0%,
+            #10b981 25%,
+            #14b8a6 50%,
+            #10b981 75%,
+            #3b82f6 100%);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -61,11 +61,11 @@
 
     0%,
     100% {
-        box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
     }
 
     50% {
-        box-shadow: 0 0 40px rgba(99, 102, 241, 0.6), 0 0 60px rgba(139, 92, 246, 0.3);
+        box-shadow: 0 0 40px rgba(59, 130, 246, 0.6), 0 0 60px rgba(16, 185, 129, 0.3);
     }
 }
 
