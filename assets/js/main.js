@@ -559,6 +559,7 @@ updateFloatingNav();
 // ===================================
 // 12. HERO PHOTO MORPH TRANSITION
 // Circle → Square (CPU Optimized, No GPU)
+// Disabled on mobile for better UX
 // ===================================
 
 const heroPhoto = document.getElementById('hero-photo');
@@ -567,6 +568,21 @@ const aboutTarget = document.getElementById('about-photo-target');
 if (heroPhoto && aboutTarget) {
     const heroFrame = heroPhoto.querySelector('.hero-photo-frame');
     const heroImg = heroPhoto.querySelector('img');
+
+    // Check if mobile - disable morph on small screens
+    function isMobile() {
+        return window.innerWidth < 968;
+    }
+
+    // Reset to normal state for mobile
+    function resetForMobile() {
+        if (ghost) ghost.style.display = 'none';
+        heroPhoto.style.opacity = '1';
+        heroPhoto.style.visibility = 'visible';
+        heroPhoto.style.animation = '';
+        aboutTarget.style.opacity = '1';
+        aboutTarget.style.visibility = 'visible';
+    }
 
     // Create ghost element
     const ghost = document.createElement('div');
@@ -595,12 +611,12 @@ if (heroPhoto && aboutTarget) {
     let dirty = true;
 
     function recalc() {
+        // On mobile, skip recalculation
+        if (isMobile()) return;
+
         const h = heroFrame.getBoundingClientRect();
         const a = aboutTarget.querySelector('.image-frame').getBoundingClientRect();
-        const scrollY = window.scrollY; // Use current scrollY for absolute positioning calculation if needed, but primarily we want initial positions relative to viewport? 
-        // Actually, getBoundingClientRect is relative to viewport. 
-        // We want to animate from Hero (fixed/sticky behavior effectively) to About (scrolling up).
-        // Wait, the original implementation added scrollY to top. Let's stick to that logic but use transforms.
+        const scrollY = window.scrollY;
 
         // Initial state (Hero)
         const startTop = h.top + scrollY;
@@ -626,11 +642,21 @@ if (heroPhoto && aboutTarget) {
 
     let state = -1;
 
-    heroPhoto.style.animation = 'none';
-    aboutTarget.style.opacity = '0';
-    aboutTarget.style.visibility = 'hidden';
+    // Only apply initial hiding on desktop
+    if (!isMobile()) {
+        heroPhoto.style.animation = 'none';
+        aboutTarget.style.opacity = '0';
+        aboutTarget.style.visibility = 'hidden';
+    }
 
     function update() {
+        // On mobile, reset and skip
+        if (isMobile()) {
+            resetForMobile();
+            state = -1;
+            return;
+        }
+
         if (dirty || !cache) recalc();
 
         const scrollY = window.scrollY;
@@ -694,10 +720,26 @@ if (heroPhoto && aboutTarget) {
     let rto;
     window.addEventListener('resize', () => {
         clearTimeout(rto);
-        rto = setTimeout(() => { dirty = true; update(); }, 100);
+        rto = setTimeout(() => {
+            dirty = true;
+            // On resize to mobile, reset immediately
+            if (isMobile()) {
+                resetForMobile();
+                state = -1;
+            } else {
+                update();
+            }
+        }, 100);
     }, { passive: true });
 
-    requestAnimationFrame(() => { recalc(); update(); });
+    requestAnimationFrame(() => {
+        if (!isMobile()) {
+            recalc();
+            update();
+        } else {
+            resetForMobile();
+        }
+    });
 }
 
 
