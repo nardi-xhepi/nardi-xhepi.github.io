@@ -4,11 +4,12 @@
    =================================== */
 
 /* Flowing gradient orbs - Pure CSS animation (no JS) */
+/* Reduced opacity for Apple-style minimal aesthetic */
 .flow-orb {
     position: fixed;
     border-radius: 50%;
-    filter: blur(60px);
-    opacity: 0.25;
+    filter: blur(80px);
+    opacity: 0.12;
     pointer-events: none;
     z-index: -1;
     will-change: transform;

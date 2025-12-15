@@ -99,7 +99,7 @@
     font-size: 0.9rem;
     color: var(--color-text-secondary);
     margin-bottom: var(--spacing-md);
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
 .project-tags {
@@ -112,8 +112,8 @@
 .achievement-card {
     display: grid;
     grid-template-columns: 100px 1fr;
-    gap: var(--spacing-xl);
-    padding: var(--spacing-xl);
+    gap: var(--spacing-2xl);
+    padding: var(--spacing-2xl);
     align-items: start;
 }
 
@@ -190,7 +190,7 @@
 .achievement-content p {
     font-size: 0.9rem;
     color: var(--color-text-secondary);
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
 .achievement-content strong {
@@ -201,8 +201,8 @@
 .education-card {
     display: grid;
     grid-template-columns: 100px 1fr;
-    gap: var(--spacing-xl);
-    padding: var(--spacing-xl);
+    gap: var(--spacing-2xl);
+    padding: var(--spacing-2xl);
     align-items: start;
 }
 
@@ -275,7 +275,7 @@
 .education-details {
     font-size: 0.9rem;
     color: var(--color-text-secondary);
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
 /* Skill Cards */

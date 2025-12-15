@@ -36,15 +36,15 @@
     --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
-    /* Spacing */
+    /* Spacing - Apple-style generous whitespace */
     --spacing-xs: 0.25rem;
     --spacing-sm: 0.5rem;
     --spacing-md: 1rem;
     --spacing-lg: 1.5rem;
-    --spacing-xl: 2rem;
-    --spacing-2xl: 3rem;
-    --spacing-3xl: 4rem;
-    --spacing-4xl: 6rem;
+    --spacing-xl: 2.5rem;
+    --spacing-2xl: 4rem;
+    --spacing-3xl: 6rem;
+    --spacing-4xl: 8rem;
 
     /* Sizing */
     --max-width: 1200px;
