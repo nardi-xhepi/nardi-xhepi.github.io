@@ -351,8 +351,8 @@
     .achievements-grid,
     .skills-grid,
     .education-grid {
-        padding-left: 20px;
-        padding-right: 20px;
+        padding-left: 40px;
+        padding-right: 40px;
     }
 
     .project-filters {
@@ -365,22 +365,23 @@
     }
 
     .carousel-nav {
-        width: 40px;
-        height: 40px;
-        font-size: 1rem;
+        width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
     }
 
+    /* Keep arrows inside on mobile */
     .carousel-nav.prev {
-        left: -50px;
+        left: 5px;
     }
 
     .carousel-nav.next {
-        right: -50px;
+        right: 5px;
     }
 
     .carousel-wrapper::before,
     .carousel-wrapper::after {
-        width: 40px;
+        width: 30px;
     }
 
     .carousel-indicators {
@@ -394,5 +395,24 @@
 
     .carousel-dot.active {
         width: 20px;
+    }
+
+    /* Scroll hint on mobile */
+    .scroll-hint {
+        font-size: 0.75rem;
+    }
+
+    /* Allow achievements to wrap on mobile */
+    .achievements-grid.few-items {
+        flex-wrap: wrap;
+    }
+
+    /* Few items on mobile should still use smaller padding */
+    .projects-grid.few-items,
+    .skills-grid.few-items,
+    .education-grid.few-items,
+    .achievements-grid.few-items {
+        padding-left: var(--spacing-sm);
+        padding-right: var(--spacing-sm);
     }
 }
