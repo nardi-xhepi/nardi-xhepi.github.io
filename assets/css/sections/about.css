@@ -19,6 +19,8 @@
     position: relative;
     width: 280px;
     height: 280px;
+    /* Performance: GPU compositing for transitions */
+    will-change: transform, opacity;
 }
 
 .image-placeholder {

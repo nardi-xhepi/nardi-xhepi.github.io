@@ -558,7 +558,7 @@ updateFloatingNav();
 
 // ===================================
 // 12. HERO PHOTO TRANSITION
-// Fancy crossfade with scale, blur & glow effects
+// Optimized crossfade with scale (no blur for performance)
 // ===================================
 
 const heroPhoto = document.getElementById('hero-photo');
@@ -575,16 +575,18 @@ if (heroPhoto && aboutTarget) {
         heroPhoto.style.opacity = '1';
         heroPhoto.style.visibility = 'visible';
         heroPhoto.style.transform = '';
-        heroPhoto.style.filter = '';
         aboutTarget.style.opacity = '1';
         aboutTarget.style.visibility = 'visible';
         aboutTarget.style.transform = '';
-        aboutTarget.style.filter = '';
     }
 
     // Scroll thresholds
     const scrollStart = 50;
     let scrollEnd = window.innerHeight * 0.6;
+
+    // Throttle flag
+    let ticking = false;
+    let lastScrollY = 0;
 
     // Update scroll end on resize
     window.addEventListener('resize', () => {
@@ -592,53 +594,58 @@ if (heroPhoto && aboutTarget) {
         if (isMobile()) resetForMobile();
     }, { passive: true });
 
-    // Fancy transition update
+    // Optimized transition update (no blur - just opacity + scale)
     function updateFade() {
         if (isMobile()) {
             resetForMobile();
+            ticking = false;
             return;
         }
 
-        const scrollY = window.scrollY;
-        let p = (scrollY - scrollStart) / (scrollEnd - scrollStart);
+        let p = (lastScrollY - scrollStart) / (scrollEnd - scrollStart);
         p = Math.max(0, Math.min(1, p));
 
         // Easing for smoother feel
         const t = p * p * (3 - 2 * p);
 
-        // Hero: fade out + shrink + blur
-        const heroScale = 1 - (t * 0.15); // Scale from 1 to 0.85
-        const heroBlur = t * 6; // Blur from 0 to 6px
-
+        // Hero: fade out + shrink (no blur)
+        const heroScale = 1 - (t * 0.12);
         heroPhoto.style.opacity = 1 - t;
         heroPhoto.style.visibility = t >= 1 ? 'hidden' : 'visible';
         heroPhoto.style.transform = `scale(${heroScale})`;
-        heroPhoto.style.filter = `blur(${heroBlur}px)`;
 
-        // About: fade in + grow + sharpen
-        const aboutScale = 0.9 + (t * 0.1); // Scale from 0.9 to 1
-        const aboutBlur = (1 - t) * 4; // Blur from 4 to 0
-
+        // About: fade in + grow (no blur)
+        const aboutScale = 0.92 + (t * 0.08);
         aboutTarget.style.opacity = t;
         aboutTarget.style.visibility = t <= 0 ? 'hidden' : 'visible';
         aboutTarget.style.transform = `scale(${aboutScale})`;
-        aboutTarget.style.filter = `blur(${aboutBlur}px)`;
+
+        ticking = false;
     }
 
-    // Expose for scroll handler
-    window.updateHeroMorph = updateFade;
+    // Throttled scroll handler using requestAnimationFrame
+    function onScroll() {
+        lastScrollY = window.scrollY;
+        if (!ticking) {
+            requestAnimationFrame(updateFade);
+            ticking = true;
+        }
+    }
+
+    // Expose for external use
+    window.updateHeroMorph = onScroll;
 
     // Initial setup
     if (!isMobile()) {
         aboutTarget.style.opacity = '0';
         aboutTarget.style.visibility = 'hidden';
-        aboutTarget.style.transform = 'scale(0.9)';
-        aboutTarget.style.filter = 'blur(4px)';
+        aboutTarget.style.transform = 'scale(0.92)';
     } else {
         resetForMobile();
     }
 
     // Initial call
+    lastScrollY = window.scrollY;
     updateFade();
 }
 

@@ -13,6 +13,8 @@
     padding-top: var(--navbar-height);
     /* Smooth snap scrolling */
     scroll-snap-align: start;
+    /* Performance: isolate layout/paint */
+    contain: layout style;
 }
 
 .hero-bg {
@@ -118,6 +120,8 @@
     border: 2px solid rgba(99, 102, 241, 0.5);
     box-shadow: var(--shadow-2xl);
     transition: transform 0.5s ease;
+    /* Performance: GPU compositing for transitions */
+    will-change: transform, opacity;
 }
 
 .hero-photo:hover .hero-photo-frame {
