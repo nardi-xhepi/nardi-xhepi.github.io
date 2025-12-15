@@ -80,44 +80,54 @@
             <div class="hero-gradient"></div>
             <div class="hero-grid"></div>
         </div>
-        <div class="hero-content">
-            <div class="hero-badge">
-                <span class="badge-dot"></span>
-                Available for opportunities
+        <div class="hero-wrapper">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    Available for opportunities
+                </div>
+                <h1 class="hero-title">
+                    <span class="greeting">Hi, I'm</span>
+                    <span class="name">Nardi Xhepi</span>
+                </h1>
+                <p class="hero-subtitle">
+                    <span class="typed-text">Data Scientist</span>
+                    <span class="cursor">|</span>
+                </p>
+                <p class="hero-description">
+                    Specializing in <strong>LLMs</strong>, <strong>RAG Pipelines</strong>, and <strong>Time Series
+                        Analysis</strong>.
+                    Currently pursuing M.S. Data Science at <strong>École Polytechnique</strong>.
+                </p>
+                <div class="hero-cta">
+                    <a href="#projects" class="btn btn-primary">
+                        <span>View My Work</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <span>Get in Touch</span>
+                    </a>
+                </div>
+                <div class="hero-social">
+                    <a href="https://www.linkedin.com/in/nardi-xhepi/" target="_blank" rel="noopener"
+                        aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/nardi-xhepi" target="_blank" rel="noopener" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="mailto:nardi.xhepi@polytechnique.edu" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
             </div>
-            <h1 class="hero-title">
-                <span class="greeting">Hi, I'm</span>
-                <span class="name">Nardi Xhepi</span>
-            </h1>
-            <p class="hero-subtitle">
-                <span class="typed-text">Data Scientist</span>
-                <span class="cursor">|</span>
-            </p>
-            <p class="hero-description">
-                Specializing in <strong>LLMs</strong>, <strong>RAG Pipelines</strong>, and <strong>Time Series
-                    Analysis</strong>.
-                Currently pursuing M.S. Data Science at <strong>École Polytechnique</strong>.
-            </p>
-            <div class="hero-cta">
-                <a href="#projects" class="btn btn-primary">
-                    <span>View My Work</span>
-                    <i class="fas fa-arrow-right"></i>
-                </a>
-                <a href="#contact" class="btn btn-secondary">
-                    <span>Get in Touch</span>
-                </a>
+            <div class="hero-photo" id="hero-photo">
+                <div class="hero-photo-frame">
+                    <img src="assets/images/photo_n.jpg" alt="Nardi Xhepi">
+                    <div class="hero-photo-glow"></div>
+                </div>
             </div>
-            <div class="hero-social">
-                <a href="https://www.linkedin.com/in/nardi-xhepi/" target="_blank" rel="noopener" aria-label="LinkedIn">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="https://github.com/nardi-xhepi" target="_blank" rel="noopener" aria-label="GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="mailto:nardi.xhepi@polytechnique.edu" aria-label="Email">
-                    <i class="fas fa-envelope"></i>
-                </a>
-            </div>
+        </div>
         </div>
         <div class="hero-scroll">
             <a href="#about" class="scroll-indicator">
@@ -135,7 +145,7 @@
                 <h2 class="section-title">About Me</h2>
             </div>
             <div class="about-content">
-                <div class="about-image">
+                <div class="about-image" id="about-photo-target">
                     <div class="image-frame">
                         <div class="image-placeholder">
                             <img src="assets/images/photo_n.jpg" alt="Nardi Xhepi">
@@ -189,21 +199,22 @@
                 <span class="section-tag">Career</span>
                 <h2 class="section-title">Experience</h2>
             </div>
-            <div class="timeline">
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-marker">
-                        <i class="fas fa-briefcase"></i>
+            <div class="experience-grid">
+                <!-- Dassault Systèmes -->
+                <article class="experience-card glass-card">
+                    <div class="company-logo">
+                        <img src="assets/images/logo_dassault.png" alt="Dassault Systèmes">
                     </div>
-                    <div class="timeline-content glass-card">
-                        <div class="timeline-header">
-                            <div class="company-info">
+                    <div class="experience-content">
+                        <div class="experience-header">
+                            <div>
                                 <h3>Research Scientist Intern</h3>
-                                <span class="company">Dassault Systèmes</span>
+                                <span class="company-name">Dassault Systèmes</span>
                             </div>
-                            <span class="timeline-date">Feb 2025 – Aug 2025</span>
+                            <span class="experience-date">Feb 2025 – Aug 2025</span>
                         </div>
-                        <p class="timeline-role">LLM & AI Agents – ENOVIA</p>
-                        <ul class="timeline-details">
+                        <p class="experience-role">LLM & AI Agents – ENOVIA</p>
+                        <ul class="experience-details">
                             <li>Engineered next-gen Generative AI features for ENOVIA, designing <strong>RAG
                                     pipelines</strong> backed by Qdrant and domain-specific Knowledge Graphs</li>
                             <li>Benchmarked multiple open-weights models (Mistral Small, SmolLM 3B, Llama 3.1) for
@@ -211,44 +222,95 @@
                             <li>Implemented hybrid retrieval strategies combining BM25 with early and late interaction
                                 mechanisms</li>
                         </ul>
-                        <div class="timeline-tags">
+                        <div class="experience-tags">
                             <span class="tag">LLM</span>
                             <span class="tag">RAG</span>
                             <span class="tag">Knowledge Graphs</span>
                             <span class="tag">Qdrant</span>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
-                    <div class="timeline-marker">
-                        <i class="fas fa-briefcase"></i>
+                <!-- EDF -->
+                <article class="experience-card glass-card">
+                    <div class="company-logo">
+                        <img src="assets/images/logo_edf.png" alt="EDF">
                     </div>
-                    <div class="timeline-content glass-card">
-                        <div class="timeline-header">
-                            <div class="company-info">
+                    <div class="experience-content">
+                        <div class="experience-header">
+                            <div>
                                 <h3>Research Scientist Intern</h3>
-                                <span class="company">Électricité de France (EDF)</span>
+                                <span class="company-name">Électricité de France (EDF)</span>
                             </div>
-                            <span class="timeline-date">July 2024 – Jan 2025</span>
+                            <span class="experience-date">July 2024 – Jan 2025</span>
                         </div>
-                        <p class="timeline-role">Anomaly Detection Algorithms at DOAAT</p>
-                        <p class="timeline-supervisor"><em>Supervised by Paul Boniol and Paul Caron</em></p>
-                        <ul class="timeline-details">
+                        <p class="experience-role">Anomaly Detection Algorithms at DOAAT</p>
+                        <p class="experience-supervisor"><em>Supervised by Paul Boniol and Paul Caron</em></p>
+                        <ul class="experience-details">
                             <li>Designed ensemble-based anomaly detection algorithms improving <strong>AUC-PR by
                                     15%</strong>, potentially preventing €60M in annual losses</li>
                             <li>Worked on time series analysis and feature-based latent space representation</li>
                             <li>Developed ensemble methods that outperformed previous approaches on EDF's time series
                                 anomaly detection</li>
                         </ul>
-                        <div class="timeline-tags">
+                        <div class="experience-tags">
                             <span class="tag">Time Series</span>
                             <span class="tag">Anomaly Detection</span>
                             <span class="tag">Ensemble Methods</span>
                             <span class="tag">Python</span>
                         </div>
                     </div>
-                </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section class="section achievements" id="achievements">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Recognition</span>
+                <h2 class="section-title">Achievements</h2>
+            </div>
+            <div class="achievements-grid">
+                <!-- BendingSpoons -->
+                <article class="achievement-card glass-card">
+                    <div class="achievement-logo white-bg">
+                        <img src="assets/images/logo_bs.jpg" alt="BendingSpoons">
+                    </div>
+                    <div class="achievement-content">
+                        <h3>BendingSpoons First Ascent</h3>
+                        <span class="achievement-date">November 2025 • Milan, Italy</span>
+                        <p>Selected among the <strong>top 20 students in France</strong> to participate in
+                            BendingSpoons' exclusive First Ascent event.</p>
+                    </div>
+                </article>
+
+                <!-- D4GEN -->
+                <article class="achievement-card glass-card">
+                    <div class="achievement-logo fill-container">
+                        <img src="assets/images/logo_d4g.png" alt="D4GEN">
+                    </div>
+                    <div class="achievement-content">
+                        <h3>D4GEN Hackathon Genopole</h3>
+                        <span class="achievement-date">May 2025 • 2nd Place</span>
+                        <p>Biotechnology competition for patient-specific breast cancer treatment solution, competing
+                            against 100+ researchers.</p>
+                    </div>
+                </article>
+
+                <!-- Hi!Paris -->
+                <article class="achievement-card glass-card">
+                    <div class="achievement-logo white-bg">
+                        <img src="assets/images/logo_hiparis.png" alt="Hi!Paris">
+                    </div>
+                    <div class="achievement-content">
+                        <h3>Hi!Paris Hackathon</h3>
+                        <span class="achievement-date">2024 & 2025 • Technical Excellence Award</span>
+                        <p><strong>2x Winner</strong> – Achieved the highest technical score both years using advanced
+                            ML ensemble methods.</p>
+                    </div>
+                </article>
             </div>
         </div>
     </section>
@@ -400,53 +462,6 @@
         </div>
     </section>
 
-    <!-- Achievements Section -->
-    <section class="section achievements" id="achievements">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Recognition</span>
-                <h2 class="section-title">Achievements</h2>
-            </div>
-            <div class="achievements-grid">
-                <div class="achievement-card glass-card" data-aos="fade-up">
-                    <div class="achievement-icon">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                    <div class="achievement-content">
-                        <h3>BendingSpoons First Ascent</h3>
-                        <p class="achievement-date">November 2025 • Milan, Italy</p>
-                        <p>Selected among the <strong>top 20 students in France</strong> to participate in
-                            BendingSpoons' exclusive First Ascent event.</p>
-                    </div>
-                </div>
-
-                <div class="achievement-card glass-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="achievement-icon silver">
-                        <i class="fas fa-medal"></i>
-                    </div>
-                    <div class="achievement-content">
-                        <h3>D4GEN Hackathon Genopole</h3>
-                        <p class="achievement-date">May 2025</p>
-                        <p><strong>2nd Place</strong> in biotechnology competition for patient-specific breast cancer
-                            treatment solution, competing against 100+ researchers.</p>
-                    </div>
-                </div>
-
-                <div class="achievement-card glass-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="achievement-icon gold">
-                        <i class="fas fa-award"></i>
-                    </div>
-                    <div class="achievement-content">
-                        <h3>Hi!Paris Hackathon</h3>
-                        <p class="achievement-date">December 2024</p>
-                        <p><strong>Technical Excellence Award</strong> for achieving the highest F1 score on groundwater
-                            level predictions using stacking ensemble.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Skills Section -->
     <section class="section skills" id="skills">
         <div class="container">
@@ -525,44 +540,47 @@
                 <h2 class="section-title">Education</h2>
             </div>
             <div class="education-grid">
-                <div class="education-card glass-card" data-aos="fade-up">
-                    <div class="education-icon">
-                        <i class="fas fa-graduation-cap"></i>
+                <!-- École Polytechnique -->
+                <article class="education-card glass-card">
+                    <div class="education-logo">
+                        <img src="assets/images/logo_x.jpg" alt="École Polytechnique">
                     </div>
                     <div class="education-content">
                         <h3>École Polytechnique</h3>
                         <p class="education-degree">Master in Data Science</p>
-                        <p class="education-date">Sept 2024 – Present • Saclay, France</p>
+                        <span class="education-date">Sept 2024 – Present • Saclay, France</span>
                         <p class="education-details">Deep Learning for Time Series, Optimization for Data Science,
                             Statistical Learning Theory, Data Stream Processing</p>
                     </div>
-                </div>
+                </article>
 
-                <div class="education-card glass-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="education-icon">
-                        <i class="fas fa-university"></i>
+                <!-- Telecom SudParis -->
+                <article class="education-card glass-card">
+                    <div class="education-logo">
+                        <img src="assets/images/logo_tsp.svg" alt="Telecom SudParis">
                     </div>
                     <div class="education-content">
                         <h3>Telecom SudParis</h3>
                         <p class="education-degree">Computer Science & Data Science</p>
-                        <p class="education-date">Sept 2022 – Present • Évry, France</p>
+                        <span class="education-date">Sept 2022 – Present • Évry, France</span>
                         <p class="education-details">Machine Learning, Deep Learning, Reinforcement Learning, Algorithms
                             & Data Structures</p>
                     </div>
-                </div>
+                </article>
 
-                <div class="education-card glass-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="education-icon">
-                        <i class="fas fa-school"></i>
+                <!-- Lycée Saint-Louis -->
+                <article class="education-card glass-card">
+                    <div class="education-logo">
+                        <img src="assets/images/lycee.png" alt="Lycée Saint-Louis">
                     </div>
                     <div class="education-content">
                         <h3>Lycée Saint-Louis</h3>
                         <p class="education-degree">Preparatory Classes (CPGE)</p>
-                        <p class="education-date">Sept 2019 – Sept 2022 • Paris, France</p>
+                        <span class="education-date">Sept 2019 – Sept 2022 • Paris, France</span>
                         <p class="education-details">Mathematics & Physics intensive program. Research: Autonomous moon
                             lander using RL.</p>
                     </div>
-                </div>
+                </article>
             </div>
         </div>
     </section>
