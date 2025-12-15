@@ -312,6 +312,10 @@ function onScroll() {
         window.requestAnimationFrame(() => {
             updateScrollProgress();
             updateFlowingOrbs();
+            // Integrate hero morph transition (if available)
+            if (window.updateHeroMorph) {
+                window.updateHeroMorph();
+            }
             ticking = false;
         });
         ticking = true;
@@ -365,3 +369,123 @@ function updateFloatingNav() {
 
 window.addEventListener('scroll', updateFloatingNav, { passive: true });
 updateFloatingNav();
+
+// ===================================
+// 12. HERO PHOTO MORPH TRANSITION
+// Circle → Square (CPU-based, no GPU transforms)
+// ===================================
+
+const heroPhoto = document.getElementById('hero-photo');
+const aboutTarget = document.getElementById('about-photo-target');
+
+if (heroPhoto && aboutTarget) {
+    const heroFrame = heroPhoto.querySelector('.hero-photo-frame');
+    const heroImg = heroPhoto.querySelector('img');
+    const aboutFrame = aboutTarget.querySelector('.image-frame');
+
+    // Create ghost element
+    const ghost = document.createElement('div');
+    const ghostImg = document.createElement('img');
+
+    // Simple CSS - no GPU hints
+    ghost.style.cssText = `
+        position: fixed;
+        z-index: 9999;
+        pointer-events: none;
+        box-shadow: 0 0 40px rgba(99, 102, 241, 0.4);
+        overflow: hidden;
+        display: none;
+        border: 2px solid rgba(99, 102, 241, 0.5);
+    `;
+
+    ghostImg.src = heroImg.src;
+    ghostImg.style.cssText = 'width: 100%; height: 100%; object-fit: cover;';
+
+    ghost.appendChild(ghostImg);
+    document.body.appendChild(ghost);
+
+    // Cache layout
+    let cache = null;
+    let dirty = true;
+
+    function recalc() {
+        const h = heroFrame.getBoundingClientRect();
+        const a = aboutFrame.getBoundingClientRect();
+        const scrollY = window.scrollY;
+        cache = {
+            hTop: h.top + scrollY, hLeft: h.left, hW: h.width, hH: h.height,
+            aTop: a.top + scrollY, aLeft: a.left, aW: a.width, aH: a.height,
+            start: 10, end: window.innerHeight * 0.8
+        };
+        dirty = false;
+    }
+
+    let state = -1;
+
+    heroPhoto.style.animation = 'none';
+    aboutTarget.style.opacity = '0';
+    aboutTarget.style.visibility = 'hidden';
+
+    function update() {
+        if (dirty || !cache) recalc();
+
+        const scrollY = window.scrollY;
+        let p = (scrollY - cache.start) / (cache.end - cache.start);
+        p = p < 0 ? 0 : p > 1 ? 1 : p;
+
+        if (p <= 0) {
+            if (state !== 0) {
+                ghost.style.display = 'none';
+                heroPhoto.style.opacity = '1';
+                heroPhoto.style.visibility = 'visible';
+                aboutTarget.style.opacity = '0';
+                aboutTarget.style.visibility = 'hidden';
+                state = 0;
+            }
+        } else if (p >= 1) {
+            if (state !== 2) {
+                ghost.style.display = 'none';
+                heroPhoto.style.opacity = '0';
+                heroPhoto.style.visibility = 'hidden';
+                aboutTarget.style.opacity = '1';
+                aboutTarget.style.visibility = 'visible';
+                state = 2;
+            }
+        } else {
+            const t = p * p * (3 - 2 * p);
+
+            if (state !== 1) {
+                ghost.style.display = 'block';
+                heroPhoto.style.opacity = '0';
+                heroPhoto.style.visibility = 'hidden';
+                aboutTarget.style.opacity = '0';
+                aboutTarget.style.visibility = 'hidden';
+                state = 1;
+            }
+
+            // Use top/left/width/height instead of transforms
+            const top = (cache.hTop - scrollY) + ((cache.aTop - scrollY) - (cache.hTop - scrollY)) * t;
+            const left = cache.hLeft + (cache.aLeft - cache.hLeft) * t;
+            const width = cache.hW + (cache.aW - cache.hW) * t;
+            const height = cache.hH + (cache.aH - cache.hH) * t;
+            const radius = 50 - 48 * t;
+
+            ghost.style.top = top + 'px';
+            ghost.style.left = left + 'px';
+            ghost.style.width = width + 'px';
+            ghost.style.height = height + 'px';
+            ghost.style.borderRadius = radius + '%';
+        }
+    }
+
+    window.updateHeroMorph = update;
+
+    let rto;
+    window.addEventListener('resize', () => {
+        clearTimeout(rto);
+        rto = setTimeout(() => { dirty = true; update(); }, 100);
+    }, { passive: true });
+
+    requestAnimationFrame(() => { recalc(); update(); });
+}
+
