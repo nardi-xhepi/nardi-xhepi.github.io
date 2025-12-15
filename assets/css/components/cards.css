@@ -136,16 +136,17 @@
 
 .achievement-logo.fill-container {
     padding: 0;
-}
-
-.achievement-logo.fill-container img {
-    object-fit: cover;
+    background: transparent;
 }
 
 .achievement-logo img {
     width: 100%;
     height: 100%;
     object-fit: contain;
+}
+
+.achievement-logo.fill-container img {
+    object-fit: cover;
 }
 
 .achievement-logo-placeholder {

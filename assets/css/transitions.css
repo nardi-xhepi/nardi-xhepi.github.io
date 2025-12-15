@@ -3,7 +3,7 @@
    Flowing elements between sections
    =================================== */
 
-/* Flowing gradient orbs - GPU accelerated */
+/* Flowing gradient orbs - Pure CSS animation (no JS) */
 .flow-orb {
     position: fixed;
     border-radius: 50%;
@@ -12,7 +12,6 @@
     pointer-events: none;
     z-index: -1;
     will-change: transform;
-    transform: translateZ(0);
 }
 
 .flow-orb-1 {
@@ -21,6 +20,7 @@
     background: radial-gradient(circle, var(--color-accent-primary) 0%, transparent 70%);
     top: -200px;
     left: -200px;
+    animation: floatOrb1 25s ease-in-out infinite;
 }
 
 .flow-orb-2 {
@@ -29,6 +29,7 @@
     background: radial-gradient(circle, var(--color-accent-secondary) 0%, transparent 70%);
     top: 30%;
     right: -150px;
+    animation: floatOrb2 30s ease-in-out infinite;
 }
 
 .flow-orb-3 {
@@ -37,6 +38,68 @@
     background: radial-gradient(circle, var(--color-accent-tertiary) 0%, transparent 70%);
     bottom: 10%;
     left: -100px;
+    animation: floatOrb3 20s ease-in-out infinite;
+}
+
+/* Orb floating animations - GPU accelerated */
+@keyframes floatOrb1 {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    25% {
+        transform: translate3d(50px, 80px, 0);
+    }
+
+    50% {
+        transform: translate3d(100px, 120px, 0);
+    }
+
+    75% {
+        transform: translate3d(60px, 40px, 0);
+    }
+}
+
+@keyframes floatOrb2 {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    25% {
+        transform: translate3d(-40px, 60px, 0);
+    }
+
+    50% {
+        transform: translate3d(-80px, 100px, 0);
+    }
+
+    75% {
+        transform: translate3d(-30px, 30px, 0);
+    }
+}
+
+@keyframes floatOrb3 {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    25% {
+        transform: translate3d(30px, -40px, 0);
+    }
+
+    50% {
+        transform: translate3d(60px, -80px, 0);
+    }
+
+    75% {
+        transform: translate3d(20px, -20px, 0);
+    }
 }
 
 /* Floating particles */

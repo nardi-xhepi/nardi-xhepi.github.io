@@ -11,14 +11,14 @@ const navToggle = document.getElementById('nav-toggle');
 const navMenu = document.getElementById('nav-menu');
 const navLinks = document.querySelectorAll('.nav-link');
 
-// Navbar scroll effect
-window.addEventListener('scroll', () => {
+// Navbar scroll effect - integrated in main scroll handler (section 10)
+function updateNavbar() {
     if (window.scrollY > 50) {
         navbar.classList.add('scrolled');
     } else {
         navbar.classList.remove('scrolled');
     }
-});
+}
 
 // Mobile menu toggle
 navToggle?.addEventListener('click', () => {
@@ -329,20 +329,19 @@ function highlightNavOnScroll() {
     });
 }
 
-window.addEventListener('scroll', highlightNavOnScroll);
+// highlightNavOnScroll is called from main onScroll handler
 
 // ===================================
-// 7. PARALLAX EFFECT FOR HERO
+// 7. PARALLAX EFFECT FOR HERO (Disabled for performance)
 // ===================================
 const heroContent = document.querySelector('.hero-content');
 
-window.addEventListener('scroll', () => {
-    const scrollY = window.pageYOffset;
-    if (heroContent && scrollY < window.innerHeight) {
-        heroContent.style.transform = `translateY(${scrollY * 0.3}px)`;
-        heroContent.style.opacity = 1 - scrollY / (window.innerHeight * 0.8);
-    }
-});
+// Hero parallax function - DISABLED for smoother scrolling
+function updateHeroParallax() {
+    // Parallax disabled - it causes repaint lag on scroll
+    // The hero section looks great without it
+    return;
+}
 
 // ===================================
 // 8. PRELOADER (Optional)
@@ -402,32 +401,11 @@ function checkStatsInView() {
     }
 }
 
-window.addEventListener('scroll', checkStatsInView, { passive: true });
-checkStatsInView();
+// checkStatsInView is called from main onScroll handler
+checkStatsInView(); // Initial call
 
-// ===================================
-// 8.6 CARD TILT EFFECT
-// ===================================
-const tiltCards = document.querySelectorAll('.glass-card');
-
-tiltCards.forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-
-        const rotateX = (y - centerY) / 20;
-        const rotateY = (centerX - x) / 20;
-
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
-    });
-
-    card.addEventListener('mouseleave', () => {
-        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
-    });
-});
+// Card tilt effect removed for performance
+// Glass cards now use simple CSS hover effects instead
 
 // ===================================
 // 9. CONSOLE EASTER EGG
@@ -452,25 +430,8 @@ function updateScrollProgress() {
     }
 }
 
-// Flowing orbs movement based on scroll - optimized for GPU
-const orb1 = document.getElementById('orb1');
-const orb2 = document.getElementById('orb2');
-const orb3 = document.getElementById('orb3');
-
-function updateFlowingOrbs() {
-    const scrollY = window.scrollY;
-    const scrollPercent = scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-
-    if (orb1) {
-        orb1.style.transform = `translate3d(${scrollPercent * 200}px, ${scrollPercent * 300}px, 0)`;
-    }
-    if (orb2) {
-        orb2.style.transform = `translate3d(${-scrollPercent * 150}px, ${scrollPercent * 400}px, 0)`;
-    }
-    if (orb3) {
-        orb3.style.transform = `translate3d(${scrollPercent * 100}px, ${-scrollPercent * 200}px, 0)`;
-    }
-}
+// Flowing orbs now use pure CSS animation (see hero.css)
+// No JS scroll tracking needed
 
 // Section reveal on scroll
 const allSections = document.querySelectorAll('.section, .hero');
@@ -496,9 +457,13 @@ let ticking = false;
 function onScroll() {
     if (!ticking) {
         window.requestAnimationFrame(() => {
+            // Minimal scroll updates for performance
+            updateNavbar();
             updateScrollProgress();
-            updateFlowingOrbs();
-            // Integrate hero morph transition (if available)
+            highlightNavOnScroll();
+            checkStatsInView();
+            updateFloatingNav();
+            // Hero photo transition
             if (window.updateHeroMorph) {
                 window.updateHeroMorph();
             }
@@ -553,8 +518,8 @@ function updateFloatingNav() {
     });
 }
 
-window.addEventListener('scroll', updateFloatingNav, { passive: true });
-updateFloatingNav();
+// updateFloatingNav is called from main onScroll handler
+updateFloatingNav(); // Initial call
 
 // ===================================
 // 12. HERO PHOTO TRANSITION
