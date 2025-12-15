@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Nardi Xhepi - Data Scientist & ML Engineer specializing in LLMs, RAG Pipelines, and Time Series Analysis">
+    <meta name="keywords" content="Data Science, Machine Learning, LLM, RAG, Time Series, Python, PyTorch">
+    <meta name="author" content="Nardi Xhepi">
+    <title>Nardi Xhepi | Data Scientist & ML Engineer</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+
+<body>
+    <!-- Visual Continuity Elements -->
+    <div class="scroll-progress">
+        <div class="scroll-progress-bar" id="scroll-progress"></div>
+    </div>
+
+    <!-- Flowing gradient orbs -->
+    <div class="flow-orb flow-orb-1" id="orb1"></div>
+    <div class="flow-orb flow-orb-2" id="orb2"></div>
+    <div class="flow-orb flow-orb-3" id="orb3"></div>
+
+    <!-- Background mesh -->
+    <div class="gradient-mesh"></div>
+    <div class="moving-dots"></div>
+
+    <!-- Accent line -->
+    <div class="accent-line" id="accent-line"></div>
+
+    <!-- Floating Quick Navigation -->
+    <nav class="floating-nav" id="floating-nav">
+        <button class="floating-nav-dot active" data-section="hero" data-label="Home" aria-label="Go to Home"></button>
+        <button class="floating-nav-dot" data-section="about" data-label="About" aria-label="Go to About"></button>
+        <button class="floating-nav-dot" data-section="experience" data-label="Experience"
+            aria-label="Go to Experience"></button>
+        <button class="floating-nav-dot" data-section="projects" data-label="Projects"
+            aria-label="Go to Projects"></button>
+        <button class="floating-nav-dot" data-section="achievements" data-label="Achievements"
+            aria-label="Go to Achievements"></button>
+        <button class="floating-nav-dot" data-section="skills" data-label="Skills" aria-label="Go to Skills"></button>
+        <button class="floating-nav-dot" data-section="education" data-label="Education"
+            aria-label="Go to Education"></button>
+        <button class="floating-nav-dot" data-section="contact" data-label="Contact"
+            aria-label="Go to Contact"></button>
+    </nav>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <span class="logo-text">NX</span>
+            </a>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#achievements" class="nav-link">Achievements</a></li>
+                <li><a href="#blog" class="nav-link">Blog</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span class="hamburger"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <div class="hero-gradient"></div>
+            <div class="hero-grid"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                Available for opportunities
+            </div>
+            <h1 class="hero-title">
+                <span class="greeting">Hi, I'm</span>
+                <span class="name">Nardi Xhepi</span>
+            </h1>
+            <p class="hero-subtitle">
+                <span class="typed-text">Data Scientist</span>
+                <span class="cursor">|</span>
+            </p>
+            <p class="hero-description">
+                Specializing in <strong>LLMs</strong>, <strong>RAG Pipelines</strong>, and <strong>Time Series
+                    Analysis</strong>.
+                Currently pursuing M.S. Data Science at <strong>École Polytechnique</strong>.
+            </p>
+            <div class="hero-cta">
+                <a href="#projects" class="btn btn-primary">
+                    <span>View My Work</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                    <span>Get in Touch</span>
+                </a>
+            </div>
+            <div class="hero-social">
+                <a href="https://www.linkedin.com/in/nardi-xhepi/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/nardi-xhepi" target="_blank" rel="noopener" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="mailto:nardi.xhepi@polytechnique.edu" aria-label="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <a href="#about" class="scroll-indicator">
+                <span>Scroll</span>
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Introduction</span>
+                <h2 class="section-title">About Me</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-image">
+                    <div class="image-frame">
+                        <div class="image-placeholder">
+                            <img src="assets/images/photo_n.jpg" alt="Nardi Xhepi">
+                        </div>
+                        <div class="image-decoration"></div>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <p class="about-intro">
+                        I'm a <strong>Data Scientist</strong> and <strong>Machine Learning Engineer</strong> passionate
+                        about
+                        building intelligent systems that solve real-world problems.
+                    </p>
+                    <p>
+                        Currently pursuing my Master's in Data Science at <strong>École Polytechnique</strong>, I
+                        combine
+                        strong theoretical foundations with hands-on experience from internships at <strong>Dassault
+                            Systèmes</strong>
+                        and <strong>EDF</strong>.
+                    </p>
+                    <p>
+                        My expertise spans <strong>Large Language Models</strong>, <strong>Retrieval-Augmented
+                            Generation</strong>,
+                        <strong>Time Series Analysis</strong>, and <strong>Anomaly Detection</strong>. I thrive on
+                        transforming
+                        complex data into actionable insights.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <span class="stat-number">2+</span>
+                            <span class="stat-label">Years Experience</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">3</span>
+                            <span class="stat-label">Hackathon Awards</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">5</span>
+                            <span class="stat-label">Languages</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="section experience" id="experience">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Career</span>
+                <h2 class="section-title">Experience</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item" data-aos="fade-up">
+                    <div class="timeline-marker">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div class="timeline-content glass-card">
+                        <div class="timeline-header">
+                            <div class="company-info">
+                                <h3>Research Scientist Intern</h3>
+                                <span class="company">Dassault Systèmes</span>
+                            </div>
+                            <span class="timeline-date">Feb 2025 – Aug 2025</span>
+                        </div>
+                        <p class="timeline-role">LLM & AI Agents – ENOVIA</p>
+                        <ul class="timeline-details">
+                            <li>Engineered next-gen Generative AI features for ENOVIA, designing <strong>RAG
+                                    pipelines</strong> backed by Qdrant and domain-specific Knowledge Graphs</li>
+                            <li>Benchmarked multiple open-weights models (Mistral Small, SmolLM 3B, Llama 3.1) for
+                                entity extraction tasks</li>
+                            <li>Implemented hybrid retrieval strategies combining BM25 with early and late interaction
+                                mechanisms</li>
+                        </ul>
+                        <div class="timeline-tags">
+                            <span class="tag">LLM</span>
+                            <span class="tag">RAG</span>
+                            <span class="tag">Knowledge Graphs</span>
+                            <span class="tag">Qdrant</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="timeline-marker">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div class="timeline-content glass-card">
+                        <div class="timeline-header">
+                            <div class="company-info">
+                                <h3>Research Scientist Intern</h3>
+                                <span class="company">Électricité de France (EDF)</span>
+                            </div>
+                            <span class="timeline-date">July 2024 – Jan 2025</span>
+                        </div>
+                        <p class="timeline-role">Anomaly Detection Algorithms at DOAAT</p>
+                        <p class="timeline-supervisor"><em>Supervised by Paul Boniol and Paul Caron</em></p>
+                        <ul class="timeline-details">
+                            <li>Designed ensemble-based anomaly detection algorithms improving <strong>AUC-PR by
+                                    15%</strong>, potentially preventing €60M in annual losses</li>
+                            <li>Worked on time series analysis and feature-based latent space representation</li>
+                            <li>Developed ensemble methods that outperformed previous approaches on EDF's time series
+                                anomaly detection</li>
+                        </ul>
+                        <div class="timeline-tags">
+                            <span class="tag">Time Series</span>
+                            <span class="tag">Anomaly Detection</span>
+                            <span class="tag">Ensemble Methods</span>
+                            <span class="tag">Python</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section projects" id="projects">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Portfolio</span>
+                <h2 class="section-title">Featured Projects</h2>
+            </div>
+            <div class="project-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="llm">LLM & NLP</button>
+                <button class="filter-btn" data-filter="timeseries">Time Series</button>
+                <button class="filter-btn" data-filter="ml">Machine Learning</button>
+            </div>
+            <div class="projects-grid">
+                <article class="project-card glass-card" data-category="llm">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="project-overlay">
+                            <a href="#" class="project-link" aria-label="View Project">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                            <a href="#" class="project-link" aria-label="View Code">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>RAG Pipeline for Enterprise Search</h3>
+                        <p>Built a production-ready RAG system using Qdrant vector database and domain-specific
+                            knowledge graphs for intelligent document retrieval.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">LangChain</span>
+                            <span class="tag">Qdrant</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card glass-card" data-category="timeseries">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="project-overlay">
+                            <a href="#" class="project-link" aria-label="View Project">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                            <a href="#" class="project-link" aria-label="View Code">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Ensemble Anomaly Detection</h3>
+                        <p>Developed ensemble methods for power system anomaly detection, achieving 15% AUC-PR
+                            improvement and preventing potential €60M losses.</p>
+                        <div class="project-tags">
+                            <span class="tag">PyTorch</span>
+                            <span class="tag">Scikit-learn</span>
+                            <span class="tag">Time Series</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card glass-card" data-category="ml">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <i class="fas fa-water"></i>
+                        </div>
+                        <div class="project-overlay">
+                            <a href="#" class="project-link" aria-label="View Project">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                            <a href="#" class="project-link" aria-label="View Code">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Groundwater Level Prediction</h3>
+                        <p>Hi!Paris Hackathon winner: Stacking ensemble approach achieving highest F1 score on
+                            groundwater level predictions.</p>
+                        <div class="project-tags">
+                            <span class="tag">XGBoost</span>
+                            <span class="tag">Ensemble</span>
+                            <span class="tag">Python</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card glass-card" data-category="ml">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <i class="fas fa-dna"></i>
+                        </div>
+                        <div class="project-overlay">
+                            <a href="#" class="project-link" aria-label="View Project">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                            <a href="#" class="project-link" aria-label="View Code">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Breast Cancer Treatment Optimization</h3>
+                        <p>D4GEN Hackathon finalist: Patient-specific breast cancer treatment solution using ML for
+                            personalized medicine.</p>
+                        <div class="project-tags">
+                            <span class="tag">Biotech</span>
+                            <span class="tag">ML</span>
+                            <span class="tag">Healthcare</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card glass-card" data-category="timeseries llm">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="project-overlay">
+                            <a href="#" class="project-link" aria-label="View Project">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                            <a href="#" class="project-link" aria-label="View Code">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Autonomous Moon Lander</h3>
+                        <p>Reinforcement learning implementation using Augmented Random Search in Java, simulating
+                            autonomous lunar landing.</p>
+                        <div class="project-tags">
+                            <span class="tag">Java</span>
+                            <span class="tag">RL</span>
+                            <span class="tag">Simulation</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section class="section achievements" id="achievements">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Recognition</span>
+                <h2 class="section-title">Achievements</h2>
+            </div>
+            <div class="achievements-grid">
+                <div class="achievement-card glass-card" data-aos="fade-up">
+                    <div class="achievement-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="achievement-content">
+                        <h3>BendingSpoons First Ascent</h3>
+                        <p class="achievement-date">November 2025 • Milan, Italy</p>
+                        <p>Selected among the <strong>top 20 students in France</strong> to participate in
+                            BendingSpoons' exclusive First Ascent event.</p>
+                    </div>
+                </div>
+
+                <div class="achievement-card glass-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="achievement-icon silver">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <div class="achievement-content">
+                        <h3>D4GEN Hackathon Genopole</h3>
+                        <p class="achievement-date">May 2025</p>
+                        <p><strong>2nd Place</strong> in biotechnology competition for patient-specific breast cancer
+                            treatment solution, competing against 100+ researchers.</p>
+                    </div>
+                </div>
+
+                <div class="achievement-card glass-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="achievement-icon gold">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="achievement-content">
+                        <h3>Hi!Paris Hackathon</h3>
+                        <p class="achievement-date">December 2024</p>
+                        <p><strong>Technical Excellence Award</strong> for achieving the highest F1 score on groundwater
+                            level predictions using stacking ensemble.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section skills" id="skills">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Expertise</span>
+                <h2 class="section-title">Skills & Technologies</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category glass-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>AI & Machine Learning</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">Transformers</span>
+                        <span class="skill-tag">Scikit-learn</span>
+                        <span class="skill-tag">Time Series</span>
+                        <span class="skill-tag">Optimization</span>
+                    </div>
+                </div>
+
+                <div class="skill-category glass-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Generative AI & Data</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">LLMs</span>
+                        <span class="skill-tag">RAG Pipelines</span>
+                        <span class="skill-tag">AI Agents</span>
+                        <span class="skill-tag">Knowledge Graphs</span>
+                        <span class="skill-tag">Qdrant</span>
+                        <span class="skill-tag">Streamlit</span>
+                    </div>
+                </div>
+
+                <div class="skill-category glass-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Development Tools</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">GitHub</span>
+                        <span class="skill-tag">Bash</span>
+                        <span class="skill-tag">Linux</span>
+                        <span class="skill-tag">Docker</span>
+                    </div>
+                </div>
+
+                <div class="skill-category glass-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Languages</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">French (Fluent)</span>
+                        <span class="skill-tag">English (Fluent)</span>
+                        <span class="skill-tag">Albanian (Fluent)</span>
+                        <span class="skill-tag">Italian (Intermediate)</span>
+                        <span class="skill-tag">German (Basic)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="section education" id="education">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Background</span>
+                <h2 class="section-title">Education</h2>
+            </div>
+            <div class="education-grid">
+                <div class="education-card glass-card" data-aos="fade-up">
+                    <div class="education-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="education-content">
+                        <h3>École Polytechnique</h3>
+                        <p class="education-degree">Master in Data Science</p>
+                        <p class="education-date">Sept 2024 – Present • Saclay, France</p>
+                        <p class="education-details">Deep Learning for Time Series, Optimization for Data Science,
+                            Statistical Learning Theory, Data Stream Processing</p>
+                    </div>
+                </div>
+
+                <div class="education-card glass-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="education-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div class="education-content">
+                        <h3>Telecom SudParis</h3>
+                        <p class="education-degree">Computer Science & Data Science</p>
+                        <p class="education-date">Sept 2022 – Present • Évry, France</p>
+                        <p class="education-details">Machine Learning, Deep Learning, Reinforcement Learning, Algorithms
+                            & Data Structures</p>
+                    </div>
+                </div>
+
+                <div class="education-card glass-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="education-icon">
+                        <i class="fas fa-school"></i>
+                    </div>
+                    <div class="education-content">
+                        <h3>Lycée Saint-Louis</h3>
+                        <p class="education-degree">Preparatory Classes (CPGE)</p>
+                        <p class="education-date">Sept 2019 – Sept 2022 • Paris, France</p>
+                        <p class="education-details">Mathematics & Physics intensive program. Research: Autonomous moon
+                            lander using RL.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="section blog" id="blog">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Insights</span>
+                <h2 class="section-title">Latest Blog Posts</h2>
+            </div>
+            <div class="blog-grid">
+                <article class="blog-card glass-card" data-aos="fade-up">
+                    <div class="blog-image">
+                        <div class="blog-placeholder">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <span class="blog-category">LLM</span>
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-date">Coming Soon</span>
+                        <h3>Building Production-Ready RAG Systems</h3>
+                        <p>A deep dive into designing scalable RAG pipelines with vector databases and knowledge graphs.
+                        </p>
+                        <a href="#" class="blog-link">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="blog-card glass-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="blog-image">
+                        <div class="blog-placeholder">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <span class="blog-category">Time Series</span>
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-date">Coming Soon</span>
+                        <h3>Ensemble Methods for Anomaly Detection</h3>
+                        <p>How combining multiple detectors can dramatically improve anomaly detection accuracy.</p>
+                        <a href="#" class="blog-link">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="blog-card glass-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="blog-image">
+                        <div class="blog-placeholder">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <span class="blog-category">Career</span>
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-date">Coming Soon</span>
+                        <h3>Winning Hackathons: A Data Science Perspective</h3>
+                        <p>Lessons learned from competitive data science hackathons and what makes winning solutions.
+                        </p>
+                        <a href="#" class="blog-link">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
+            <div class="blog-cta">
+                <a href="blog.html" class="btn btn-secondary">
+                    View All Posts <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Get in Touch</span>
+                <h2 class="section-title">Let's Connect</h2>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <p class="contact-intro">
+                        I'm always open to discussing new opportunities, interesting projects,
+                        or potential collaborations in data science and machine learning.
+                    </p>
+                    <div class="contact-methods">
+                        <a href="mailto:nardi.xhepi@polytechnique.edu" class="contact-method">
+                            <i class="fas fa-envelope"></i>
+                            <span>nardi.xhepi@polytechnique.edu</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/nardi-xhepi/" target="_blank" rel="noopener"
+                            class="contact-method">
+                            <i class="fab fa-linkedin"></i>
+                            <span>linkedin.com/in/nardi-xhepi</span>
+                        </a>
+                        <a href="https://github.com/nardi-xhepi" target="_blank" rel="noopener" class="contact-method">
+                            <i class="fab fa-github"></i>
+                            <span>github.com/nardi-xhepi</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-card glass-card">
+                    <div class="contact-card-content">
+                        <h3>Send a Message</h3>
+                        <form class="contact-form" id="contact-form">
+                            <div class="form-group">
+                                <input type="text" id="name" name="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" name="email" placeholder="Your Email" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="message" name="message" placeholder="Your Message" rows="4"
+                                    required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <span>Send Message</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-text">NX</span>
+                    <p>Data Scientist & ML Engineer</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#about">About</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#blog">Blog</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/in/nardi-xhepi/" target="_blank" rel="noopener"
+                        aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/nardi-xhepi" target="_blank" rel="noopener" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="mailto:nardi.xhepi@polytechnique.edu" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Nardi Xhepi. All rights reserved.</p>
+                <p class="footer-note">Built with ❤️ and a lot of ☕</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Blog posts by Nardi Xhepi - Insights on Data Science, Machine Learning, LLMs, and Time Series Analysis">
+    <meta name="author" content="Nardi Xhepi">
+    <title>Blog | Nardi Xhepi - Data Scientist</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-text">NX</span>
+            </a>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html#about" class="nav-link">About</a></li>
+                <li><a href="index.html#experience" class="nav-link">Experience</a></li>
+                <li><a href="index.html#projects" class="nav-link">Projects</a></li>
+                <li><a href="index.html#achievements" class="nav-link">Achievements</a></li>
+                <li><a href="blog.html" class="nav-link active">Blog</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span class="hamburger"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Blog Hero -->
+    <section class="blog-hero">
+        <div class="container">
+            <div class="blog-hero-content">
+                <h1>Blog & Insights</h1>
+                <p>Thoughts on data science, machine learning, and building intelligent systems. Sharing lessons learned
+                    from research and real-world projects.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Content -->
+    <section class="section">
+        <div class="container">
+            <!-- Category Filters -->
+            <div class="blog-categories">
+                <button class="category-btn active" data-category="all">All Posts</button>
+                <button class="category-btn" data-category="llm">LLM & NLP</button>
+                <button class="category-btn" data-category="timeseries">Time Series</button>
+                <button class="category-btn" data-category="ml">Machine Learning</button>
+                <button class="category-btn" data-category="career">Career</button>
+            </div>
+
+            <!-- Blog Posts Grid -->
+            <div class="blog-posts">
+                <!-- Post 1 -->
+                <article class="blog-post-card glass-card" data-category="llm">
+                    <div class="blog-post-image">
+                        <i class="fas fa-robot"></i>
+                        <span class="blog-post-category">LLM</span>
+                    </div>
+                    <div class="blog-post-content">
+                        <div class="blog-post-meta">
+                            <span><i class="far fa-calendar"></i> Coming Soon</span>
+                            <span><i class="far fa-clock"></i> 8 min read</span>
+                        </div>
+                        <h2><a href="blog/posts/building-production-rag-systems.html">Building Production-Ready RAG
+                                Systems</a></h2>
+                        <p class="blog-post-excerpt">A deep dive into designing scalable RAG pipelines with vector
+                            databases and knowledge graphs. Lessons from implementing enterprise-grade solutions.</p>
+                        <a href="blog/posts/building-production-rag-systems.html" class="blog-post-link">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Post 2 -->
+                <article class="blog-post-card glass-card" data-category="timeseries">
+                    <div class="blog-post-image">
+                        <i class="fas fa-chart-line"></i>
+                        <span class="blog-post-category">Time Series</span>
+                    </div>
+                    <div class="blog-post-content">
+                        <div class="blog-post-meta">
+                            <span><i class="far fa-calendar"></i> Coming Soon</span>
+                            <span><i class="far fa-clock"></i> 10 min read</span>
+                        </div>
+                        <h2><a href="#">Ensemble Methods for Anomaly Detection</a></h2>
+                        <p class="blog-post-excerpt">How combining multiple detectors can dramatically improve anomaly
+                            detection accuracy. Real-world insights from power system monitoring at EDF.</p>
+                        <a href="#" class="blog-post-link">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Post 3 -->
+                <article class="blog-post-card glass-card" data-category="career">
+                    <div class="blog-post-image">
+                        <i class="fas fa-trophy"></i>
+                        <span class="blog-post-category">Career</span>
+                    </div>
+                    <div class="blog-post-content">
+                        <div class="blog-post-meta">
+                            <span><i class="far fa-calendar"></i> Coming Soon</span>
+                            <span><i class="far fa-clock"></i> 6 min read</span>
+                        </div>
+                        <h2><a href="#">Winning Hackathons: A Data Science Perspective</a></h2>
+                        <p class="blog-post-excerpt">Lessons learned from competitive data science hackathons. What
+                            makes winning solutions and how to approach time-constrained problems.</p>
+                        <a href="#" class="blog-post-link">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Post 4 -->
+                <article class="blog-post-card glass-card" data-category="ml">
+                    <div class="blog-post-image">
+                        <i class="fas fa-layer-group"></i>
+                        <span class="blog-post-category">ML</span>
+                    </div>
+                    <div class="blog-post-content">
+                        <div class="blog-post-meta">
+                            <span><i class="far fa-calendar"></i> Coming Soon</span>
+                            <span><i class="far fa-clock"></i> 12 min read</span>
+                        </div>
+                        <h2><a href="#">Stacking Ensembles: Beyond Simple Averaging</a></h2>
+                        <p class="blog-post-excerpt">Deep dive into stacking ensemble techniques that won us the
+                            Technical Excellence Award at Hi!Paris Hackathon for groundwater prediction.</p>
+                        <a href="#" class="blog-post-link">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Post 5 -->
+                <article class="blog-post-card glass-card" data-category="llm">
+                    <div class="blog-post-image">
+                        <i class="fas fa-project-diagram"></i>
+                        <span class="blog-post-category">LLM</span>
+                    </div>
+                    <div class="blog-post-content">
+                        <div class="blog-post-meta">
+                            <span><i class="far fa-calendar"></i> Coming Soon</span>
+                            <span><i class="far fa-clock"></i> 9 min read</span>
+                        </div>
+                        <h2><a href="#">Knowledge Graphs for Domain-Specific AI</a></h2>
+                        <p class="blog-post-excerpt">Combining LLMs with knowledge graphs for accurate entity extraction
+                            and reasoning in enterprise applications.</p>
+                        <a href="#" class="blog-post-link">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Post 6 -->
+                <article class="blog-post-card glass-card" data-category="timeseries">
+                    <div class="blog-post-image">
+                        <i class="fas fa-database"></i>
+                        <span class="blog-post-category">Time Series</span>
+                    </div>
+                    <div class="blog-post-content">
+                        <div class="blog-post-meta">
+                            <span><i class="far fa-calendar"></i> Coming Soon</span>
+                            <span><i class="far fa-clock"></i> 7 min read</span>
+                        </div>
+                        <h2><a href="#">Feature Engineering for Time Series</a></h2>
+                        <p class="blog-post-excerpt">Representing time series in feature-based latent spaces for
+                            improved downstream analysis and anomaly detection.</p>
+                        <a href="#" class="blog-post-link">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Subscription -->
+    <section class="subscription-section">
+        <div class="container">
+            <div class="subscription-content">
+                <h3>Stay Updated</h3>
+                <p>Subscribe to get notified when new posts are published. No spam, just data science insights.</p>
+                <form class="subscription-form">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-text">NX</span>
+                    <p>Data Scientist & ML Engineer</p>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html#about">About</a>
+                    <a href="index.html#experience">Experience</a>
+                    <a href="index.html#projects">Projects</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="index.html#contact">Contact</a>
+                </div>
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/in/nardi-xhepi/" target="_blank" rel="noopener"
+                        aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/nardi-xhepi" target="_blank" rel="noopener" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="mailto:nardi.xhepi@polytechnique.edu" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Nardi Xhepi. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Category Filter
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const blogPosts = document.querySelectorAll('.blog-post-card');
+
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const category = btn.dataset.category;
+
+                blogPosts.forEach(post => {
+                    const postCategory = post.dataset.category;
+
+                    if (category === 'all' || postCategory === category) {
+                        post.style.display = 'block';
+                        setTimeout(() => {
+                            post.style.opacity = '1';
+                            post.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else {
+                        post.style.opacity = '0';
+                        post.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            post.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Animate cards on load
+        blogPosts.forEach((post, index) => {
+            post.style.opacity = '0';
+            post.style.transform = 'translateY(30px)';
+            post.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+
+            setTimeout(() => {
+                post.style.opacity = '1';
+                post.style.transform = 'translateY(0)';
+            }, 100 + index * 100);
+        });
+
+        // Subscription form
+        document.querySelector('.subscription-form')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thanks for subscribing! You\'ll receive updates when new posts are published.');
+            e.target.reset();
+        });
+    </script>
+</body>
+
+</html>

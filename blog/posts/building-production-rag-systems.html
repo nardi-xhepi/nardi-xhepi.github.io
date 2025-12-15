@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Building Production-Ready RAG Systems - A deep dive into designing scalable RAG pipelines with vector databases and knowledge graphs.">
+    <meta name="author" content="Nardi Xhepi">
+    <title>Building Production-Ready RAG Systems | Nardi Xhepi</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/blog-post.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-text">NX</span>
+            </a>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="../index.html#about" class="nav-link">About</a></li>
+                <li><a href="../index.html#experience" class="nav-link">Experience</a></li>
+                <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
+                <li><a href="../index.html#achievements" class="nav-link">Achievements</a></li>
+                <li><a href="../blog.html" class="nav-link active">Blog</a></li>
+                <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span class="hamburger"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Blog Post -->
+    <article class="blog-post">
+        <header class="post-header">
+            <div class="container">
+                <span class="post-category">LLM & NLP</span>
+                <h1 class="post-title">Building Production-Ready RAG Systems</h1>
+                <div class="post-meta">
+                    <div class="post-author">
+                        <div class="author-avatar">NX</div>
+                        <div class="author-info">
+                            <span class="author-name">Nardi Xhepi</span>
+                            <span class="author-role">Data Scientist</span>
+                        </div>
+                    </div>
+                    <div class="post-details">
+                        <span><i class="far fa-calendar"></i> Coming Soon</span>
+                        <span><i class="far fa-clock"></i> 8 min read</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="post-content">
+            <div class="container">
+                <div class="post-body">
+                    <p class="lead">
+                        Retrieval-Augmented Generation (RAG) has emerged as one of the most practical approaches
+                        to building LLM-powered applications. In this post, I share lessons learned from
+                        implementing enterprise-grade RAG systems at Dassault Systèmes.
+                    </p>
+
+                    <h2>Introduction</h2>
+                    <p>
+                        Large Language Models are powerful, but they have limitations: they can hallucinate,
+                        their knowledge is frozen at training time, and they can't access proprietary data.
+                        RAG solves these problems by augmenting LLMs with external knowledge retrieval.
+                    </p>
+
+                    <h2>The Architecture</h2>
+                    <p>
+                        A production RAG system consists of several key components:
+                    </p>
+                    <ul>
+                        <li><strong>Document Processing Pipeline</strong> - Ingesting, chunking, and embedding documents
+                        </li>
+                        <li><strong>Vector Database</strong> - Storing and searching embeddings efficiently</li>
+                        <li><strong>Retrieval Strategy</strong> - Finding the most relevant context</li>
+                        <li><strong>Generation Pipeline</strong> - Synthesizing answers from retrieved context</li>
+                    </ul>
+
+                    <h2>Hybrid Retrieval Strategies</h2>
+                    <p>
+                        Pure semantic search with vector embeddings isn't always enough. We found that
+                        combining BM25 (lexical search) with dense retrieval significantly improves results,
+                        especially for domain-specific terminology.
+                    </p>
+
+                    <div class="code-block">
+                        <pre><code class="language-python"># Example: Hybrid retrieval with reciprocal rank fusion
+def hybrid_search(query, k=10):
+    bm25_results = bm25_index.search(query, k=k*2)
+    semantic_results = vector_db.similarity_search(query, k=k*2)
+    
+    return reciprocal_rank_fusion([bm25_results, semantic_results], k=k)</code></pre>
+                    </div>
+
+                    <h2>Knowledge Graphs for Domain Context</h2>
+                    <p>
+                        For enterprise applications, we enhanced our RAG system with domain-specific
+                        knowledge graphs. This allows the system to understand entity relationships
+                        and provide more contextually accurate responses.
+                    </p>
+
+                    <blockquote>
+                        <p>
+                            "The best RAG systems don't just retrieve documents—they understand the
+                            relationships between concepts in your domain."
+                        </p>
+                    </blockquote>
+
+                    <h2>Key Takeaways</h2>
+                    <ol>
+                        <li>Start with a solid chunking strategy</li>
+                        <li>Use hybrid retrieval for better recall</li>
+                        <li>Implement re-ranking for precision</li>
+                        <li>Add knowledge graphs for domain understanding</li>
+                        <li>Monitor and iterate based on user feedback</li>
+                    </ol>
+
+                    <p>
+                        <em>This post is coming soon. Stay tuned for the full article!</em>
+                    </p>
+                </div>
+
+                <!-- Tags -->
+                <div class="post-tags">
+                    <span class="tag">RAG</span>
+                    <span class="tag">LLM</span>
+                    <span class="tag">Vector Database</span>
+                    <span class="tag">Knowledge Graphs</span>
+                    <span class="tag">Python</span>
+                </div>
+
+                <!-- Share -->
+                <div class="post-share">
+                    <span>Share this article:</span>
+                    <div class="share-buttons">
+                        <a href="#" aria-label="Share on Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Share on LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="Copy link"><i class="fas fa-link"></i></a>
+                    </div>
+                </div>
+
+                <!-- Author Bio -->
+                <div class="author-bio glass-card">
+                    <div class="bio-avatar">NX</div>
+                    <div class="bio-content">
+                        <h4>About the Author</h4>
+                        <p>
+                            Nardi Xhepi is a Data Scientist specializing in LLMs, RAG pipelines, and time series
+                            analysis.
+                            Currently pursuing a Master's in Data Science at École Polytechnique.
+                        </p>
+                        <div class="bio-social">
+                            <a href="https://www.linkedin.com/in/nardi-xhepi/" target="_blank"><i
+                                    class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/nardi-xhepi" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <div class="post-navigation">
+                    <a href="../blog.html" class="nav-back">
+                        <i class="fas fa-arrow-left"></i>
+                        Back to Blog
+                    </a>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-text">NX</span>
+                    <p>Data Scientist & ML Engineer</p>
+                </div>
+                <div class="footer-links">
+                    <a href="../index.html#about">About</a>
+                    <a href="../index.html#experience">Experience</a>
+                    <a href="../index.html#projects">Projects</a>
+                    <a href="../blog.html">Blog</a>
+                    <a href="../index.html#contact">Contact</a>
+                </div>
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/in/nardi-xhepi/" target="_blank" rel="noopener"
+                        aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/nardi-xhepi" target="_blank" rel="noopener" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="mailto:nardi.xhepi@polytechnique.edu" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Nardi Xhepi. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../assets/js/main.js"></script>
+</body>
+
+</html>
