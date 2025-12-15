@@ -168,21 +168,22 @@ animateElements.forEach(el => {
 
 // ===================================
 // 5.5 SMART CAROUSEL DISPLAY
-// Show all cards if 3 or less, otherwise enable scroll with blur
+// Show all cards if 3 or less, otherwise enable scroll with navigation
 // ===================================
 function initSmartCarousels() {
     const carousels = [
-        { grid: '.projects-grid', section: '.projects' },
-        { grid: '.achievements-grid', section: '.achievements' },
-        { grid: '.skills-grid', section: '.skills' },
-        { grid: '.education-grid', section: '.education' }
+        { grid: '.projects-grid', section: '.projects', container: '.projects .container' },
+        { grid: '.achievements-grid', section: '.achievements', container: '.achievements .container' },
+        { grid: '.skills-grid', section: '.skills', container: '.skills .container' },
+        { grid: '.education-grid', section: '.education', container: '.education .container' }
     ];
 
-    carousels.forEach(({ grid, section }) => {
+    carousels.forEach(({ grid, section, container }) => {
         const gridEl = document.querySelector(grid);
         const sectionEl = document.querySelector(section);
+        const containerEl = document.querySelector(container);
 
-        if (gridEl && sectionEl) {
+        if (gridEl && sectionEl && containerEl) {
             const cardCount = gridEl.children.length;
 
             if (cardCount <= 3) {
@@ -190,9 +191,113 @@ function initSmartCarousels() {
                 gridEl.classList.add('few-items');
                 sectionEl.classList.add('no-scroll-fade');
             } else {
-                // Many items - enable scroll with blur
+                // Many items - enable scroll with navigation
                 gridEl.classList.remove('few-items');
                 sectionEl.classList.remove('no-scroll-fade');
+
+                // Wrap grid in carousel wrapper if not already wrapped
+                if (!gridEl.parentElement.classList.contains('carousel-wrapper')) {
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'carousel-wrapper';
+                    gridEl.parentNode.insertBefore(wrapper, gridEl);
+                    wrapper.appendChild(gridEl);
+
+                    // Create navigation arrows
+                    const prevBtn = document.createElement('button');
+                    prevBtn.className = 'carousel-nav prev';
+                    prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+                    prevBtn.setAttribute('aria-label', 'Previous');
+
+                    const nextBtn = document.createElement('button');
+                    nextBtn.className = 'carousel-nav next';
+                    nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+                    nextBtn.setAttribute('aria-label', 'Next');
+
+                    wrapper.appendChild(prevBtn);
+                    wrapper.appendChild(nextBtn);
+
+                    // Create scroll indicators
+                    const indicators = document.createElement('div');
+                    indicators.className = 'carousel-indicators';
+
+                    // Calculate number of dots based on visible cards
+                    const cardWidth = gridEl.children[0]?.offsetWidth || 350;
+                    const gap = 24; // var(--spacing-xl) approximately
+                    const visibleWidth = gridEl.offsetWidth;
+                    const scrollStep = cardWidth + gap;
+                    const totalScrollWidth = gridEl.scrollWidth - visibleWidth;
+                    const dotCount = Math.max(1, Math.ceil(totalScrollWidth / scrollStep) + 1);
+
+                    for (let i = 0; i < Math.min(dotCount, 8); i++) {
+                        const dot = document.createElement('button');
+                        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+                        dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+                        dot.dataset.index = i;
+                        indicators.appendChild(dot);
+                    }
+
+                    wrapper.appendChild(indicators);
+
+                    // Add scroll hint (shows on first view)
+                    const hint = document.createElement('div');
+                    hint.className = 'scroll-hint';
+                    hint.innerHTML = '<span>Scroll for more</span><i class="fas fa-arrow-right"></i>';
+                    wrapper.appendChild(hint);
+
+                    // Event handlers
+                    const updateNavState = () => {
+                        const scrollLeft = gridEl.scrollLeft;
+                        const maxScroll = gridEl.scrollWidth - gridEl.offsetWidth;
+
+                        // Update arrows visibility
+                        prevBtn.classList.toggle('hidden', scrollLeft <= 10);
+                        nextBtn.classList.toggle('hidden', scrollLeft >= maxScroll - 10);
+
+                        // Update wrapper edge classes for fade effect
+                        wrapper.classList.toggle('at-start', scrollLeft <= 10);
+                        wrapper.classList.toggle('at-end', scrollLeft >= maxScroll - 10);
+
+                        // Update active dot
+                        const dots = indicators.querySelectorAll('.carousel-dot');
+                        const currentIndex = Math.round(scrollLeft / scrollStep);
+                        dots.forEach((dot, i) => {
+                            dot.classList.toggle('active', i === currentIndex);
+                        });
+
+                        // Hide hint after first scroll
+                        if (scrollLeft > 50) {
+                            hint.classList.add('hidden');
+                        }
+                    };
+
+                    // Initial state
+                    updateNavState();
+
+                    // Scroll event
+                    gridEl.addEventListener('scroll', updateNavState, { passive: true });
+
+                    // Arrow click handlers
+                    prevBtn.addEventListener('click', () => {
+                        gridEl.scrollBy({ left: -scrollStep, behavior: 'smooth' });
+                    });
+
+                    nextBtn.addEventListener('click', () => {
+                        gridEl.scrollBy({ left: scrollStep, behavior: 'smooth' });
+                    });
+
+                    // Dot click handlers
+                    indicators.querySelectorAll('.carousel-dot').forEach(dot => {
+                        dot.addEventListener('click', () => {
+                            const index = parseInt(dot.dataset.index);
+                            gridEl.scrollTo({ left: index * scrollStep, behavior: 'smooth' });
+                        });
+                    });
+
+                    // Hide hint on any interaction
+                    wrapper.addEventListener('mouseenter', () => {
+                        setTimeout(() => hint.classList.add('hidden'), 2000);
+                    }, { once: true });
+                }
             }
         }
     });
@@ -453,7 +558,7 @@ updateFloatingNav();
 
 // ===================================
 // 12. HERO PHOTO MORPH TRANSITION
-// Circle → Square (GPU Accelerated)
+// Circle → Square (CPU Optimized, No GPU)
 // ===================================
 
 const heroPhoto = document.getElementById('hero-photo');
@@ -467,7 +572,7 @@ if (heroPhoto && aboutTarget) {
     const ghost = document.createElement('div');
     const ghostImg = document.createElement('img');
 
-    // GPU-optimized styles
+    // CPU-optimized styles (No transforms)
     ghost.style.cssText = `
         position: fixed;
         z-index: 9999;
@@ -476,8 +581,7 @@ if (heroPhoto && aboutTarget) {
         overflow: hidden;
         display: none;
         border: 2px solid rgba(99, 102, 241, 0.5);
-        transform-origin: top left;
-        will-change: transform, border-radius;
+        /* No will-change needed for layout properties in this context */
     `;
 
     ghostImg.src = heroImg.src;
@@ -516,12 +620,6 @@ if (heroPhoto && aboutTarget) {
             scrollStart: 10,
             scrollEnd: window.innerHeight * 0.8
         };
-
-        // Set initial position once
-        ghost.style.top = '0px';
-        ghost.style.left = '0px';
-        ghost.style.width = startW + 'px';
-        ghost.style.height = startH + 'px';
 
         dirty = false;
     }
@@ -569,16 +667,8 @@ if (heroPhoto && aboutTarget) {
                 state = 1;
             }
 
-            // Calculate Interpolation
-            // Current Target Position (where it should be visually)
-            // Hero is effectively static in the flow, but we are scrolling.
-            // Wait, the ghost is fixed position. 
-            // So we need to calculate where the visual elements are relative to the VIEWPORT.
-
-            // Hero position relative to viewport:
-            // The original used (hTop + scrollY) - scrollY = hTop (constant relative to viewport if it wasn't scrolling? No, hTop is rect.top).
-            // Original: const top = (cache.hTop - scrollY) + ...
-            // cache.hTop was (rect.top + scrollY). So cache.hTop - scrollY is indeed the current viewport-relative Top of the element position in flow.
+            // Calculate Interpolation (CPU)
+            // Use integer rounding!
 
             const currentHeroTop = cache.startTop - scrollY;
             const currentAboutTop = cache.endTop - scrollY;
@@ -588,27 +678,14 @@ if (heroPhoto && aboutTarget) {
             const targetW = cache.startW + (cache.endW - cache.startW) * t;
             const targetH = cache.startH + (cache.endH - cache.startH) * t;
 
-            // GPU Transform Calculations
-            // Base is set to Cache Start values (startW, startH) at 0,0 (top/left set to 0,0, but we use transform for position)
-            // Wait, I set ghost.style.width = startW.
+            // Direct DOM manipulation - costly but requested
+            ghost.style.top = Math.round(targetY) + 'px';
+            ghost.style.left = Math.round(targetX) + 'px';
+            ghost.style.width = Math.round(targetW) + 'px';
+            ghost.style.height = Math.round(targetH) + 'px';
 
-            const scaleX = targetW / cache.startW;
-            const scaleY = targetH / cache.startH;
-
-            // Translate
-            // Since we set top:0, left:0, the transform is just x,y
-            // BUT we need to account for the fact that we sized it to startW/startH
-            // The transform-origin is top-left, so scaling extends right/down. This matches our needs.
-
-            ghost.style.transform = `translate3d(${targetX}px, ${targetY}px, 0) scale(${scaleX}, ${scaleY})`;
-
-            // BorderRadius triggers paint but not layout
             const radius = 50 - 48 * t;
-            ghost.style.borderRadius = radius + '%';
-
-            // Adjust border width inversely to scale to keep it looking consistent? 
-            // Or just let it scale. The previous one didn't scale border.
-            // Let's keep it simple for now.
+            ghost.style.borderRadius = Math.round(radius) + '%';
         }
     }
 

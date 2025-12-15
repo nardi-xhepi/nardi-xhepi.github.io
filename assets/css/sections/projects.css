@@ -30,6 +30,16 @@
 }
 
 /* ===================================
+   CAROUSEL WRAPPER
+   =================================== */
+
+.carousel-wrapper {
+    position: relative;
+    margin: 0 -20px;
+    padding: 0 20px;
+}
+
+/* ===================================
    HORIZONTAL SCROLL CAROUSEL BASE
    Shared styles for all carousels
    =================================== */
@@ -41,7 +51,7 @@
     display: flex;
     overflow-x: auto;
     gap: var(--spacing-xl);
-    padding: var(--spacing-md) var(--spacing-md) var(--spacing-xl);
+    padding: var(--spacing-md) 60px var(--spacing-xl);
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
@@ -83,7 +93,138 @@
 }
 
 /* ===================================
-   CAROUSEL WRAPPER WITH FADE EDGES
+   CAROUSEL NAVIGATION ARROWS
+   =================================== */
+
+.carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-primary);
+    font-size: 1.25rem;
+    cursor: pointer;
+    z-index: 25;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.carousel-nav:hover {
+    background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-secondary));
+    border-color: transparent;
+    color: white;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 25px rgba(99, 102, 241, 0.4);
+}
+
+.carousel-nav:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.carousel-nav.prev {
+    left: -60px;
+}
+
+.carousel-nav.next {
+    right: -60px;
+}
+
+.carousel-nav.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ===================================
+   CAROUSEL SCROLL INDICATORS (DOTS)
+   =================================== */
+
+.carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: var(--spacing-lg);
+    padding-bottom: var(--spacing-sm);
+}
+
+.carousel-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--color-border);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.carousel-dot:hover {
+    background: var(--color-text-muted);
+    transform: scale(1.2);
+}
+
+.carousel-dot.active {
+    background: var(--color-accent-primary);
+    width: 28px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+}
+
+/* ===================================
+   SCROLL HINT ANIMATION
+   =================================== */
+
+.scroll-hint {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: var(--spacing-md);
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+    animation: fadeInOut 2s ease-in-out infinite;
+}
+
+.scroll-hint i {
+    animation: bounceRight 1.5s ease-in-out infinite;
+}
+
+@keyframes bounceRight {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+}
+
+@keyframes fadeInOut {
+
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+.scroll-hint.hidden {
+    display: none;
+}
+
+/* ===================================
+   FADE EDGES (simplified - no blur)
    =================================== */
 
 .projects,
@@ -93,7 +234,50 @@
     position: relative;
 }
 
-/* Fade edges to indicate scrollable content */
+/* Gradient fade edges */
+.carousel-wrapper::before,
+.carousel-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 60px;
+    width: 80px;
+    pointer-events: none;
+    z-index: 15;
+    transition: opacity 0.3s ease;
+}
+
+.carousel-wrapper::before {
+    left: 0;
+    background: linear-gradient(to right, var(--color-bg-primary) 0%, transparent 100%);
+}
+
+.carousel-wrapper::after {
+    right: 0;
+    background: linear-gradient(to left, var(--color-bg-primary) 0%, transparent 100%);
+}
+
+/* For secondary background sections */
+.achievements .carousel-wrapper::before,
+.education .carousel-wrapper::before {
+    background: linear-gradient(to right, var(--color-bg-secondary) 0%, transparent 100%);
+}
+
+.achievements .carousel-wrapper::after,
+.education .carousel-wrapper::after {
+    background: linear-gradient(to left, var(--color-bg-secondary) 0%, transparent 100%);
+}
+
+/* Hide fade at edges when scrolled */
+.carousel-wrapper.at-start::before {
+    opacity: 0;
+}
+
+.carousel-wrapper.at-end::after {
+    opacity: 0;
+}
+
+/* Remove old container pseudo-elements */
 .projects .container::before,
 .projects .container::after,
 .achievements .container::before,
@@ -102,37 +286,7 @@
 .skills .container::after,
 .education .container::before,
 .education .container::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 60px;
-    pointer-events: none;
-    z-index: 10;
-}
-
-.projects .container::before,
-.skills .container::before {
-    left: 0;
-    background: linear-gradient(to right, var(--color-bg-primary), transparent);
-}
-
-.projects .container::after,
-.skills .container::after {
-    right: 0;
-    background: linear-gradient(to left, var(--color-bg-primary), transparent);
-}
-
-.achievements .container::before,
-.education .container::before {
-    left: 0;
-    background: linear-gradient(to right, var(--color-bg-secondary), transparent);
-}
-
-.achievements .container::after,
-.education .container::after {
-    right: 0;
-    background: linear-gradient(to left, var(--color-bg-secondary), transparent);
+    display: none;
 }
 
 /* Section backgrounds */
@@ -150,18 +304,34 @@
    =================================== */
 
 .projects-grid.few-items,
-.achievements-grid.few-items,
 .skills-grid.few-items,
 .education-grid.few-items {
     justify-content: center;
     overflow-x: visible;
     flex-wrap: wrap;
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-md);
 }
 
-/* Hide fade edges when not scrollable */
-.no-scroll-fade .container::before,
-.no-scroll-fade .container::after {
+/* Achievements: keep inline even with 3 items */
+.achievements-grid.few-items {
+    justify-content: center;
+    overflow-x: visible;
+    flex-wrap: nowrap;
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-md);
+}
+
+/* Hide navigation when not scrollable */
+.no-scroll-fade .carousel-nav,
+.no-scroll-fade .carousel-indicators,
+.no-scroll-fade .scroll-hint {
     display: none !important;
+}
+
+.no-scroll-fade .carousel-wrapper::before,
+.no-scroll-fade .carousel-wrapper::after {
+    display: none;
 }
 
 /* ===================================
@@ -177,6 +347,14 @@
         flex: 0 0 280px;
     }
 
+    .projects-grid,
+    .achievements-grid,
+    .skills-grid,
+    .education-grid {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
     .project-filters {
         gap: var(--spacing-xs);
     }
@@ -186,14 +364,35 @@
         font-size: 0.8rem;
     }
 
-    .projects .container::before,
-    .projects .container::after,
-    .achievements .container::before,
-    .achievements .container::after,
-    .skills .container::before,
-    .skills .container::after,
-    .education .container::before,
-    .education .container::after {
-        width: 30px;
+    .carousel-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .carousel-nav.prev {
+        left: -50px;
+    }
+
+    .carousel-nav.next {
+        right: -50px;
+    }
+
+    .carousel-wrapper::before,
+    .carousel-wrapper::after {
+        width: 40px;
+    }
+
+    .carousel-indicators {
+        gap: 6px;
+    }
+
+    .carousel-dot {
+        width: 8px;
+        height: 8px;
+    }
+
+    .carousel-dot.active {
+        width: 20px;
     }
 }
