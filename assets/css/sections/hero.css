@@ -43,6 +43,208 @@
     -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 0%, transparent 100%);
 }
 
+/* Light mode: cleaner hero without distracting gradients */
+[data-theme="light"] .hero-gradient {
+    background: none;
+}
+
+[data-theme="light"] .hero-grid {
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+}
+
+/* ===================================
+   3D DATA SCIENCE SYMBOL CLOUD
+   Floating Math & Code Symbols
+   =================================== */
+
+.data-cloud {
+    position: absolute;
+    inset: 0;
+    perspective: 1200px;
+    pointer-events: none;
+    z-index: 0;
+    /* Gentler mask to let symbols reach edges */
+    mask-image: radial-gradient(circle at center, black 30%, transparent 95%);
+    -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 95%);
+}
+
+.cloud-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    transform-style: preserve-3d;
+    animation: cloudRotate 80s linear infinite;
+}
+
+.ds-symbol {
+    position: absolute;
+    font-family: 'Fira Code', 'Courier New', monospace;
+    font-weight: 500;
+    color: var(--color-accent-primary);
+    opacity: 0.25;
+    white-space: nowrap;
+    user-select: none;
+    font-size: 1.25rem;
+    text-shadow: 0 0 10px rgba(59, 130, 246, 0.2);
+}
+
+/* Symbol Positions (Spread wide across 3D space) */
+.s1 {
+    transform: translate3d(350px, -150px, 50px) rotate(15deg);
+    font-size: 1.5rem;
+}
+
+.s2 {
+    transform: translate3d(-320px, 120px, -40px) rotate(-10deg);
+    color: var(--color-accent-secondary);
+    font-size: 1.8rem;
+}
+
+.s3 {
+    transform: translate3d(180px, 250px, 100px);
+    color: var(--color-accent-tertiary);
+}
+
+.s4 {
+    transform: translate3d(-400px, -180px, 20px);
+    font-size: 1.4rem;
+}
+
+.s5 {
+    transform: translate3d(450px, -40px, -60px) rotate(20deg);
+    color: var(--color-accent-secondary);
+}
+
+.s6 {
+    transform: translate3d(-250px, 280px, 140px);
+    opacity: 0.15;
+}
+
+.s7 {
+    transform: translate3d(280px, 160px, -80px) rotate(-15deg);
+    color: var(--color-accent-tertiary);
+    font-size: 1.6rem;
+}
+
+.s8 {
+    transform: translate3d(-150px, -280px, 90px);
+}
+
+.s9 {
+    transform: translate3d(380px, -240px, -120px) rotate(30deg);
+    color: var(--color-accent-secondary);
+}
+
+.s10 {
+    transform: translate3d(-380px, 60px, 60px);
+    font-size: 1.3rem;
+}
+
+.s11 {
+    transform: translate3d(120px, 320px, -30px);
+    color: var(--color-accent-tertiary);
+    font-size: 1.1rem;
+}
+
+.s12 {
+    transform: translate3d(-450px, -80px, 10px);
+}
+
+.s13 {
+    transform: translate3d(220px, -100px, 160px) rotate(-20deg);
+    color: var(--color-accent-secondary);
+    font-size: 1.5rem;
+}
+
+.s14 {
+    transform: translate3d(-180px, 200px, -90px);
+}
+
+.s15 {
+    transform: translate3d(420px, 80px, 40px);
+    color: var(--color-accent-tertiary);
+    font-size: 1.4rem;
+}
+
+.s16 {
+    transform: translate3d(-280px, 140px, -150px) rotate(10deg);
+}
+
+.s17 {
+    transform: translate3d(250px, 300px, 70px) rotate(-5deg);
+    color: var(--color-accent-secondary);
+    font-family: monospace;
+}
+
+.s18 {
+    transform: translate3d(-80px, -350px, -50px);
+    opacity: 0.2;
+}
+
+.s19 {
+    transform: translate3d(480px, -120px, 110px);
+    color: var(--color-accent-tertiary);
+    font-size: 1.6rem;
+}
+
+.s20 {
+    transform: translate3d(-350px, 90px, -130px) rotate(25deg);
+}
+
+/* Cloud Rotation - Slower and smoother */
+@keyframes cloudRotate {
+    0% {
+        transform: rotateY(0deg) rotateX(10deg);
+    }
+
+    100% {
+        transform: rotateY(360deg) rotateX(10deg);
+    }
+}
+
+/* Light mode: adjusted visibility */
+[data-theme="light"] .ds-symbol {
+    opacity: 0.18;
+    color: var(--color-text-primary);
+    text-shadow: none;
+}
+
+/* Keep varied colors in light mode but fainter */
+[data-theme="light"] .ds-symbol:nth-child(3n) {
+    color: var(--color-accent-secondary);
+}
+
+[data-theme="light"] .ds-symbol:nth-child(3n+1) {
+    color: var(--color-accent-tertiary);
+}
+
+[data-theme="light"] .ds-symbol:nth-child(3n+2) {
+    color: var(--color-accent-primary);
+}
+
+/* Hide on mobile */
+@media (max-width: 768px) {
+    .data-cloud {
+        display: none;
+    }
+}
+
+/* Light mode: subtle coloring */
+[data-theme="light"] .data-particle {
+    opacity: 0.4;
+}
+
+/* Hide on mobile */
+@media (max-width: 768px) {
+    .data-cloud {
+        display: none;
+    }
+}
+
 /* Clean, minimal aesthetic - removed floating particles for Apple-style purity */
 
 /* Hero wrapper - side by side layout */

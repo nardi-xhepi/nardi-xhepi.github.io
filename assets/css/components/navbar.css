@@ -22,6 +22,31 @@
     box-shadow: var(--shadow-md);
 }
 
+/* Light mode navbar - better contrast */
+[data-theme="light"] .navbar {
+    background: rgba(248, 250, 252, 0.9);
+    border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .navbar.scrolled {
+    background: rgba(248, 250, 252, 0.98);
+}
+
+[data-theme="light"] .nav-link {
+    color: #475569;
+}
+
+[data-theme="light"] .nav-link:hover,
+[data-theme="light"] .nav-link.active {
+    color: #0f172a;
+}
+
+[data-theme="light"] .theme-toggle {
+    background: #e2e8f0;
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #475569;
+}
+
 .nav-container {
     max-width: var(--max-width);
     margin: 0 auto;

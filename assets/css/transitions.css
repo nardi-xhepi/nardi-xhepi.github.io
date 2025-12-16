@@ -15,6 +15,15 @@
     will-change: transform;
 }
 
+/* Light mode: hide orbs for cleaner look */
+[data-theme="light"] .flow-orb {
+    display: none;
+}
+
+[data-theme="light"] .gradient-mesh {
+    display: none;
+}
+
 .flow-orb-1 {
     width: 600px;
     height: 600px;
