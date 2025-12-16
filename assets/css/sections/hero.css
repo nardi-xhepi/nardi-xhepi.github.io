@@ -85,114 +85,114 @@
     font-family: 'Fira Code', 'Courier New', monospace;
     font-weight: 500;
     color: var(--color-accent-primary);
-    opacity: 0.25;
+    opacity: 0.6;
     white-space: nowrap;
     user-select: none;
     font-size: 1.25rem;
     text-shadow: 0 0 10px rgba(59, 130, 246, 0.2);
 }
 
-/* Symbol Positions (Spread wide across 3D space) */
+/* Symbol Positions (Balanced distribution) */
 .s1 {
-    transform: translate3d(350px, -150px, 50px) rotate(15deg);
+    transform: translate3d(550px, -250px, 50px) rotate(15deg);
     font-size: 1.5rem;
 }
 
 .s2 {
-    transform: translate3d(-320px, 120px, -40px) rotate(-10deg);
+    transform: translate3d(-520px, 180px, -40px) rotate(-10deg);
     color: var(--color-accent-secondary);
     font-size: 1.8rem;
 }
 
 .s3 {
-    transform: translate3d(180px, 250px, 100px);
+    transform: translate3d(380px, 350px, 100px);
     color: var(--color-accent-tertiary);
 }
 
 .s4 {
-    transform: translate3d(-400px, -180px, 20px);
+    transform: translate3d(-600px, -280px, 20px);
     font-size: 1.4rem;
 }
 
 .s5 {
-    transform: translate3d(450px, -40px, -60px) rotate(20deg);
+    transform: translate3d(650px, -80px, -60px) rotate(20deg);
     color: var(--color-accent-secondary);
 }
 
 .s6 {
-    transform: translate3d(-250px, 280px, 140px);
+    transform: translate3d(-450px, 380px, 140px);
     opacity: 0.15;
 }
 
 .s7 {
-    transform: translate3d(280px, 160px, -80px) rotate(-15deg);
+    transform: translate3d(480px, 260px, -80px) rotate(-15deg);
     color: var(--color-accent-tertiary);
     font-size: 1.6rem;
 }
 
 .s8 {
-    transform: translate3d(-150px, -280px, 90px);
+    transform: translate3d(-350px, -380px, 90px);
 }
 
 .s9 {
-    transform: translate3d(380px, -240px, -120px) rotate(30deg);
+    transform: translate3d(580px, -340px, -120px) rotate(30deg);
     color: var(--color-accent-secondary);
 }
 
 .s10 {
-    transform: translate3d(-380px, 60px, 60px);
+    transform: translate3d(-680px, 120px, 60px);
     font-size: 1.3rem;
 }
 
 .s11 {
-    transform: translate3d(120px, 320px, -30px);
+    transform: translate3d(280px, 420px, -30px);
     color: var(--color-accent-tertiary);
     font-size: 1.1rem;
 }
 
 .s12 {
-    transform: translate3d(-450px, -80px, 10px);
+    transform: translate3d(-750px, -140px, 10px);
 }
 
 .s13 {
-    transform: translate3d(220px, -100px, 160px) rotate(-20deg);
+    transform: translate3d(420px, -180px, 160px) rotate(-20deg);
     color: var(--color-accent-secondary);
     font-size: 1.5rem;
 }
 
 .s14 {
-    transform: translate3d(-180px, 200px, -90px);
+    transform: translate3d(-280px, 300px, -90px);
 }
 
 .s15 {
-    transform: translate3d(420px, 80px, 40px);
+    transform: translate3d(720px, 140px, 40px);
     color: var(--color-accent-tertiary);
     font-size: 1.4rem;
 }
 
 .s16 {
-    transform: translate3d(-280px, 140px, -150px) rotate(10deg);
+    transform: translate3d(-580px, 240px, -150px) rotate(10deg);
 }
 
 .s17 {
-    transform: translate3d(250px, 300px, 70px) rotate(-5deg);
+    transform: translate3d(350px, 400px, 70px) rotate(-5deg);
     color: var(--color-accent-secondary);
     font-family: monospace;
 }
 
 .s18 {
-    transform: translate3d(-80px, -350px, -50px);
+    transform: translate3d(-250px, -450px, -50px);
     opacity: 0.2;
 }
 
 .s19 {
-    transform: translate3d(480px, -120px, 110px);
+    transform: translate3d(780px, -200px, 110px);
     color: var(--color-accent-tertiary);
     font-size: 1.6rem;
 }
 
 .s20 {
-    transform: translate3d(-350px, 90px, -130px) rotate(25deg);
+    transform: translate3d(-550px, 200px, -130px) rotate(25deg);
 }
 
 /* Cloud Rotation - Slower and smoother */
@@ -208,7 +208,7 @@
 
 /* Light mode: adjusted visibility */
 [data-theme="light"] .ds-symbol {
-    opacity: 0.18;
+    opacity: 0.5;
     color: var(--color-text-primary);
     text-shadow: none;
 }
