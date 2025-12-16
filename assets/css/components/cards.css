@@ -111,23 +111,24 @@
 /* Achievement Cards - Logo prominent layout */
 .achievement-card {
     display: grid;
-    grid-template-columns: 100px 1fr;
-    gap: var(--spacing-2xl);
-    padding: var(--spacing-2xl);
+    grid-template-columns: 80px 1fr;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-xl);
     align-items: start;
 }
 
 .achievement-logo {
-    width: 80px;
-    height: 80px;
+    width: 64px;
+    height: 64px;
     border-radius: var(--radius-lg);
     background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-secondary));
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: var(--spacing-sm);
+    padding: var(--spacing-xs);
     box-shadow: var(--shadow-md);
     overflow: hidden;
+    flex-shrink: 0;
 }
 
 .achievement-logo.white-bg {
@@ -200,23 +201,24 @@
 /* Education Cards - Logo prominent layout */
 .education-card {
     display: grid;
-    grid-template-columns: 100px 1fr;
-    gap: var(--spacing-2xl);
-    padding: var(--spacing-2xl);
+    grid-template-columns: 80px 1fr;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-xl);
     align-items: start;
 }
 
 .education-logo {
-    width: 80px;
-    height: 80px;
+    width: 64px;
+    height: 64px;
     border-radius: var(--radius-lg);
     background: white;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: var(--spacing-sm);
+    padding: var(--spacing-xs);
     box-shadow: var(--shadow-md);
     overflow: hidden;
+    flex-shrink: 0;
 }
 
 .education-logo img {
