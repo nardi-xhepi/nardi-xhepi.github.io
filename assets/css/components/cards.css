@@ -112,8 +112,8 @@
 .achievement-card {
     display: grid;
     grid-template-columns: 80px 1fr;
-    gap: var(--spacing-lg);
-    padding: var(--spacing-xl);
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
     align-items: start;
 }
 
@@ -235,8 +235,8 @@
 .education-card {
     display: grid;
     grid-template-columns: 80px 1fr;
-    gap: var(--spacing-lg);
-    padding: var(--spacing-xl);
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
     align-items: start;
 }
 

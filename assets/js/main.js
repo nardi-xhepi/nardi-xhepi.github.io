@@ -358,15 +358,60 @@ function highlightNavOnScroll() {
 // highlightNavOnScroll is called from main onScroll handler
 
 // ===================================
-// 7. PARALLAX EFFECT FOR HERO (Disabled for performance)
+// 7. PARALLAX EFFECT FOR HERO
 // ===================================
 const heroContent = document.querySelector('.hero-content');
 
-// Hero parallax function - DISABLED for smoother scrolling
+// Hero parallax function
+const cloudWrapper = document.querySelector('.cloud-wrapper');
+let mouseX = 0;
+let mouseY = 0;
+let windowMidX = window.innerWidth / 2;
+let windowMidY = window.innerHeight / 2;
+
+// Update dimensions on resize
+window.addEventListener('resize', () => {
+    windowMidX = window.innerWidth / 2;
+    windowMidY = window.innerHeight / 2;
+}, { passive: true });
+
+// Mouse tracking with throttled update
+document.addEventListener('mousemove', (e) => {
+    // Calculate mouse position relative to center (-1 to 1)
+    mouseX = (e.clientX - windowMidX) / windowMidX;
+    mouseY = (e.clientY - windowMidY) / windowMidY;
+
+    // Trigger update (throttled via requestAnimationFrame pattern if needed, 
+    // but here we just call it directly for responsiveness, relying on CSS for smoothing)
+    requestAnimationFrame(updateHeroParallax);
+}, { passive: true });
+
+
+// Hero parallax function - ACTIVE
 function updateHeroParallax() {
-    // Parallax disabled - it causes repaint lag on scroll
-    // The hero section looks great without it
-    return;
+    const scrollY = window.scrollY;
+
+    // Low-power optimization: Stop calculating if hero is well out of view
+    // (Buffer of 100px)
+    if (scrollY > window.innerHeight + 100) return;
+
+    // 1. Scroll Parallax (Vertical depth)
+    const cloudScrollY = scrollY * 0.4;
+
+    // Content moves slightly faster/different rate
+    if (heroContent) {
+        heroContent.style.transform = `translateY(${scrollY * 0.2}px)`;
+    }
+
+    // 2. Cinematic Mouse Parallax (3D Tilt)
+    // Using direct values, relying on CSS transition for smoothness
+    const rotateX = -mouseY * 4; // Max 4deg tilt
+    const rotateY = mouseX * 4;  // Max 4deg pan
+
+    if (cloudWrapper) {
+        // Combined transform
+        cloudWrapper.style.transform = `translate3d(0, ${cloudScrollY}px, 0) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    }
 }
 
 // ===================================
@@ -430,8 +475,7 @@ function checkStatsInView() {
 // checkStatsInView is called from main onScroll handler
 checkStatsInView(); // Initial call
 
-// Card tilt effect removed for performance
-// Glass cards now use simple CSS hover effects instead
+
 
 // ===================================
 // 9. CONSOLE EASTER EGG
@@ -479,20 +523,28 @@ allSections.forEach(section => {
 
 // Optimized scroll handler - reduced updates
 let ticking = false;
+let lastSlowUpdate = 0;
 
 function onScroll() {
     if (!ticking) {
         window.requestAnimationFrame(() => {
-            // Minimal scroll updates for performance
+            // 1. Fast Visual Updates (Run every frame for smoothness)
             updateNavbar();
             updateScrollProgress();
-            highlightNavOnScroll();
-            checkStatsInView();
-            updateFloatingNav();
-            // Hero photo transition
-            if (window.updateHeroMorph) {
-                window.updateHeroMorph();
+            updateHeroParallax();
+
+
+
+            // 2. Heavy Logic Updates (Throttle to every 100ms)
+            // Improves performance by avoiding frequent layout thrashing (offsetTop/getBoundingClientRect)
+            const now = Date.now();
+            if (now - lastSlowUpdate > 100) {
+                highlightNavOnScroll();
+                checkStatsInView();
+                updateFloatingNav();
+                lastSlowUpdate = now;
             }
+
             ticking = false;
         });
         ticking = true;
@@ -548,96 +600,86 @@ function updateFloatingNav() {
 updateFloatingNav(); // Initial call
 
 // ===================================
-// 12. HERO PHOTO TRANSITION
-// Optimized crossfade with scale (no blur for performance)
+// 11.5 EXPERIENCE CAROUSEL
+// Professional single-view slider
 // ===================================
+function initExperienceCarousel() {
+    const track = document.getElementById('experience-track');
+    const slides = Array.from(document.getElementsByClassName('xp-slide'));
+    const prevBtn = document.querySelector('.xp-prev');
+    const nextBtn = document.querySelector('.xp-next');
+    const progressFill = document.getElementById('xp-progress-fill');
+    const countLabel = document.getElementById('xp-count');
 
-const heroPhoto = document.getElementById('hero-photo');
-const aboutTarget = document.getElementById('about-photo-target');
+    if (!track || slides.length === 0) return;
 
-if (heroPhoto && aboutTarget) {
-    // Check if mobile - show both photos normally
-    function isMobile() {
-        return window.innerWidth < 968;
+    let currentIndex = 0;
+    const totalSlides = slides.length;
+
+    // Update UI function
+    function updateCarousel(index) {
+        // Enforce Bounds (Infinite Loop)
+        if (index < 0) index = totalSlides - 1;
+        if (index >= totalSlides) index = 0;
+
+        currentIndex = index;
+
+        // Move Track
+        // Since we are using flex, we translate percentage = index * -100%
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+        // Update Active Class (for scaling/opacity effects)
+        slides.forEach((slide, i) => {
+            if (i === currentIndex) {
+                slide.classList.add('active');
+            } else {
+                slide.classList.remove('active');
+            }
+        });
+
+        // Update Progress Bar
+        const progress = ((currentIndex + 1) / totalSlides) * 100;
+        if (progressFill) progressFill.style.width = `${progress}%`;
+
+        // Update Counter
+        if (countLabel) countLabel.textContent = `${currentIndex + 1} / ${totalSlides}`;
     }
 
-    // Reset for mobile
-    function resetForMobile() {
-        heroPhoto.style.opacity = '1';
-        heroPhoto.style.visibility = 'visible';
-        heroPhoto.style.transform = '';
-        aboutTarget.style.opacity = '1';
-        aboutTarget.style.visibility = 'visible';
-        aboutTarget.style.transform = '';
-    }
+    // Controls
+    prevBtn?.addEventListener('click', () => updateCarousel(currentIndex - 1));
+    nextBtn?.addEventListener('click', () => updateCarousel(currentIndex + 1));
 
-    // Scroll thresholds
-    const scrollStart = 50;
-    let scrollEnd = window.innerHeight * 0.6;
+    // Touch Swipe Support
+    let touchStartX = 0;
+    let touchEndX = 0;
 
-    // Throttle flag
-    let ticking = false;
-    let lastScrollY = 0;
-
-    // Update scroll end on resize
-    window.addEventListener('resize', () => {
-        scrollEnd = window.innerHeight * 0.6;
-        if (isMobile()) resetForMobile();
+    track.addEventListener('touchstart', e => {
+        touchStartX = e.changedTouches[0].screenX;
     }, { passive: true });
 
-    // Optimized transition update (no blur - just opacity + scale)
-    function updateFade() {
-        if (isMobile()) {
-            resetForMobile();
-            ticking = false;
-            return;
+    track.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe() {
+        const threshold = 50;
+        if (touchEndX < touchStartX - threshold) {
+            updateCarousel(currentIndex + 1); // Swipe Left -> Next
         }
-
-        let p = (lastScrollY - scrollStart) / (scrollEnd - scrollStart);
-        p = Math.max(0, Math.min(1, p));
-
-        // Easing for smoother feel
-        const t = p * p * (3 - 2 * p);
-
-        // Hero: fade out + shrink (no blur)
-        const heroScale = 1 - (t * 0.12);
-        heroPhoto.style.opacity = 1 - t;
-        heroPhoto.style.visibility = t >= 1 ? 'hidden' : 'visible';
-        heroPhoto.style.transform = `scale(${heroScale})`;
-
-        // About: fade in + grow (no blur)
-        const aboutScale = 0.92 + (t * 0.08);
-        aboutTarget.style.opacity = t;
-        aboutTarget.style.visibility = t <= 0 ? 'hidden' : 'visible';
-        aboutTarget.style.transform = `scale(${aboutScale})`;
-
-        ticking = false;
-    }
-
-    // Throttled scroll handler using requestAnimationFrame
-    function onScroll() {
-        lastScrollY = window.scrollY;
-        if (!ticking) {
-            requestAnimationFrame(updateFade);
-            ticking = true;
+        if (touchEndX > touchStartX + threshold) {
+            updateCarousel(currentIndex - 1); // Swipe Right -> Prev
         }
     }
 
-    // Expose for external use
-    window.updateHeroMorph = onScroll;
-
-    // Initial setup
-    if (!isMobile()) {
-        aboutTarget.style.opacity = '0';
-        aboutTarget.style.visibility = 'hidden';
-        aboutTarget.style.transform = 'scale(0.92)';
-    } else {
-        resetForMobile();
-    }
-
-    // Initial call
-    lastScrollY = window.scrollY;
-    updateFade();
+    // Initialize 1st slide
+    updateCarousel(0);
 }
 
+// Initialize on DOM Ready
+document.addEventListener('DOMContentLoaded', initExperienceCarousel);
 
+
+// ===================================
+// 12. END OF SCRIPTS
+// ===================================

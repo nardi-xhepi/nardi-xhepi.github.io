@@ -13,6 +13,11 @@
 .section {
     padding: var(--spacing-3xl) 0;
     position: relative;
+    /* Cinematic Full Page Settings */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .section-header {
@@ -156,4 +161,15 @@
 .tag:hover {
     background: rgba(59, 130, 246, 0.25);
     transform: scale(1.05);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 var(--spacing-md);
+    }
+
+    .section {
+        padding: var(--spacing-xl) 0;
+    }
 }

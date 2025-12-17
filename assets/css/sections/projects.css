@@ -340,23 +340,43 @@
 
 @media (max-width: 768px) {
 
-    .projects-grid>*,
-    .achievements-grid>*,
-    .skills-grid>*,
-    .education-grid>* {
-        flex: 0 0 280px;
-    }
-
     .projects-grid,
     .achievements-grid,
     .skills-grid,
     .education-grid {
-        padding-left: 40px;
-        padding-right: 40px;
+        display: flex;
+        flex-direction: column;
+        overflow-x: visible;
+        padding-left: var(--spacing-sm);
+        padding-right: var(--spacing-sm);
+        gap: var(--spacing-lg);
+        scrollbar-width: auto;
+        /* Restore scrollbar if needed, though visible overflow removes it */
+    }
+
+    /* Disable snap on mobile since we are stacking */
+    .projects-grid,
+    .achievements-grid,
+    .skills-grid,
+    .education-grid {
+        scroll-snap-type: none;
+    }
+
+    .projects-grid>*,
+    .achievements-grid>*,
+    .skills-grid>*,
+    .education-grid>* {
+        flex: 0 0 auto;
+        width: 100%;
+        max-width: 100%;
+        /* Ensure they don't overflow */
+        margin: 0 auto;
+        scroll-snap-align: none;
     }
 
     .project-filters {
         gap: var(--spacing-xs);
+        justify-content: center;
     }
 
     .filter-btn {
@@ -364,57 +384,21 @@
         font-size: 0.8rem;
     }
 
-    .carousel-nav {
-        width: 36px;
-        height: 36px;
-        font-size: 0.9rem;
-    }
-
-    /* Keep arrows inside on mobile */
-    .carousel-nav.prev {
-        left: 5px;
-    }
-
-    .carousel-nav.next {
-        right: 5px;
+    /* Hide carousel navigation on mobile since we are stacking */
+    .carousel-nav,
+    .carousel-indicators,
+    .scroll-hint {
+        display: none !important;
     }
 
     .carousel-wrapper::before,
     .carousel-wrapper::after {
-        width: 30px;
+        display: none;
     }
 
-    .carousel-indicators {
-        gap: 6px;
-    }
-
-    .carousel-dot {
-        width: 8px;
-        height: 8px;
-    }
-
-    .carousel-dot.active {
-        width: 20px;
-    }
-
-    /* Scroll hint on mobile */
-    .scroll-hint {
-        font-size: 0.75rem;
-    }
-
-    /* Allow achievements to stack vertically on mobile */
-    .achievements-grid.few-items {
-        flex-wrap: wrap;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    /* Few items on mobile should still use smaller padding */
-    .projects-grid.few-items,
-    .skills-grid.few-items,
-    .education-grid.few-items,
-    .achievements-grid.few-items {
-        padding-left: var(--spacing-sm);
-        padding-right: var(--spacing-sm);
+    /* Reset extra wrappers margins */
+    .carousel-wrapper {
+        margin: 0;
+        padding: 0;
     }
 }

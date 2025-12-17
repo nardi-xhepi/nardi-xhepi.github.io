@@ -213,71 +213,97 @@
     <!-- Experience Section -->
     <section class="section experience" id="experience">
         <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Career</span>
-                <h2 class="section-title">Experience</h2>
+            <div class="section-header experience-header-flex">
+                <div class="header-content">
+                    <span class="section-tag">Career</span>
+                    <h2 class="section-title">Experience</h2>
+                </div>
+                <a href="assets/CV.pdf" class="resume-btn" target="_blank" aria-label="Download Resume">
+                    <i class="fas fa-file-pdf"></i>
+                    <span>Download CV</span>
+                </a>
             </div>
-            <div class="experience-grid">
-                <!-- Dassault Systèmes -->
-                <article class="experience-card glass-card">
-                    <div class="company-logo">
-                        <img src="assets/images/logo_dassault.png" alt="Dassault Systèmes">
-                    </div>
-                    <div class="experience-content">
-                        <div class="experience-header">
-                            <div>
-                                <h3>Research Scientist Intern</h3>
-                                <span class="company-name">Dassault Systèmes</span>
+            <div class="xp-carousel-container">
+                <div class="xp-track" id="experience-track">
+                    <!-- Dassault Systèmes -->
+                    <article class="experience-card glass-card xp-slide active">
+                        <div class="company-logo">
+                            <img src="assets/images/logo_dassault.png" alt="Dassault Systèmes">
+                        </div>
+                        <div class="experience-content">
+                            <div class="experience-header">
+                                <div>
+                                    <h3>Research Scientist Intern</h3>
+                                    <span class="company-name">Dassault Systèmes</span>
+                                </div>
+                                <span class="experience-date">Feb 2025 – Aug 2025</span>
                             </div>
-                            <span class="experience-date">Feb 2025 – Aug 2025</span>
+                            <p class="experience-role">LLM & AI Agents – ENOVIA</p>
+                            <ul class="experience-details">
+                                <li>Engineered next-gen Generative AI features for ENOVIA, designing <strong>RAG
+                                        pipelines</strong> backed by Qdrant and domain-specific Knowledge Graphs</li>
+                                <li>Benchmarked multiple open-weights models (Mistral Small, SmolLM 3B, Llama 3.1) for
+                                    entity extraction tasks</li>
+                                <li>Implemented hybrid retrieval strategies combining BM25 with early and late
+                                    interaction
+                                    mechanisms</li>
+                            </ul>
+                            <div class="experience-tags">
+                                <span class="tag">LLM</span>
+                                <span class="tag">RAG</span>
+                                <span class="tag">Knowledge Graphs</span>
+                                <span class="tag">Qdrant</span>
+                            </div>
                         </div>
-                        <p class="experience-role">LLM & AI Agents – ENOVIA</p>
-                        <ul class="experience-details">
-                            <li>Engineered next-gen Generative AI features for ENOVIA, designing <strong>RAG
-                                    pipelines</strong> backed by Qdrant and domain-specific Knowledge Graphs</li>
-                            <li>Benchmarked multiple open-weights models (Mistral Small, SmolLM 3B, Llama 3.1) for
-                                entity extraction tasks</li>
-                            <li>Implemented hybrid retrieval strategies combining BM25 with early and late interaction
-                                mechanisms</li>
-                        </ul>
-                        <div class="experience-tags">
-                            <span class="tag">LLM</span>
-                            <span class="tag">RAG</span>
-                            <span class="tag">Knowledge Graphs</span>
-                            <span class="tag">Qdrant</span>
-                        </div>
-                    </div>
-                </article>
+                    </article>
 
-                <!-- EDF -->
-                <article class="experience-card glass-card">
-                    <div class="company-logo">
-                        <img src="assets/images/logo_edf.png" alt="EDF">
-                    </div>
-                    <div class="experience-content">
-                        <div class="experience-header">
-                            <div>
-                                <h3>Research Scientist Intern</h3>
-                                <span class="company-name">Électricité de France (EDF)</span>
+                    <!-- EDF -->
+                    <article class="experience-card glass-card xp-slide">
+                        <div class="company-logo">
+                            <img src="assets/images/logo_edf.png" alt="EDF">
+                        </div>
+                        <div class="experience-content">
+                            <div class="experience-header">
+                                <div>
+                                    <h3>Research Scientist Intern</h3>
+                                    <span class="company-name">Électricité de France (EDF)</span>
+                                </div>
+                                <span class="experience-date">July 2024 – Jan 2025</span>
                             </div>
-                            <span class="experience-date">July 2024 – Jan 2025</span>
+                            <p class="experience-role">Anomaly Detection Algorithms at DOAAT</p>
+                            <ul class="experience-details">
+                                <li>Designed ensemble-based anomaly detection algorithms improving <strong>AUC-PR by
+                                        15%</strong>, potentially preventing €60M in annual losses</li>
+                                <li>Worked on time series analysis and feature-based latent space representation</li>
+                                <li>Developed ensemble methods that outperformed previous approaches on EDF's time
+                                    series
+                                    anomaly detection</li>
+                            </ul>
+                            <div class="experience-tags">
+                                <span class="tag">Time Series</span>
+                                <span class="tag">Anomaly Detection</span>
+                                <span class="tag">Ensemble Methods</span>
+                                <span class="tag">Python</span>
+                            </div>
                         </div>
-                        <p class="experience-role">Anomaly Detection Algorithms at DOAAT</p>
-                        <ul class="experience-details">
-                            <li>Designed ensemble-based anomaly detection algorithms improving <strong>AUC-PR by
-                                    15%</strong>, potentially preventing €60M in annual losses</li>
-                            <li>Worked on time series analysis and feature-based latent space representation</li>
-                            <li>Developed ensemble methods that outperformed previous approaches on EDF's time series
-                                anomaly detection</li>
-                        </ul>
-                        <div class="experience-tags">
-                            <span class="tag">Time Series</span>
-                            <span class="tag">Anomaly Detection</span>
-                            <span class="tag">Ensemble Methods</span>
-                            <span class="tag">Python</span>
+                    </article>
+                </div>
+
+                <!-- Carousel Controls -->
+                <div class="xp-controls">
+                    <button class="xp-btn xp-prev" aria-label="Previous Experience">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <div class="xp-indicators">
+                        <div class="xp-progress-bar">
+                            <div class="xp-progress-fill" id="xp-progress-fill"></div>
                         </div>
+                        <span class="xp-count" id="xp-count">1 / 2</span>
                     </div>
-                </article>
+                    <button class="xp-btn xp-next" aria-label="Next Experience">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </section>
