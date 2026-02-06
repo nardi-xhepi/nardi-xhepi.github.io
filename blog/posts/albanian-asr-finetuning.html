@@ -131,7 +131,7 @@
                         </figcaption>
                     </figure>
 
-                    <h3>Why My Data Couldn't Be in Meta's Training Set</h3>
+                    <h3>Why the data used here is highly unlikely used to train Omnilingual ASR</h3>
                     <p>
                         Meta's training data requires speech recordings <strong>paired with accurate
                             transcriptions</strong>. They assembled data from open-source datasets like Common Voice,
@@ -139,7 +139,7 @@
                         both audio and written transcripts with quality assurance.
                     </p>
                     <p>
-                        The YouTube videos I collected have no subtitles or captions - just raw audio. This means
+                        The raw audio I collected has no transcriptions attached. This means
                         they couldn't appear in Meta's training pipeline directly. To use this data, I needed to
                         generate my own transcriptions. This is where the 7B model comes in: by using the larger
                         model to transcribe my training data, I created "pseudo-labels" that serve as ground
@@ -151,7 +151,7 @@
                         The project required building a complete data pipeline from scratch:
                     </p>
                     <ol>
-                        <li><strong>Audio Collection</strong> - Downloading Albanian content from YouTube using yt-dlp,
+                        <li><strong>Audio Collection</strong> - Gathering publicly available Albanian audio,
                             converting to 16kHz mono WAV format</li>
                         <li><strong>Voice Activity Detection</strong> - Using Silero VAD to extract clean speech
                             segments
