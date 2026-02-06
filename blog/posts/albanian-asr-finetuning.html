@@ -246,11 +246,11 @@ for name, param in model.named_parameters():
                     </p>
 
                     <div class="code-block">
-                        <pre><code class="language-python"># Training hyperparameters
+                        <pre><code class="language-python">
 LEARNING_RATE = 1e-5
 NUM_EPOCHS = 3
 BATCH_SIZE = 2
-GRAD_ACCUMULATION = 4  # Effective batch size: 8
+GRAD_ACCUMULATION = 4
 
 optimizer = AdamW(
     [p for p in model.parameters() if p.requires_grad],
