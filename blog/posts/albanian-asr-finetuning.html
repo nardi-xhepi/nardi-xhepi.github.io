@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Finetuning Omnilingual ASR for Albanian - How I reduced Word Error Rate by 15.7% using pseudo-labeling and knowledge distillation from a 7B model.">
+    <meta name="author" content="Nardi Xhepi">
+    <title>Finetuning Omnilingual ASR for Albanian | Nardi Xhepi</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/blog-post.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="nav-logo">
+                <span class="logo-text">NX</span>
+            </a>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="../../index.html#about" class="nav-link">About</a></li>
+                <li><a href="../../index.html#experience" class="nav-link">Experience</a></li>
+                <li><a href="../../index.html#projects" class="nav-link">Projects</a></li>
+                <li><a href="../../index.html#achievements" class="nav-link">Achievements</a></li>
+                <li><a href="../../blog.html" class="nav-link active">Blog</a></li>
+                <li><a href="../../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span class="hamburger"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Blog Post -->
+    <article class="blog-post">
+        <header class="post-header">
+            <div class="container">
+                <span class="post-category">LLM & NLP</span>
+                <h1 class="post-title">Finetuning Omnilingual ASR for Albanian</h1>
+                <div class="post-meta">
+                    <div class="post-author">
+                        <div class="author-avatar">
+                            <img src="../../assets/images/photo_n.jpg" alt="Nardi Xhepi">
+                        </div>
+                        <div class="author-info">
+                            <span class="author-name">Nardi Xhepi</span>
+                            <span class="author-role">Data Scientist</span>
+                        </div>
+                    </div>
+                    <div class="post-details">
+                        <span><i class="far fa-calendar"></i> February 2026</span>
+                        <span><i class="far fa-clock"></i> 10 min read</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="post-content">
+            <div class="container">
+                <div class="post-body">
+                    <p class="lead">
+                        Low-resource languages like Albanian present unique challenges for automatic speech
+                        recognition systems. In this project, I finetuned the Omnilingual ASR 300M model
+                        on Albanian audio, achieving a 15.7% relative improvement in Word Error Rate using
+                        approximately two hours of training data and about six minutes of compute on an A100 GPU.
+                    </p>
+
+                    <h2>The Challenge</h2>
+                    <p>
+                        Albanian is considered a low-resource language in the context of speech recognition.
+                        While large multilingual models like Whisper and the Omnilingual ASR family provide
+                        decent baseline performance, they often struggle with language-specific phonetic
+                        patterns, dialectal variations, and common contractions that native speakers use
+                        in everyday speech.
+                    </p>
+                    <p>
+                        The Omnilingual ASR model offers two variants: a 7-billion parameter model optimized
+                        for accuracy, and a 300-million parameter model designed for efficiency. My goal was
+                        to leverage the larger model's knowledge to improve the smaller model's performance
+                        on Albanian through a knowledge distillation approach.
+                    </p>
+
+                    <h2>Building the Data Pipeline</h2>
+                    <p>
+                        The project required building a complete data pipeline from scratch:
+                    </p>
+                    <ol>
+                        <li><strong>Audio Collection</strong> - Downloading Albanian content from YouTube using yt-dlp,
+                            converting to 16kHz mono WAV format</li>
+                        <li><strong>Voice Activity Detection</strong> - Using Silero VAD to extract clean speech
+                            segments
+                            and remove music, silence, and noise</li>
+                        <li><strong>Chunking</strong> - Segmenting audio into 30-second clips suitable for training</li>
+                        <li><strong>Pseudo-labeling</strong> - Transcribing the training set using the 7B model to
+                            generate
+                            high-quality pseudo-labels via knowledge distillation</li>
+                        <li><strong>Human Annotation</strong> - Manually annotating a small test set for reliable
+                            evaluation</li>
+                    </ol>
+
+                    <p>
+                        I built a simple annotation dashboard using Flask and JavaScript that allows
+                        playback control, waveform visualization, and quick text editing. This made
+                        it practical to annotate the 31 test files needed for evaluation.
+                    </p>
+
+                    <h2>The Finetuning Approach</h2>
+                    <p>
+                        The official fairseq2 training recipe expects data in Apache Parquet format, which
+                        requires significant preprocessing overhead. Instead, I implemented a custom
+                        PyTorch training loop that works directly with the model's <code>Seq2SeqBatch</code>
+                        format, eliminating the need for complex data format conversions.
+                    </p>
+
+                    <p>
+                        Key training decisions:
+                    </p>
+                    <ul>
+                        <li><strong>Selective freezing</strong> - Kept encoder weights frozen except for layer
+                            normalization, training primarily the decoder and attention layers</li>
+                        <li><strong>Gradient accumulation</strong> - Used accumulation over 4 steps with batch
+                            size 2, effectively training with batch size 8</li>
+                        <li><strong>Conservative learning rate</strong> - Set to 1e-5 with AdamW optimizer to
+                            preserve pretrained knowledge while adapting to Albanian</li>
+                    </ul>
+
+                    <div class="code-block">
+                        <pre><code class="language-python"># Freeze encoder, train decoder
+for name, param in model.named_parameters():
+    if "encoder" in name.lower() and "layer_norm" not in name.lower():
+        param.requires_grad = False
+    else:
+        param.requires_grad = True
+
+# Training: ~87M trainable out of 300M total parameters</code></pre>
+                    </div>
+
+                    <h2>Results</h2>
+                    <p>
+                        After three epochs of training (approximately six minutes on an A100 GPU), the
+                        finetuned model showed significant improvement:
+                    </p>
+
+                    <table style="width: 100%; border-collapse: collapse; margin: var(--spacing-lg) 0;">
+                        <thead>
+                            <tr style="border-bottom: 2px solid var(--color-border);">
+                                <th style="text-align: left; padding: var(--spacing-md);">Metric</th>
+                                <th style="text-align: right; padding: var(--spacing-md);">Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid var(--color-border);">
+                                <td style="padding: var(--spacing-md);">Baseline WER</td>
+                                <td style="text-align: right; padding: var(--spacing-md);">54.91%</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--color-border);">
+                                <td style="padding: var(--spacing-md);">Finetuned WER</td>
+                                <td style="text-align: right; padding: var(--spacing-md);">46.30%</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--color-border);">
+                                <td style="padding: var(--spacing-md);">Absolute Improvement</td>
+                                <td style="text-align: right; padding: var(--spacing-md);">8.61 percentage points</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: var(--spacing-md);"><strong>Relative Improvement</strong></td>
+                                <td style="text-align: right; padding: var(--spacing-md);"><strong>15.7%</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h2>Where It Improved Most</h2>
+                    <p>
+                        Qualitative analysis of the transcription differences revealed several patterns
+                        where the finetuned model consistently outperformed the baseline:
+                    </p>
+
+                    <ul>
+                        <li><strong>Albanian contractions</strong> - Common shortened forms like "s'ka" (there isn't),
+                            "t'i" (to you), "m'ke" (you have me) that the baseline model often expanded incorrectly</li>
+                        <li><strong>Dialectal vocabulary</strong> - Regional expressions and colloquialisms that appear
+                            frequently in conversational speech but are underrepresented in multilingual training data
+                        </li>
+                        <li><strong>Albanian place names</strong> - Geographic locations and proper nouns specific to
+                            Albanian-speaking regions</li>
+                        <li><strong>Code-switching patterns</strong> - Natural mixing with common loanwords that
+                            Albanian speakers use from English, Italian, and Turkish</li>
+                    </ul>
+
+                    <h2>Comparison with Whisper</h2>
+                    <p>
+                        While Whisper remains a strong general-purpose ASR system, the finetuned Omnilingual
+                        model demonstrated advantages on raw transcription accuracy for Albanian speech,
+                        particularly in handling the linguistic features mentioned above. The smaller model
+                        size (300M vs Whisper Large's 1.5B parameters) also makes it more practical for
+                        deployment scenarios with resource constraints.
+                    </p>
+
+                    <h2>Technical Challenges</h2>
+                    <p>
+                        Several obstacles required creative solutions:
+                    </p>
+
+                    <ul>
+                        <li><strong>Dependency conflicts</strong> - The omnilingual-asr package has specific PyTorch
+                            and fairseq2 version requirements that conflict with Colab's default environment.
+                            Careful version pinning (torch==2.4.0, torchaudio==2.4.0) was essential.</li>
+                        <li><strong>Batch format</strong> - Bypassing the official Parquet-based training pipeline
+                            required understanding the internal Seq2SeqBatch structure and manually constructing
+                            valid training batches.</li>
+                        <li><strong>Language code</strong> - The Omnilingual model uses ISO 639-3 language codes
+                            with script suffixes. Albanian required <code>als_Latn</code> (Tosk Albanian in Latin
+                            script)
+                            rather than the simpler "sq" code.</li>
+                    </ul>
+
+                    <h2>Lessons Learned</h2>
+                    <p>
+                        This project reinforced several principles for working with low-resource language ASR:
+                    </p>
+
+                    <ol>
+                        <li><strong>Pseudo-labeling works</strong> - Using a larger teacher model to generate training
+                            labels is remarkably effective, even with a relatively small dataset</li>
+                        <li><strong>Quality over quantity</strong> - Clean, well-segmented audio with accurate
+                            pseudo-labels outperforms larger amounts of noisy data</li>
+                        <li><strong>Test set integrity matters</strong> - Human-annotated test data, clearly
+                            separated from training, is essential for trustworthy evaluation</li>
+                        <li><strong>Adapters over full finetuning</strong> - Freezing most encoder weights
+                            preserved the model's general speech recognition capabilities while allowing
+                            specialization for Albanian</li>
+                    </ol>
+
+                    <blockquote>
+                        <p>
+                            "Two hours of training data and six minutes of compute delivered meaningful
+                            improvements for a low-resource language. The barrier to customizing ASR
+                            models for underserved languages is lower than many assume."
+                        </p>
+                    </blockquote>
+
+                    <h2>Future Directions</h2>
+                    <p>
+                        Several extensions could further improve performance:
+                    </p>
+                    <ul>
+                        <li>Expanding the training dataset with more diverse speakers and recording conditions</li>
+                        <li>Adding a language model for post-processing and improved coherence</li>
+                        <li>Exploring LoRA or other parameter-efficient finetuning methods</li>
+                        <li>Testing on the Gheg Albanian dialect to assess generalization</li>
+                    </ul>
+
+                    <p>
+                        The complete implementation is available as a Colab notebook, demonstrating
+                        that meaningful ASR improvements for low-resource languages are achievable
+                        with modest computational resources and careful methodology.
+                    </p>
+                </div>
+
+                <!-- Tags -->
+                <div class="post-tags">
+                    <span class="tag">ASR</span>
+                    <span class="tag">Speech Recognition</span>
+                    <span class="tag">Albanian</span>
+                    <span class="tag">Finetuning</span>
+                    <span class="tag">Low-Resource Languages</span>
+                    <span class="tag">PyTorch</span>
+                </div>
+
+                <!-- Share -->
+                <div class="post-share">
+                    <span>Share this article:</span>
+                    <div class="share-buttons">
+                        <a href="#" aria-label="Share on Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Share on LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="Copy link"><i class="fas fa-link"></i></a>
+                    </div>
+                </div>
+
+                <!-- Author Bio -->
+                <div class="author-bio glass-card">
+                    <div class="bio-avatar">
+                        <img src="../../assets/images/photo_n.jpg" alt="Nardi Xhepi">
+                    </div>
+                    <div class="bio-content">
+                        <h4>About the Author</h4>
+                        <p>
+                            Nardi Xhepi is a Data Scientist specializing in LLMs, NLP, and time series
+                            analysis. Currently pursuing a Master's in Data Science at Ecole Polytechnique
+                            and Telecom Paris.
+                        </p>
+                        <div class="bio-social">
+                            <a href="https://www.linkedin.com/in/nardi-xhepi/" target="_blank"><i
+                                    class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/nardi-xhepi" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <div class="post-navigation">
+                    <a href="../../blog.html" class="nav-back">
+                        <i class="fas fa-arrow-left"></i>
+                        Back to Blog
+                    </a>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-text">NX</span>
+                    <p>Data Scientist & ML Engineer</p>
+                </div>
+                <div class="footer-links">
+                    <a href="../../index.html#about">About</a>
+                    <a href="../../index.html#experience">Experience</a>
+                    <a href="../../index.html#projects">Projects</a>
+                    <a href="../../blog.html">Blog</a>
+                    <a href="../../index.html#contact">Contact</a>
+                </div>
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/in/nardi-xhepi/" target="_blank" rel="noopener"
+                        aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/nardi-xhepi" target="_blank" rel="noopener" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="mailto:nardi.xhepi@polytechnique.edu" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Nardi Xhepi. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/main.js"></script>
+</body>
+
+</html>

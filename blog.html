@@ -85,17 +85,31 @@
 
             <!-- Blog Posts Grid -->
             <div class="blog-posts">
-                <!-- No posts placeholder -->
-                <div class="no-posts-message" style="grid-column: 1 / -1; text-align: center; padding: 4rem 1rem;">
-                    <div style="font-size: 3rem; margin-bottom: 1rem; color: var(--color-text-muted);">
-                        <i class="fas fa-pencil-alt"></i>
-                    </div>
-                    <h3>Insights Coming Soon</h3>
-                    <p style="color: var(--color-text-secondary);">
-                        I'm currently working on some detailed articles about LLMs, RAG, and Time Series.
-                        <br>Stay tuned!
-                    </p>
-                </div>
+                <!-- Albanian ASR Finetuning -->
+                <article class="blog-post-card glass-card" data-category="llm">
+                    <a href="blog/posts/albanian-asr-finetuning.html"
+                        style="text-decoration: none; color: inherit; display: block;">
+                        <div class="blog-post-image"
+                            style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            <i class="fas fa-microphone-alt" style="color: rgba(255,255,255,0.9);"></i>
+                            <span class="blog-post-category">LLM & NLP</span>
+                        </div>
+                        <div class="blog-post-content">
+                            <div class="blog-post-meta">
+                                <span><i class="far fa-calendar"></i> February 2026</span>
+                                <span><i class="far fa-clock"></i> 10 min read</span>
+                            </div>
+                            <h2>Finetuning Omnilingual ASR for Albanian</h2>
+                            <p class="blog-post-excerpt">
+                                How I reduced Word Error Rate by 15.7% using pseudo-labeling and knowledge distillation
+                                from a 7B model, with just two hours of training data.
+                            </p>
+                            <span class="blog-post-link">
+                                Read Article <i class="fas fa-arrow-right"></i>
+                            </span>
+                        </div>
+                    </a>
+                </article>
             </div>
         </div>
     </section>
