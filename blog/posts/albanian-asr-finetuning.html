@@ -133,12 +133,51 @@
                         it practical to annotate the 31 test files needed for evaluation.
                     </p>
 
+                    <h2>Loading the Model</h2>
+                    <p>
+                        The Omnilingual ASR package provides an <code>ASRInferencePipeline</code> class that
+                        handles model loading and inference. To finetune the model, I accessed the underlying
+                        PyTorch model from the pipeline object:
+                    </p>
+
+                    <div class="code-block">
+                        <pre><code class="language-python">from omnilingual_asr.models.inference.pipeline import ASRInferencePipeline
+from fairseq2.datasets.batch import Seq2SeqBatch
+
+# Load the 300M model
+MODEL_CARD = "omniASR_LLM_300M"
+LANGUAGE = "als_Latn"  # Tosk Albanian in Latin script
+
+pipeline = ASRInferencePipeline(model_card=MODEL_CARD, device="cuda")
+model = pipeline.model  # Access the underlying PyTorch model
+
+print(f"Parameters: {sum(p.numel() for p in model.parameters()) / 1e6:.1f}M")
+# Output: Parameters: 1627.6M</code></pre>
+                    </div>
+
+                    <p>
+                        Note that the reported parameter count (1627.6M) is higher than the "300M" in the model
+                        name because the full pipeline includes additional components beyond just the core
+                        encoder-decoder.
+                        The model uses the ISO 639-3 language code with script suffix - Albanian is represented
+                        as <code>als_Latn</code> (Tosk Albanian in Latin script) rather than the simpler "sq" code.
+                    </p>
+
                     <h2>The Finetuning Approach</h2>
                     <p>
                         The official fairseq2 training recipe expects data in Apache Parquet format, which
                         requires significant preprocessing overhead. Instead, I implemented a custom
                         PyTorch training loop that works directly with the model's <code>Seq2SeqBatch</code>
                         format, eliminating the need for complex data format conversions.
+                    </p>
+
+                    <h3>Which Parts to Finetune?</h3>
+                    <p>
+                        The model has an encoder-decoder architecture. For language adaptation, I chose to
+                        freeze most of the encoder (which has learned general speech representations) and
+                        train primarily the decoder (which handles language-specific token generation).
+                        However, I kept layer normalization layers trainable throughout the network, as these
+                        can adapt to domain-specific statistics without disturbing the learned representations.
                     </p>
 
                     <p>
