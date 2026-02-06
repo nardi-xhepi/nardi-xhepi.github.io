@@ -97,12 +97,26 @@
                         languages that previously had no ASR coverage at all. The model is built on the
                         fairseq2 framework and released under the Apache 2.0 license.
                     </p>
+
+                    <h3>The LLM-ASR Architecture</h3>
                     <p>
-                        The architecture uses an encoder-decoder design where the encoder performs
-                        self-supervised pre-training on speech representations, and an LLM-inspired decoder
-                        handles the sequence generation. The model comes in four sizes: 7B, 3B, 1B, and 300M
-                        parameters, ranging from maximum accuracy to efficient deployment on resource-constrained
-                        environments.
+                        The model uses an encoder-decoder architecture inspired by large language models.
+                        The key components are:
+                    </p>
+                    <ul>
+                        <li><strong>wav2vec 2.0 Audio Encoder</strong> - Takes raw audio waveforms and converts
+                            them into a sequence of learned speech representations. This encoder is pre-trained
+                            with self-supervised learning on massive amounts of unlabeled speech.</li>
+                        <li><strong>Text Embedding Layer</strong> - Embeds the target text tokens into the same
+                            representation space, allowing the model to condition on previously generated text.</li>
+                        <li><strong>Autoregressive Transformer Decoder</strong> - Receives both the audio
+                            representations and text embeddings, then generates the transcription one token at a
+                            time using standard next-token prediction (NTP) with cross-entropy loss.</li>
+                    </ul>
+                    <p>
+                        This design mirrors how LLMs work: instead of predicting the next word given previous
+                        words, the model predicts the next word given both previous words and the audio context.
+                        The model comes in four sizes: 7B, 3B, 1B, and 300M parameters.
                     </p>
 
                     <figure style="margin: var(--spacing-xl) 0; text-align: center;">
@@ -116,9 +130,20 @@
                             FAIR)
                         </figcaption>
                     </figure>
+
+                    <h3>Why My Data Couldn't Be in Meta's Training Set</h3>
                     <p>
-                        My goal was to leverage the 7B model's knowledge to improve the 300M model's
-                        performance on Albanian through pseudo-labeling, a form of knowledge distillation.
+                        Meta's training data requires speech recordings <strong>paired with accurate
+                            transcriptions</strong>. They assembled data from open-source datasets like Common Voice,
+                        LibriSpeech, and VoxPopuli, plus commissioned recordings where native speakers provided
+                        both audio and written transcripts with quality assurance.
+                    </p>
+                    <p>
+                        The YouTube videos I collected have no subtitles or captions - just raw audio. This means
+                        they couldn't appear in Meta's training pipeline directly. To use this data, I needed to
+                        generate my own transcriptions. This is where the 7B model comes in: by using the larger
+                        model to transcribe my training data, I created "pseudo-labels" that serve as ground
+                        truth for finetuning the smaller 300M model.
                     </p>
 
                     <h2>Building the Data Pipeline</h2>
