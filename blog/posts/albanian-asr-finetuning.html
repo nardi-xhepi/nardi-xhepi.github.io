@@ -336,6 +336,30 @@ for epoch in range(NUM_EPOCHS):
                         </tbody>
                     </table>
 
+                    <h3>A Note on WER for Albanian</h3>
+                    <p>
+                        Word Error Rate is the standard metric for ASR evaluation, but it has limitations for
+                        morphologically rich languages like Albanian. A few issues:
+                    </p>
+                    <ul>
+                        <li><strong>Oral vs. written differences</strong> - Albanian speakers often use contractions
+                            and shortened forms in speech that differ from formal written Albanian. The reference
+                            transcription might use "do të" while the speaker says "do t'" - both are correct, but
+                            WER counts this as an error.</li>
+                        <li><strong>Inflected word endings</strong> - Albanian nouns and verbs change endings based
+                            on case, number, and tense. A small error in the suffix ("librin" vs "librit") counts
+                            the same as getting the entire word wrong.</li>
+                        <li><strong>Dialectal variation</strong> - Tosk and Gheg dialects have lexical differences
+                            that aren't necessarily "errors" but affect WER.</li>
+                    </ul>
+                    <p>
+                        <strong>Character Error Rate (CER)</strong> might be more appropriate for Albanian, as it
+                        measures edit distance at the character level. A model that transcribes "librën" as "librin"
+                        would get a low CER (small suffix error) but a 100% WER for that word. For this project, I
+                        used WER to maintain comparability with published benchmarks, but future work should
+                        consider CER as a complementary metric.
+                    </p>
+
                     <h2>Where It Improved Most</h2>
                     <p>
                         Qualitative analysis of the transcription differences revealed several patterns
