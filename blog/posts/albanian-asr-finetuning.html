@@ -104,6 +104,18 @@
                         version for maximum accuracy, and a 300-million parameter version designed for
                         efficiency and deployment on resource-constrained environments.
                     </p>
+
+                    <figure style="margin: var(--spacing-xl) 0; text-align: center;">
+                        <img src="omniasr_llm.png"
+                            alt="LLM-ASR model architecture showing wav2vec 2.0 Audio Encoder and Text embedding feeding into an Autoregressive Transformer Decoder"
+                            style="max-width: 100%; border-radius: var(--radius-lg);">
+                        <figcaption
+                            style="margin-top: var(--spacing-sm); font-size: 0.9rem; color: var(--color-text-muted);">
+                            The LLM-ASR architecture: A wav2vec 2.0 speech encoder and text embedding matrix feed into
+                            an autoregressive Transformer decoder trained with next-token prediction. (Source: Meta
+                            FAIR)
+                        </figcaption>
+                    </figure>
                     <p>
                         My goal was to leverage the 7B model's knowledge to improve the 300M model's
                         performance on Albanian through pseudo-labeling, a form of knowledge distillation.
