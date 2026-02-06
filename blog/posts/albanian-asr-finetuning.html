@@ -337,46 +337,8 @@ for epoch in range(NUM_EPOCHS):
                             rather than the simpler "sq" code.</li>
                     </ul>
 
-                    <h2>Lessons Learned</h2>
                     <p>
-                        This project reinforced several principles for working with low-resource language ASR:
-                    </p>
-
-                    <ol>
-                        <li><strong>Pseudo-labeling works</strong> - Using a larger teacher model to generate training
-                            labels is remarkably effective, even with a relatively small dataset</li>
-                        <li><strong>Quality over quantity</strong> - Clean, well-segmented audio with accurate
-                            pseudo-labels outperforms larger amounts of noisy data</li>
-                        <li><strong>Test set integrity matters</strong> - Human-annotated test data, clearly
-                            separated from training, is essential for trustworthy evaluation</li>
-                        <li><strong>Adapters over full finetuning</strong> - Freezing most encoder weights
-                            preserved the model's general speech recognition capabilities while allowing
-                            specialization for Albanian</li>
-                    </ol>
-
-                    <blockquote>
-                        <p>
-                            "Two hours of training data and six minutes of compute delivered meaningful
-                            improvements for a low-resource language. The barrier to customizing ASR
-                            models for underserved languages is lower than many assume."
-                        </p>
-                    </blockquote>
-
-                    <h2>Future Directions</h2>
-                    <p>
-                        Several extensions could further improve performance:
-                    </p>
-                    <ul>
-                        <li>Expanding the training dataset with more diverse speakers and recording conditions</li>
-                        <li>Adding a language model for post-processing and improved coherence</li>
-                        <li>Exploring LoRA or other parameter-efficient finetuning methods</li>
-                        <li>Testing on the Gheg Albanian dialect to assess generalization</li>
-                    </ul>
-
-                    <p>
-                        The complete implementation is available as a Colab notebook, demonstrating
-                        that meaningful ASR improvements for low-resource languages are achievable
-                        with modest computational resources and careful methodology.
+                        The complete implementation is available as a Colab notebook.
                     </p>
                 </div>
 
