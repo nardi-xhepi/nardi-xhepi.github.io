@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Finetuning Omnilingual ASR for Albanian - How I reduced Word Error Rate by 15.7% using pseudo-labeling and knowledge distillation from a 7B model.">
+        content="Finetuning Omnilingual ASR for Albanian - How I reduced Word Error Rate by 16.4% using pseudo-labeling and knowledge distillation from a 7B model.">
     <meta name="author" content="Nardi Xhepi">
     <title>Finetuning Omnilingual ASR for Albanian | Nardi Xhepi</title>
 
@@ -78,7 +78,7 @@
                     <p class="lead">
                         Low-resource languages like Albanian present unique challenges for automatic speech
                         recognition systems. In this project, I finetuned the Omnilingual ASR 300M model
-                        on Albanian audio, achieving a 15.7% relative improvement in Word Error Rate using
+                        on Albanian audio, achieving a 16.4% relative improvement in Word Error Rate using
                         approximately two hours of training data and about six minutes of compute on an A100 GPU.
                     </p>
 
@@ -321,15 +321,15 @@ for epoch in range(NUM_EPOCHS):
                             </tr>
                             <tr style="border-bottom: 1px solid var(--color-border);">
                                 <td style="padding: var(--spacing-md);">Finetuned WER</td>
-                                <td style="text-align: right; padding: var(--spacing-md);">46.30%</td>
+                                <td style="text-align: right; padding: var(--spacing-md);">45.90%</td>
                             </tr>
                             <tr style="border-bottom: 1px solid var(--color-border);">
                                 <td style="padding: var(--spacing-md);">Absolute Improvement</td>
-                                <td style="text-align: right; padding: var(--spacing-md);">8.61 percentage points</td>
+                                <td style="text-align: right; padding: var(--spacing-md);">9.02 percentage points</td>
                             </tr>
                             <tr>
                                 <td style="padding: var(--spacing-md);"><strong>Relative Improvement</strong></td>
-                                <td style="text-align: right; padding: var(--spacing-md);"><strong>15.7%</strong></td>
+                                <td style="text-align: right; padding: var(--spacing-md);"><strong>16.4%</strong></td>
                             </tr>
                         </tbody>
                     </table>
