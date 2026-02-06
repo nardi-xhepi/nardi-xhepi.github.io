@@ -376,26 +376,6 @@ for epoch in range(NUM_EPOCHS):
                             Albanian speakers use from English, Italian, and Turkish</li>
                     </ul>
 
-
-
-                    <h2>Technical Challenges</h2>
-                    <p>
-                        Several obstacles required creative solutions:
-                    </p>
-
-                    <ul>
-                        <li><strong>Dependency conflicts</strong> - The omnilingual-asr package has specific PyTorch
-                            and fairseq2 version requirements that conflict with Colab's default environment.
-                            Careful version pinning (torch==2.4.0, torchaudio==2.4.0) was essential.</li>
-                        <li><strong>Batch format</strong> - Bypassing the official Parquet-based training pipeline
-                            required understanding the internal Seq2SeqBatch structure and manually constructing
-                            valid training batches.</li>
-                        <li><strong>Language code</strong> - The Omnilingual model uses ISO 639-3 language codes
-                            with script suffixes. Albanian required <code>als_Latn</code> (Tosk Albanian in Latin
-                            script)
-                            rather than the simpler "sq" code.</li>
-                    </ul>
-
                     <p>
                         The complete implementation is available as a <a
                             href="https://colab.research.google.com/drive/1OC-6_m8HvJNW1xcNY0emII8g-5CRs_Wj?usp=sharing"
