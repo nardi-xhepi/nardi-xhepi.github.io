@@ -181,12 +181,11 @@
                         <pre><code class="language-python">from omnilingual_asr.models.inference.pipeline import ASRInferencePipeline
 from fairseq2.datasets.batch import Seq2SeqBatch
 
-# Load the 300M model
 MODEL_CARD = "omniASR_LLM_300M"
 LANGUAGE = "als_Latn"  # Tosk Albanian in Latin script
 
 pipeline = ASRInferencePipeline(model_card=MODEL_CARD, device="cuda")
-model = pipeline.model  # Access the underlying PyTorch model
+model = pipeline.model
 
 print(f"Parameters: {sum(p.numel() for p in model.parameters()) / 1e6:.1f}M")
 # Output: Parameters: 1627.6M</code></pre>
@@ -262,7 +261,6 @@ for epoch in range(NUM_EPOCHS):
     for batch_start in range(0, len(indices), BATCH_SIZE):
         batch = create_batch(batch_indices)
         
-        # Forward pass
         output = model.forward(batch, return_logits=True)
         loss = output[0] / GRAD_ACCUMULATION
         loss.backward()
@@ -285,9 +283,9 @@ for epoch in range(NUM_EPOCHS):
         waveform, sr = torchaudio.load(train_paths[idx])
         if sr != 16000:
             waveform = torchaudio.transforms.Resample(sr, 16000)(waveform)
-        if waveform.shape[0] > 1:  # Convert to mono
+        if waveform.shape[0] > 1:
             waveform = waveform.mean(dim=0)
-        if waveform.shape[0] > 480000:  # Truncate to 30s
+        if waveform.shape[0] > 480000:
             waveform = waveform[:480000]
         
         tokens = token_encoder(train_texts[idx])
