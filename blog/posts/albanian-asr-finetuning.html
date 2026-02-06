@@ -82,16 +82,28 @@
                     <h2>The Challenge</h2>
                     <p>
                         Albanian is considered a low-resource language in the context of speech recognition.
-                        While large multilingual models like Whisper and the Omnilingual ASR family provide
-                        decent baseline performance, they often struggle with language-specific phonetic
-                        patterns, dialectal variations, and common contractions that native speakers use
-                        in everyday speech.
+                        While multilingual models provide decent baseline performance, they often struggle
+                        with language-specific phonetic patterns, dialectal variations, and common contractions
+                        that native speakers use in everyday speech.
+                    </p>
+
+                    <h2>About Omnilingual ASR</h2>
+                    <p>
+                        Omnilingual ASR is an open-source speech recognition system developed by Meta's
+                        FAIR research division. It supports over 1,600 languages, including more than 500
+                        languages that previously had no ASR coverage at all. The model is built on the
+                        fairseq2 framework and released under the Apache 2.0 license.
                     </p>
                     <p>
-                        The Omnilingual ASR model offers two variants: a 7-billion parameter model optimized
-                        for accuracy, and a 300-million parameter model designed for efficiency. My goal was
-                        to leverage the larger model's knowledge to improve the smaller model's performance
-                        on Albanian through a knowledge distillation approach.
+                        The architecture uses an encoder-decoder design where the encoder performs
+                        self-supervised pre-training on speech representations, and an LLM-inspired decoder
+                        handles the sequence generation. The model comes in two sizes: a 7-billion parameter
+                        version for maximum accuracy, and a 300-million parameter version designed for
+                        efficiency and deployment on resource-constrained environments.
+                    </p>
+                    <p>
+                        My goal was to leverage the 7B model's knowledge to improve the 300M model's
+                        performance on Albanian through pseudo-labeling, a form of knowledge distillation.
                     </p>
 
                     <h2>Building the Data Pipeline</h2>
@@ -146,7 +158,70 @@ for name, param in model.named_parameters():
     else:
         param.requires_grad = True
 
-# Training: ~87M trainable out of 300M total parameters</code></pre>
+# Result: 1308M trainable out of 1627M total parameters</code></pre>
+                    </div>
+
+                    <p>
+                        The training loop uses gradient accumulation to simulate larger batch sizes on limited GPU
+                        memory:
+                    </p>
+
+                    <div class="code-block">
+                        <pre><code class="language-python"># Training hyperparameters
+LEARNING_RATE = 1e-5
+NUM_EPOCHS = 3
+BATCH_SIZE = 2
+GRAD_ACCUMULATION = 4  # Effective batch size: 8
+
+optimizer = AdamW(
+    [p for p in model.parameters() if p.requires_grad],
+    lr=LEARNING_RATE,
+    weight_decay=0.01
+)
+
+for epoch in range(NUM_EPOCHS):
+    for batch_start in range(0, len(indices), BATCH_SIZE):
+        batch = create_batch(batch_indices)
+        
+        # Forward pass
+        output = model.forward(batch, return_logits=True)
+        loss = output[0] / GRAD_ACCUMULATION
+        loss.backward()
+        
+        if (num_batches + 1) % GRAD_ACCUMULATION == 0:
+            torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
+            optimizer.step()
+            optimizer.zero_grad()</code></pre>
+                    </div>
+
+                    <p>
+                        The batch creation function constructs <code>Seq2SeqBatch</code> objects directly,
+                        bypassing the official Parquet-based data pipeline:
+                    </p>
+
+                    <div class="code-block">
+                        <pre><code class="language-python">def create_batch(indices):
+    audio_examples = []
+    for idx in indices:
+        waveform, sr = torchaudio.load(train_paths[idx])
+        if sr != 16000:
+            waveform = torchaudio.transforms.Resample(sr, 16000)(waveform)
+        if waveform.shape[0] > 1:  # Convert to mono
+            waveform = waveform.mean(dim=0)
+        if waveform.shape[0] > 480000:  # Truncate to 30s
+            waveform = waveform[:480000]
+        
+        tokens = token_encoder(train_texts[idx])
+        audio_examples.append({"audio_feature": waveform, "text": tokens})
+    
+    collated = full_collater(audio_examples)
+    return Seq2SeqBatch(
+        source_seqs=collated["audio_feature"]["seqs"].to(device, dtype),
+        source_seq_lens=collated["audio_feature"]["seq_lens"],
+        target_seqs=collated["text"]["seqs"].to(device),
+        target_seq_lens=collated["text"]["seq_lens"],
+        example={"lang": [LANGUAGE] * len(indices)}
+    )</code></pre>
                     </div>
 
                     <h2>Results</h2>
@@ -200,14 +275,7 @@ for name, param in model.named_parameters():
                             Albanian speakers use from English, Italian, and Turkish</li>
                     </ul>
 
-                    <h2>Comparison with Whisper</h2>
-                    <p>
-                        While Whisper remains a strong general-purpose ASR system, the finetuned Omnilingual
-                        model demonstrated advantages on raw transcription accuracy for Albanian speech,
-                        particularly in handling the linguistic features mentioned above. The smaller model
-                        size (300M vs Whisper Large's 1.5B parameters) also makes it more practical for
-                        deployment scenarios with resource constraints.
-                    </p>
+
 
                     <h2>Technical Challenges</h2>
                     <p>
