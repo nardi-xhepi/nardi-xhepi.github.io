@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Selected projects by Nardi Xhepi — LLMs, time series, machine learning.">
+    <meta name="author" content="Nardi Xhepi">
+    <title>Work · Nardi Xhepi</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">Nardi Xhepi</a>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="/work/" class="nav-link active">Work</a></li>
+                <li><a href="/writing/" class="nav-link">Writing</a></li>
+                <li><a href="/about/" class="nav-link">About</a></li>
+                <li><a href="/contact/" class="nav-link">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="projects-page">
+        <div class="section-inner">
+            <div class="projects-page-header">
+                <span class="section-label">Portfolio</span>
+                <h1>Work</h1>
+                <p>Projects in machine learning, LLMs, time series, and applied AI.</p>
+            </div>
+
+            <div class="project-filters" id="project-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="llm">LLM &amp; NLP</button>
+                <button class="filter-btn" data-filter="timeseries">Time Series</button>
+                <button class="filter-btn" data-filter="ml">Machine Learning</button>
+            </div>
+
+            <div id="projects-list">
+                <article class="project-entry fade-up" data-category="llm">
+                    <div>
+                        <h3 class="project-name">RAG Pipeline for Enterprise Search</h3>
+                        <p class="project-meta">2025 · LLM &amp; NLP</p>
+                        <p class="project-desc">Production-ready retrieval-augmented generation using Qdrant vector database and domain-specific knowledge graphs for intelligent document retrieval at Dassault Systèmes. Benchmarked Mistral Small, SmolLM 3B, and Llama 3.1 for entity extraction.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">LangChain</span>
+                            <span class="tag">Qdrant</span>
+                            <span class="tag">Knowledge Graphs</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-entry fade-up" data-category="timeseries">
+                    <div>
+                        <h3 class="project-name">Ensemble Anomaly Detection</h3>
+                        <p class="project-meta">2024 · Time Series</p>
+                        <p class="project-desc">Ensemble methods for power system anomaly detection at EDF, achieving +15% AUC-PR improvement. Feature-based latent space representation of time series signals, potentially preventing €60M in annual losses.</p>
+                        <div class="project-tags">
+                            <span class="tag">PyTorch</span>
+                            <span class="tag">Scikit-learn</span>
+                            <span class="tag">Time Series</span>
+                            <span class="tag">Ensemble</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-entry fade-up" data-category="ml">
+                    <div>
+                        <h3 class="project-name">Groundwater Level Prediction</h3>
+                        <p class="project-meta">2024 · Machine Learning · Hi!Paris Hackathon</p>
+                        <p class="project-desc">Stacking ensemble approach achieving the highest F1 score in the Hi!Paris Hackathon groundwater level prediction challenge. Technical Excellence Award winner.</p>
+                        <div class="project-tags">
+                            <span class="tag">XGBoost</span>
+                            <span class="tag">Ensemble</span>
+                            <span class="tag">Python</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-entry fade-up" data-category="ml">
+                    <div>
+                        <h3 class="project-name">Breast Cancer Treatment Optimization</h3>
+                        <p class="project-meta">2025 · Machine Learning · D4GEN Hackathon</p>
+                        <p class="project-desc">Patient-specific breast cancer treatment solution using ML for personalized medicine. 2nd place finish at the D4GEN Hackathon Genopole, competing against 100+ researchers.</p>
+                        <div class="project-tags">
+                            <span class="tag">Biotech</span>
+                            <span class="tag">ML</span>
+                            <span class="tag">Healthcare</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-entry fade-up" data-category="timeseries llm">
+                    <div>
+                        <h3 class="project-name">Finetuning Omnilingual ASR for Albanian</h3>
+                        <p class="project-meta">2026 · LLM &amp; NLP</p>
+                        <p class="project-desc">Finetuned the Omnilingual ASR 300M model on Albanian audio using pseudo-labeling and knowledge distillation from a 7B model. Achieved 16.4% relative improvement in Word Error Rate with ~2 hours of training data.</p>
+                        <div class="project-tags">
+                            <span class="tag">ASR</span>
+                            <span class="tag">PyTorch</span>
+                            <span class="tag">Low-Resource NLP</span>
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <a href="../blog/posts/albanian-asr-finetuning.html" class="project-link-btn">Read writeup →</a>
+                    </div>
+                </article>
+
+                <article class="project-entry fade-up" data-category="ml">
+                    <div>
+                        <h3 class="project-name">Autonomous Moon Lander</h3>
+                        <p class="project-meta">2022 · Reinforcement Learning</p>
+                        <p class="project-desc">Reinforcement learning implementation using Augmented Random Search in Java, simulating autonomous lunar landing. Built as part of the CPGE research curriculum at Lycée Saint-Louis.</p>
+                        <div class="project-tags">
+                            <span class="tag">Java</span>
+                            <span class="tag">RL</span>
+                            <span class="tag">Simulation</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <a href="/" class="footer-wordmark">Nardi Xhepi</a>
+            <nav class="footer-links">
+                <a href="/work/">Work</a>
+                <a href="/writing/">Writing</a>
+                <a href="/about/">About</a>
+                <a href="/contact/">Contact</a>
+            </nav>
+            <span class="footer-copy">© 2026</span>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+    <script>
+        // Project filter
+        const filterBtns = document.querySelectorAll('#project-filters .filter-btn');
+        const projectEntries = document.querySelectorAll('#projects-list .project-entry');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.dataset.filter;
+                projectEntries.forEach(entry => {
+                    const cats = (entry.dataset.category || '').split(' ');
+                    entry.style.display = (filter === 'all' || cats.includes(filter)) ? '' : 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

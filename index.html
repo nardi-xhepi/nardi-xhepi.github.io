@@ -1,722 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Nardi Xhepi - Data Scientist & ML Engineer specializing in LLMs, RAG Pipelines, and Time Series Analysis">
-    <meta name="keywords" content="Data Science, Machine Learning, LLM, RAG, Time Series, Python, PyTorch">
+    <meta name="description" content="Nardi Xhepi — Data Scientist & ML Engineer. M.S. Data Science at École Polytechnique and M.S. AI at Télécom Paris.">
     <meta name="author" content="Nardi Xhepi">
-    <title>Nardi Xhepi | Data Scientist & ML Engineer</title>
+    <title>Nardi Xhepi</title>
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <!-- Styles -->
     <link rel="stylesheet" href="assets/css/main.css">
 </head>
-
 <body>
-    <!-- Visual Continuity Elements -->
-    <div class="scroll-progress">
-        <div class="scroll-progress-bar" id="scroll-progress"></div>
-    </div>
-
-    <!-- Flowing gradient orbs -->
-    <div class="flow-orb flow-orb-1" id="orb1"></div>
-    <div class="flow-orb flow-orb-2" id="orb2"></div>
-    <div class="flow-orb flow-orb-3" id="orb3"></div>
-
-    <!-- Background mesh -->
-    <div class="gradient-mesh"></div>
-
-    <!-- Floating Quick Navigation -->
-    <nav class="floating-nav" id="floating-nav">
-        <button class="floating-nav-dot active" data-section="hero" data-label="Home" aria-label="Go to Home"></button>
-        <button class="floating-nav-dot" data-section="about" data-label="About" aria-label="Go to About"></button>
-        <button class="floating-nav-dot" data-section="experience" data-label="Experience"
-            aria-label="Go to Experience"></button>
-        <button class="floating-nav-dot" data-section="projects" data-label="Projects"
-            aria-label="Go to Projects"></button>
-        <button class="floating-nav-dot" data-section="achievements" data-label="Achievements"
-            aria-label="Go to Achievements"></button>
-        <button class="floating-nav-dot" data-section="skills" data-label="Skills" aria-label="Go to Skills"></button>
-        <button class="floating-nav-dot" data-section="education" data-label="Education"
-            aria-label="Go to Education"></button>
-        <button class="floating-nav-dot" data-section="contact" data-label="Contact"
-            aria-label="Go to Contact"></button>
-    </nav>
 
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="#" class="nav-logo">
-                <span class="logo-text">NX</span>
-            </a>
+            <a href="/" class="nav-logo">Nardi Xhepi</a>
             <ul class="nav-menu" id="nav-menu">
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#experience" class="nav-link">Experience</a></li>
-                <li><a href="#achievements" class="nav-link">Achievements</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#education" class="nav-link">Education</a></li>
-                <li><a href="blog.html" class="nav-link">Blog</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="/work/" class="nav-link">Work</a></li>
+                <li><a href="/writing/" class="nav-link">Writing</a></li>
+                <li><a href="/about/" class="nav-link">About</a></li>
+                <li><a href="/contact/" class="nav-link">Contact</a></li>
             </ul>
-            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
-                <i class="fas fa-moon" id="theme-icon"></i>
-            </button>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
-                <span class="hamburger"></span>
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero" id="hero">
-        <div class="hero-bg">
-            <div class="hero-gradient"></div>
-            <div class="hero-grid"></div>
-            <!-- Subtle Data Science Nodes - positioned at edges only -->
-            <!-- 3D Data Science Symbol Cloud -->
-            <div class="data-cloud">
-                <div class="cloud-wrapper">
-                    <div class="ds-symbol s1">∑</div>
-                    <div class="ds-symbol s2">∫</div>
-                    <div class="ds-symbol s3">π</div>
-                    <div class="ds-symbol s4">µ</div>
-                    <div class="ds-symbol s5">σ</div>
-                    <div class="ds-symbol s6">λ</div>
-                    <div class="ds-symbol s7">Δ</div>
-                    <div class="ds-symbol s8">∇</div>
-                    <div class="ds-symbol s9">θ</div>
-                    <div class="ds-symbol s10">ε</div>
-                    <div class="ds-symbol s11">f(x)</div>
-                    <div class="ds-symbol s12">!=</div>
-                    <div class="ds-symbol s13">{}</div>
-                    <div class="ds-symbol s14">[]</div>
-                    <div class="ds-symbol s15">&lt;/&gt;</div>
-                    <div class="ds-symbol s16">#</div>
-                    <div class="ds-symbol s17">01</div>
-                    <div class="ds-symbol s18">β</div>
-                    <div class="ds-symbol s19">∞</div>
-                    <div class="ds-symbol s20">≈</div>
-                </div>
-            </div>
-        </div>
-        <div class="hero-wrapper">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    <span class="greeting">Hi, I'm</span>
-                    <span class="name">Nardi Xhepi</span>
-                </h1>
-                <p class="hero-subtitle">
-                    <span class="typed-text">Data Scientist</span>
-                    <span class="cursor">|</span>
-                </p>
-                <p class="hero-description">
-                    Specializing in <strong>Data Science</strong> and <strong>Machine Learning</strong>.
-                    Currently pursuing M.S. Data Science at <strong>École Polytechnique</strong> and <strong>Télécom
-                        Paris</strong>.
-                </p>
-                <div class="hero-cta">
-                    <a href="#projects" class="btn btn-primary">
-                        <span>View My Work</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                    <a href="#contact" class="btn btn-secondary">
-                        <span>Get in Touch</span>
-                    </a>
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="hero-text">
+                <h1 class="hero-name">Nardi Xhepi</h1>
+                <p class="hero-role">Data Scientist &amp; ML Engineer</p>
+                <p class="hero-currently">Currently at École Polytechnique + Télécom Paris</p>
+                <div class="hero-links">
+                    <a href="/work/" class="link-arrow">→ Selected work</a>
+                    <a href="/contact/" class="link-arrow">→ Get in touch</a>
                 </div>
                 <div class="hero-social">
-                    <a href="https://www.linkedin.com/in/nardi-xhepi/" target="_blank" rel="noopener"
-                        aria-label="LinkedIn">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://github.com/nardi-xhepi" target="_blank" rel="noopener" aria-label="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="mailto:nardi.xhepi@polytechnique.edu" aria-label="Email">
-                        <i class="fas fa-envelope"></i>
-                    </a>
+                    <a href="https://github.com/nardi-xhepi" target="_blank" rel="noopener">GitHub</a>
+                    <a href="https://www.linkedin.com/in/nardi-xhepi/" target="_blank" rel="noopener">LinkedIn</a>
+                    <a href="mailto:nardi.xhepi@polytechnique.edu">Email</a>
                 </div>
             </div>
-            <div class="hero-photo" id="hero-photo">
-                <div class="hero-photo-frame">
-                    <img src="assets/images/photo_n.jpg" alt="Nardi Xhepi">
-                    <div class="hero-photo-glow"></div>
-                </div>
-            </div>
-        </div>
-        </div>
-        <div class="hero-scroll">
-            <a href="#about" class="scroll-indicator">
-                <span>Scroll</span>
-                <i class="fas fa-chevron-down"></i>
-            </a>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="section about" id="about">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Introduction</span>
-                <h2 class="section-title">About Me</h2>
-            </div>
-            <div class="about-content">
-                <div class="about-image" id="about-photo-target">
-                    <div class="image-frame">
-                        <div class="image-placeholder">
-                            <img src="assets/images/photo_n.jpg" alt="Nardi Xhepi">
-                        </div>
-                        <div class="image-decoration"></div>
-                    </div>
-                </div>
-                <div class="about-text">
-                    <p class="about-intro">
-                        I'm a <strong>Data Scientist</strong> and <strong>Machine Learning Engineer</strong> passionate
-                        about
-                        building intelligent systems that solve real-world problems.
-                    </p>
-                    <div class="about-stats">
-                        <div class="stat">
-                            <span class="stat-number">2+</span>
-                            <span class="stat-label">Years Experience</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">3</span>
-                            <span class="stat-label">Hackathon Awards</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">5</span>
-                            <span class="stat-label">Spoken Languages</span>
-                        </div>
-                    </div>
-                </div>
+            <div class="hero-photo">
+                <img src="assets/images/photo_n.jpg" alt="Nardi Xhepi">
             </div>
         </div>
     </section>
 
-    <!-- Experience Section -->
-    <section class="section experience" id="experience">
-        <div class="container">
-            <div class="section-header experience-header-flex">
-                <div class="header-content">
-                    <span class="section-tag">Career</span>
-                    <h2 class="section-title">Experience</h2>
+    <!-- Selected Work -->
+    <section class="featured-section">
+        <div class="section-inner">
+            <div class="featured-header">
+                <h2>Selected work</h2>
+                <a href="/work/" class="link-arrow">All projects →</a>
+            </div>
+
+            <article class="project-entry fade-up">
+                <div>
+                    <h3 class="project-name">RAG Pipeline for Enterprise Search</h3>
+                    <p class="project-meta">2025 · LLM &amp; NLP</p>
+                    <p class="project-desc">Production-ready retrieval-augmented generation using Qdrant vector database and domain-specific knowledge graphs for intelligent document retrieval at Dassault Systèmes.</p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">LangChain</span>
+                        <span class="tag">Qdrant</span>
+                        <span class="tag">Knowledge Graphs</span>
+                    </div>
                 </div>
-                <a href="assets/CV.pdf" class="resume-btn" target="_blank" aria-label="Download Resume">
-                    <i class="fas fa-file-pdf"></i>
-                    <span>Download CV</span>
+            </article>
+
+            <article class="project-entry fade-up">
+                <div>
+                    <h3 class="project-name">Ensemble Anomaly Detection</h3>
+                    <p class="project-meta">2024 · Time Series</p>
+                    <p class="project-desc">Ensemble methods for power system anomaly detection at EDF, achieving +15% AUC-PR improvement and preventing an estimated €60M in annual losses.</p>
+                    <div class="project-tags">
+                        <span class="tag">PyTorch</span>
+                        <span class="tag">Scikit-learn</span>
+                        <span class="tag">Time Series</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="project-entry fade-up">
+                <div>
+                    <h3 class="project-name">Groundwater Level Prediction</h3>
+                    <p class="project-meta">2024 · Machine Learning · Hi!Paris Hackathon</p>
+                    <p class="project-desc">Stacking ensemble approach achieving the highest F1 score in the Hi!Paris Hackathon groundwater level prediction challenge — Technical Excellence Award winner.</p>
+                    <div class="project-tags">
+                        <span class="tag">XGBoost</span>
+                        <span class="tag">Ensemble</span>
+                        <span class="tag">Python</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Recent Writing -->
+    <section class="writing-section">
+        <div class="section-inner">
+            <div class="writing-header">
+                <h2>Writing</h2>
+                <a href="/writing/" class="link-arrow">All posts →</a>
+            </div>
+
+            <div class="writing-entry fade-up">
+                <a href="blog/posts/albanian-asr-finetuning.html">
+                    <div class="writing-meta">
+                        <span>February 2026</span>
+                        <span>10 min read</span>
+                        <span>LLM &amp; NLP</span>
+                    </div>
+                    <h3 class="writing-title">Finetuning Omnilingual ASR for Albanian</h3>
+                    <p class="writing-excerpt">How I reduced Word Error Rate by 15.7% using pseudo-labeling and knowledge distillation from a 7B model, with just two hours of training data.</p>
                 </a>
             </div>
-            <div class="xp-carousel-container">
-                <div class="xp-track" id="experience-track">
-                    <!-- Dassault Systèmes -->
-                    <article class="experience-card glass-card xp-slide active">
-                        <div class="company-logo">
-                            <img src="assets/images/logo_dassault.png" alt="Dassault Systèmes">
-                        </div>
-                        <div class="experience-content">
-                            <div class="experience-header">
-                                <div>
-                                    <h3>Research Scientist Intern</h3>
-                                    <span class="company-name">Dassault Systèmes</span>
-                                </div>
-                                <span class="experience-date">Feb 2025 – Aug 2025</span>
-                            </div>
-                            <p class="experience-role">LLM & AI Agents – ENOVIA</p>
-                            <ul class="experience-details">
-                                <li>Engineered next-gen Generative AI features for ENOVIA, designing <strong>RAG
-                                        pipelines</strong> backed by Qdrant and domain-specific Knowledge Graphs</li>
-                                <li>Benchmarked multiple open-weights models (Mistral Small, SmolLM 3B, Llama 3.1) for
-                                    entity extraction tasks</li>
-                                <li>Implemented hybrid retrieval strategies combining BM25 with early and late
-                                    interaction
-                                    mechanisms</li>
-                            </ul>
-                            <div class="experience-tags">
-                                <span class="tag">LLM</span>
-                                <span class="tag">RAG</span>
-                                <span class="tag">Knowledge Graphs</span>
-                                <span class="tag">Qdrant</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- EDF -->
-                    <article class="experience-card glass-card xp-slide">
-                        <div class="company-logo">
-                            <img src="assets/images/logo_edf.png" alt="EDF">
-                        </div>
-                        <div class="experience-content">
-                            <div class="experience-header">
-                                <div>
-                                    <h3>Research Scientist Intern</h3>
-                                    <span class="company-name">Électricité de France (EDF)</span>
-                                </div>
-                                <span class="experience-date">July 2024 – Jan 2025</span>
-                            </div>
-                            <p class="experience-role">Anomaly Detection Algorithms at DOAAT</p>
-                            <ul class="experience-details">
-                                <li>Designed ensemble-based anomaly detection algorithms improving <strong>AUC-PR by
-                                        15%</strong>, potentially preventing €60M in annual losses</li>
-                                <li>Worked on time series analysis and feature-based latent space representation</li>
-                                <li>Developed ensemble methods that outperformed previous approaches on EDF's time
-                                    series
-                                    anomaly detection</li>
-                            </ul>
-                            <div class="experience-tags">
-                                <span class="tag">Time Series</span>
-                                <span class="tag">Anomaly Detection</span>
-                                <span class="tag">Ensemble Methods</span>
-                                <span class="tag">Python</span>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-
-                <!-- Carousel Controls -->
-                <div class="xp-controls">
-                    <button class="xp-btn xp-prev" aria-label="Previous Experience">
-                        <i class="fas fa-arrow-left"></i>
-                    </button>
-                    <div class="xp-indicators">
-                        <div class="xp-progress-bar">
-                            <div class="xp-progress-fill" id="xp-progress-fill"></div>
-                        </div>
-                        <span class="xp-count" id="xp-count">1 / 2</span>
-                    </div>
-                    <button class="xp-btn xp-next" aria-label="Next Experience">
-                        <i class="fas fa-arrow-right"></i>
-                    </button>
-                </div>
-            </div>
         </div>
     </section>
 
-    <!-- Achievements Section -->
-    <section class="section achievements" id="achievements">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Recognition</span>
-                <h2 class="section-title">Achievements</h2>
+    <!-- About teaser -->
+    <section class="featured-section" style="border-bottom:none;">
+        <div class="section-inner">
+            <div class="featured-header">
+                <h2>About</h2>
             </div>
-            <div class="achievements-grid">
-                <!-- BendingSpoons -->
-                <article class="achievement-card glass-card">
-                    <div class="achievement-logo white-bg fill-container">
-                        <img src="assets/images/logo_bs.jpg" alt="BendingSpoons">
-                    </div>
-                    <div class="achievement-content">
-                        <h3>BendingSpoons First Ascent</h3>
-                        <span class="achievement-date">November 2025 • Milan, Italy</span>
-                        <p>Selected among the <strong>top 20 students in France</strong> to participate in
-                            BendingSpoons' exclusive First Ascent event.</p>
-                    </div>
-                </article>
-
-                <!-- D4GEN -->
-                <article class="achievement-card glass-card">
-                    <div class="achievement-logo fill-container">
-                        <img src="assets/images/logo_d4g.png" alt="D4GEN">
-                    </div>
-                    <div class="achievement-content">
-                        <h3>D4GEN Hackathon Genopole</h3>
-                        <span class="achievement-date">May 2025 • 2nd Place</span>
-                        <p>Biotechnology competition for patient-specific breast cancer treatment solution, competing
-                            against 100+ researchers.</p>
-                    </div>
-                </article>
-
-                <!-- Hi!Paris -->
-                <article class="achievement-card glass-card">
-                    <div class="achievement-logo white-bg">
-                        <img src="assets/images/logo_hiparis.png" alt="Hi!Paris">
-                    </div>
-                    <div class="achievement-content">
-                        <h3>Hi!Paris Hackathon</h3>
-                        <span class="achievement-date">2024 & 2025 • Technical Excellence Award</span>
-                        <p><strong>2x Winner</strong> – Achieved the highest technical score both years using advanced
-                            ML ensemble methods.</p>
-                        <div class="certificate-links">
-                            <a href="https://www.smartcertificate.com/SmartCertificate/?1%7c49786939-fdaa-4724-975d-cbba7d676dc1%7c775f0fec-e805-468c-9b5b-d86bbdcfa2a3"
-                                target="_blank" rel="noopener" class="certificate-badge">
-                                <i class="fas fa-certificate"></i> 2024 Certificate
-                            </a>
-                            <a href="https://www.smartcertificate.com/SmartCertificate/?1%7c168e2cc0-3f0e-407b-8596-2d390290747e%7c6146f825-93ea-4610-ae59-2ae5f9b462b6"
-                                target="_blank" rel="noopener" class="certificate-badge">
-                                <i class="fas fa-certificate"></i> 2025 Certificate
-                            </a>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section class="section projects" id="projects">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Portfolio</span>
-                <h2 class="section-title">Featured Projects</h2>
-            </div>
-            <div class="project-filters">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="llm">LLM & NLP</button>
-                <button class="filter-btn" data-filter="timeseries">Time Series</button>
-                <button class="filter-btn" data-filter="ml">Machine Learning</button>
-            </div>
-            <div class="projects-grid">
-                <article class="project-card glass-card" data-category="llm">
-                    <div class="project-image">
-                        <div class="project-placeholder">
-                            <i class="fas fa-robot"></i>
-                        </div>
-                        <div class="project-overlay">
-                            <a href="#" class="project-link" aria-label="View Project">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                            <a href="#" class="project-link" aria-label="View Code">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>RAG Pipeline for Enterprise Search</h3>
-                        <p>Built a production-ready RAG system using Qdrant vector database and domain-specific
-                            knowledge graphs for intelligent document retrieval.</p>
-                        <div class="project-tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">LangChain</span>
-                            <span class="tag">Qdrant</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="project-card glass-card" data-category="timeseries">
-                    <div class="project-image">
-                        <div class="project-placeholder">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <div class="project-overlay">
-                            <a href="#" class="project-link" aria-label="View Project">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                            <a href="#" class="project-link" aria-label="View Code">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Ensemble Anomaly Detection</h3>
-                        <p>Developed ensemble methods for power system anomaly detection, achieving 15% AUC-PR
-                            improvement and preventing potential €60M losses.</p>
-                        <div class="project-tags">
-                            <span class="tag">PyTorch</span>
-                            <span class="tag">Scikit-learn</span>
-                            <span class="tag">Time Series</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="project-card glass-card" data-category="ml">
-                    <div class="project-image">
-                        <div class="project-placeholder">
-                            <i class="fas fa-water"></i>
-                        </div>
-                        <div class="project-overlay">
-                            <a href="#" class="project-link" aria-label="View Project">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                            <a href="#" class="project-link" aria-label="View Code">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Groundwater Level Prediction</h3>
-                        <p>Hi!Paris Hackathon winner: Stacking ensemble approach achieving highest F1 score on
-                            groundwater level predictions.</p>
-                        <div class="project-tags">
-                            <span class="tag">XGBoost</span>
-                            <span class="tag">Ensemble</span>
-                            <span class="tag">Python</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="project-card glass-card" data-category="ml">
-                    <div class="project-image">
-                        <div class="project-placeholder">
-                            <i class="fas fa-dna"></i>
-                        </div>
-                        <div class="project-overlay">
-                            <a href="#" class="project-link" aria-label="View Project">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                            <a href="#" class="project-link" aria-label="View Code">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Breast Cancer Treatment Optimization</h3>
-                        <p>D4GEN Hackathon finalist: Patient-specific breast cancer treatment solution using ML for
-                            personalized medicine.</p>
-                        <div class="project-tags">
-                            <span class="tag">Biotech</span>
-                            <span class="tag">ML</span>
-                            <span class="tag">Healthcare</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="project-card glass-card" data-category="timeseries llm">
-                    <div class="project-image">
-                        <div class="project-placeholder">
-                            <i class="fas fa-rocket"></i>
-                        </div>
-                        <div class="project-overlay">
-                            <a href="#" class="project-link" aria-label="View Project">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                            <a href="#" class="project-link" aria-label="View Code">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Autonomous Moon Lander</h3>
-                        <p>Reinforcement learning implementation using Augmented Random Search in Java, simulating
-                            autonomous lunar landing.</p>
-                        <div class="project-tags">
-                            <span class="tag">Java</span>
-                            <span class="tag">RL</span>
-                            <span class="tag">Simulation</span>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section class="section skills" id="skills">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Expertise</span>
-                <h2 class="section-title">Skills & Technologies</h2>
-            </div>
-            <div class="skills-grid">
-                <div class="skill-category glass-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <h3>AI & Machine Learning</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">PyTorch</span>
-                        <span class="skill-tag">TensorFlow</span>
-                        <span class="skill-tag">Transformers</span>
-                        <span class="skill-tag">Scikit-learn</span>
-                        <span class="skill-tag">Time Series</span>
-                        <span class="skill-tag">Optimization</span>
-                    </div>
-                </div>
-
-                <div class="skill-category glass-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <h3>Generative AI & Data</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">LLMs</span>
-                        <span class="skill-tag">RAG Pipelines</span>
-                        <span class="skill-tag">AI Agents</span>
-                        <span class="skill-tag">Knowledge Graphs</span>
-                        <span class="skill-tag">Qdrant</span>
-                        <span class="skill-tag">Streamlit</span>
-                    </div>
-                </div>
-
-                <div class="skill-category glass-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3>Development Tools</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Git</span>
-                        <span class="skill-tag">GitHub</span>
-                        <span class="skill-tag">Bash</span>
-                        <span class="skill-tag">Linux</span>
-                        <span class="skill-tag">Docker</span>
-                    </div>
-                </div>
-
-                <div class="skill-category glass-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-globe"></i>
-                    </div>
-                    <h3>Languages</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">French (Fluent)</span>
-                        <span class="skill-tag">English (Fluent)</span>
-                        <span class="skill-tag">Albanian (Fluent)</span>
-                        <span class="skill-tag">Italian (Intermediate)</span>
-                        <span class="skill-tag">German (Basic)</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Education Section -->
-    <section class="section education" id="education">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Background</span>
-                <h2 class="section-title">Education</h2>
-            </div>
-            <div class="education-grid">
-                <!-- École Polytechnique -->
-                <article class="education-card glass-card">
-                    <div class="education-logo fill-container">
-                        <img src="assets/images/logo_x.jpg" alt="École Polytechnique">
-                    </div>
-                    <div class="education-content">
-                        <h3>École Polytechnique</h3>
-                        <p class="education-degree">Master in Data Science</p>
-                        <span class="education-date">Sept 2024 – Present • Saclay, France</span>
-                        <p class="education-details">Deep Learning for Time Series, Optimization for Data Science,
-                            Statistical Learning Theory, Data Stream Processing</p>
-                    </div>
-                </article>
-
-                <!-- Telecom Paris -->
-                <article class="education-card glass-card">
-                    <div class="education-logo">
-                        <img src="assets/images/logo_tp.png" alt="Telecom SudParis">
-                    </div>
-                    <div class="education-content">
-                        <h3>Télécom Paris</h3>
-                        <p class="education-degree">Master in AI</p>
-                        <span class="education-date">Sept 2025 – Present • Palaiseau, France</span>
-                        <p class="education-details">Deep Learning, Generative AI,Reinforcement Learning</p>
-                    </div>
-                </article>
-
-                <!-- Telecom SudParis -->
-                <article class="education-card glass-card">
-                    <div class="education-logo">
-                        <img src="assets/images/logo_tsp.svg" alt="Telecom SudParis">
-                    </div>
-                    <div class="education-content">
-                        <h3>Telecom SudParis</h3>
-                        <p class="education-degree">Computer Science & Data Science</p>
-                        <span class="education-date">Sept 2022 – Present • Évry, France</span>
-                        <p class="education-details">Machine Learning, Deep Learning, Reinforcement Learning, Algorithms
-                            & Data Structures</p>
-                    </div>
-                </article>
-
-                <!-- Lycée Saint-Louis -->
-                <article class="education-card glass-card">
-                    <div class="education-logo">
-                        <img src="assets/images/lycee.png" alt="Lycée Saint-Louis">
-                    </div>
-                    <div class="education-content">
-                        <h3>Lycée Saint-Louis</h3>
-                        <p class="education-degree">Preparatory Classes (CPGE)</p>
-                        <span class="education-date">Sept 2019 – Sept 2022 • Paris, France</span>
-                        <p class="education-details">Mathematics & Physics intensive program. Research: Autonomous moon
-                            lander using RL.</p>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="section contact" id="contact">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Get in Touch</span>
-                <h2 class="section-title">Let's Connect</h2>
-            </div>
-            <div class="contact-content" style="display: flex; justify-content: center;">
-                <div class="contact-info" style="text-align: center; max-width: 600px;">
-                    <p class="contact-intro">
-                        I'm always open to discussing new opportunities, interesting projects,
-                        or potential collaborations in data science and machine learning.
-                    </p>
-                    <div class="contact-methods">
-                        <a href="mailto:nardi.xhepi@polytechnique.edu" class="contact-method">
-                            <i class="fas fa-envelope"></i>
-                            <span>nardi.xhepi@polytechnique.edu</span>
-                        </a>
-                        <a href="https://www.linkedin.com/in/nardi-xhepi/" target="_blank" rel="noopener"
-                            class="contact-method">
-                            <i class="fab fa-linkedin"></i>
-                            <span>linkedin.com/in/nardi-xhepi</span>
-                        </a>
-                        <a href="https://github.com/nardi-xhepi" target="_blank" rel="noopener" class="contact-method">
-                            <i class="fab fa-github"></i>
-                            <span>github.com/nardi-xhepi</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
+            <p class="fade-up" style="color:var(--ink-muted);max-width:560px;line-height:1.7;margin-bottom:1.5rem;">
+                I'm a Data Scientist and ML Engineer passionate about building intelligent systems.
+                Currently pursuing a M.S. in Data Science at École Polytechnique and a M.S. in AI at Télécom Paris.
+                Previously Research Scientist Intern at Dassault Systèmes (LLMs, RAG) and EDF (anomaly detection).
+            </p>
+            <a href="/about/" class="link-arrow fade-up">More about me →</a>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <span class="logo-text">NX</span>
-                    <p>Data Scientist & ML Engineer</p>
-                </div>
-                <div class="footer-links">
-                    <a href="#about">About</a>
-                    <a href="#experience">Experience</a>
-                    <a href="#projects">Projects</a>
-                    <a href="#blog">Blog</a>
-                    <a href="#contact">Contact</a>
-                </div>
-                <div class="footer-social">
-                    <a href="https://www.linkedin.com/in/nardi-xhepi/" target="_blank" rel="noopener"
-                        aria-label="LinkedIn">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://github.com/nardi-xhepi" target="_blank" rel="noopener" aria-label="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="mailto:nardi.xhepi@polytechnique.edu" aria-label="Email">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Nardi Xhepi. All rights reserved.</p>
-                <p class="footer-note">Built with ❤️ and a lot of ☕</p>
-            </div>
+        <div class="footer-inner">
+            <a href="/" class="footer-wordmark">Nardi Xhepi</a>
+            <nav class="footer-links" aria-label="Footer navigation">
+                <a href="/work/">Work</a>
+                <a href="/writing/">Writing</a>
+                <a href="/about/">About</a>
+                <a href="/contact/">Contact</a>
+            </nav>
+            <span class="footer-copy">© 2026</span>
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="assets/js/main.js"></script>
 </body>
-
 </html>
