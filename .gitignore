@@ -1,2 +1,7 @@
+.DS_Store
 CV.tex
 omnilingual_finetune.ipynb
+
+# Heavy logo source files (web-ready SVGs extracted already)
+assets/images/doctolib-logos-2023.zip
+assets/images/Doctolib_Design/

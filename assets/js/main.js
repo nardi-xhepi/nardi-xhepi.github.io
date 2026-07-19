@@ -2,7 +2,9 @@
  * NARDI XHEPI — Portfolio Scripts
  */
 
-// Mobile nav toggle
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// ── Mobile nav toggle ────────────────────────────────
 const navToggle = document.getElementById('nav-toggle');
 const navMenu = document.getElementById('nav-menu');
 
@@ -19,18 +21,31 @@ document.querySelectorAll('.nav-link').forEach(link => {
     });
 });
 
-// Fade-up scroll animation
+// ── Navbar border/shadow on scroll ───────────────────
+const navbar = document.getElementById('navbar');
+
+const onScroll = () => {
+    navbar?.classList.toggle('scrolled', window.scrollY > 8);
+};
+onScroll();
+window.addEventListener('scroll', onScroll, { passive: true });
+
+// ── Fade-up scroll animation ─────────────────────────
 const fadeEls = document.querySelectorAll('.fade-up');
 
 if (fadeEls.length) {
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    if (prefersReducedMotion) {
+        fadeEls.forEach(el => el.classList.add('visible'));
+    } else {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
-    fadeEls.forEach(el => observer.observe(el));
+        fadeEls.forEach(el => observer.observe(el));
+    }
 }

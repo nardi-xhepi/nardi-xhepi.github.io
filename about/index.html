@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="About Nardi Xhepi — Data Scientist & ML Engineer. Experience, education, and skills.">
+    <meta name="description" content="About Nardi Xhepi — Data Scientist & ML Engineer. Experience at Dassault Systèmes and EDF, education at École Polytechnique & Télécom Paris.">
     <meta name="author" content="Nardi Xhepi">
     <title>About · Nardi Xhepi</title>
 
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%233B5BFF'/%3E%3Ctext x='32' y='43' font-family='monospace' font-size='26' font-weight='bold' fill='white' text-anchor='middle'%3Enx%3C/text%3E%3C/svg%3E">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="../assets/css/main.css">
 </head>
@@ -17,54 +19,46 @@
 
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="/" class="nav-logo">Nardi Xhepi</a>
-            <ul class="nav-menu" id="nav-menu">
-                <li><a href="/work/" class="nav-link">Work</a></li>
-                <li><a href="/writing/" class="nav-link">Writing</a></li>
-                <li><a href="/about/" class="nav-link active">About</a></li>
-                <li><a href="/contact/" class="nav-link">Contact</a></li>
-            </ul>
-            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+            <a href="/" class="nav-logo"><span class="logo-dot"></span>nardi.xhepi</a>
+            <div class="nav-right">
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="/writing/" class="nav-link">Writing</a></li>
+                    <li><a href="/about/" class="nav-link active">About</a></li>
+                    <li><a href="/contact/" class="nav-link">Contact</a></li>
+                </ul>
+                <a href="../assets/CV.pdf" target="_blank" rel="noopener" class="nav-cv">cv.pdf ↓</a>
+                <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </div>
     </nav>
 
     <!-- Bio -->
     <section class="about-bio">
         <div class="about-bio-grid">
-            <div class="about-photo">
-                <img src="../assets/images/photo_n.jpg" alt="Nardi Xhepi">
+            <div class="about-photo fade-up">
+                <img src="../assets/images/photo_n.jpg" alt="Portrait of Nardi Xhepi">
             </div>
             <div class="about-text">
-                <h1>About</h1>
-                <p>
-                    I'm a Data Scientist and ML Engineer passionate about building intelligent systems that solve real-world problems.
-                    Currently pursuing a M.S. in Data Science at <strong>École Polytechnique</strong> and a M.S. in AI at <strong>Télécom Paris</strong>.
+                <span class="section-label">About</span>
+                <h1>Rigor, interpretability, and things that ship.</h1>
+                <p class="fade-up">
+                    I'm an <strong>ML Research Engineer at Doctolib</strong>, working on audio
+                    machine learning for healthcare. I hold a M.S. in Data Science from
+                    <strong>École Polytechnique</strong> and study AI at <strong>Télécom Paris</strong>.
                 </p>
-                <p>
-                    My work spans large language models, retrieval-augmented generation, anomaly detection in time series, and ensemble methods.
-                    I care deeply about rigor, interpretability, and building things that work outside the lab.
+                <p class="fade-up" style="--stagger:80ms">
+                    My main interests are <strong>audio &amp; speech processing</strong>,
+                    <strong>large language models</strong>, and <strong>computer vision</strong>.
+                    Whatever the domain, I care deeply about rigor, interpretability, and building
+                    things that work outside the lab.
                 </p>
-                <p>
+                <p class="fade-up" style="--stagger:160ms">
                     I speak French, English, Albanian, Italian, and some German.
                 </p>
-                <div class="about-stats">
-                    <div class="stat-item">
-                        <span class="stat-num">2+</span>
-                        <span class="stat-label">Years experience</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-num">3</span>
-                        <span class="stat-label">Hackathon awards</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-num">5</span>
-                        <span class="stat-label">Languages spoken</span>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -74,9 +68,29 @@
         <div class="section-inner">
             <span class="section-label">Career</span>
             <h2 class="section-title">Experience</h2>
-            <a href="../assets/CV.pdf" target="_blank" rel="noopener" class="cv-link">Download CV →</a>
+            <a href="../assets/CV.pdf" target="_blank" rel="noopener" class="cv-link">Download full CV ↓</a>
 
             <div class="xp-list">
+                <!-- Doctolib -->
+                <article class="xp-entry fade-up">
+                    <div class="xp-logo">
+                        <img src="../assets/images/logo_doctolib_icon.svg" alt="Doctolib">
+                    </div>
+                    <div>
+                        <p class="xp-company">Doctolib</p>
+                        <h3 class="xp-role">ML Research Engineer</h3>
+                        <p class="xp-date">Sep 2025 – Present · Audio ML for Healthcare</p>
+                        <ul class="xp-desc">
+                            <li>Audio and speech machine learning for healthcare products used by millions of patients and practitioners.</li>
+                        </ul>
+                        <div class="xp-tags">
+                            <span class="tag">Audio ML</span>
+                            <span class="tag">Speech</span>
+                            <span class="tag">Healthcare</span>
+                        </div>
+                    </div>
+                </article>
+
                 <!-- Dassault Systèmes -->
                 <article class="xp-entry fade-up">
                     <div class="xp-logo">
@@ -85,7 +99,7 @@
                     <div>
                         <p class="xp-company">Dassault Systèmes</p>
                         <h3 class="xp-role">Research Scientist Intern</h3>
-                        <p class="xp-date">Feb 2025 – Aug 2025 · LLM &amp; AI Agents – ENOVIA</p>
+                        <p class="xp-date">Feb 2025 – Aug 2025 · LLM &amp; AI Agents — ENOVIA</p>
                         <ul class="xp-desc">
                             <li>Engineered next-gen Generative AI features for ENOVIA, designing <strong>RAG pipelines</strong> backed by Qdrant and domain-specific Knowledge Graphs.</li>
                             <li>Benchmarked multiple open-weights models (Mistral Small, SmolLM 3B, Llama 3.1) for entity extraction tasks.</li>
@@ -108,7 +122,7 @@
                     <div>
                         <p class="xp-company">Électricité de France (EDF)</p>
                         <h3 class="xp-role">Research Scientist Intern</h3>
-                        <p class="xp-date">July 2024 – Jan 2025 · Anomaly Detection – DOAAT</p>
+                        <p class="xp-date">Jul 2024 – Jan 2025 · Anomaly Detection — DOAAT</p>
                         <ul class="xp-desc">
                             <li>Designed ensemble-based anomaly detection algorithms improving <strong>AUC-PR by 15%</strong>, potentially preventing €60M in annual losses.</li>
                             <li>Worked on time series analysis and feature-based latent space representation.</li>
@@ -190,7 +204,7 @@
                     <div>
                         <h3 class="edu-school">École Polytechnique</h3>
                         <p class="edu-degree">Master in Data Science</p>
-                        <p class="edu-date">Sept 2024 – Present · Saclay, France</p>
+                        <p class="edu-date">Sep 2024 – Present · Saclay, France</p>
                         <p class="edu-details">Deep Learning for Time Series, Optimization for Data Science, Statistical Learning Theory, Data Stream Processing</p>
                     </div>
                 </article>
@@ -202,7 +216,7 @@
                     <div>
                         <h3 class="edu-school">Télécom Paris</h3>
                         <p class="edu-degree">Master in AI</p>
-                        <p class="edu-date">Sept 2025 – Present · Palaiseau, France</p>
+                        <p class="edu-date">Sep 2025 – Present · Palaiseau, France</p>
                         <p class="edu-details">Deep Learning, Generative AI, Reinforcement Learning</p>
                     </div>
                 </article>
@@ -214,7 +228,7 @@
                     <div>
                         <h3 class="edu-school">Telecom SudParis</h3>
                         <p class="edu-degree">Computer Science &amp; Data Science</p>
-                        <p class="edu-date">Sept 2022 – Present · Évry, France</p>
+                        <p class="edu-date">Sep 2022 – Present · Évry, France</p>
                         <p class="edu-details">Machine Learning, Deep Learning, Reinforcement Learning, Algorithms &amp; Data Structures</p>
                     </div>
                 </article>
@@ -226,7 +240,7 @@
                     <div>
                         <h3 class="edu-school">Lycée Saint-Louis</h3>
                         <p class="edu-degree">Preparatory Classes (CPGE)</p>
-                        <p class="edu-date">Sept 2019 – Sept 2022 · Paris, France</p>
+                        <p class="edu-date">Sep 2019 – Sep 2022 · Paris, France</p>
                         <p class="edu-details">Mathematics &amp; Physics intensive program. Research: Autonomous moon lander using RL.</p>
                     </div>
                 </article>
@@ -248,13 +262,14 @@
                         <span class="tag">PyTorch</span>
                         <span class="tag">TensorFlow</span>
                         <span class="tag">Transformers</span>
+                        <span class="tag">Audio / Speech</span>
                         <span class="tag">Scikit-learn</span>
                         <span class="tag">Time Series</span>
                         <span class="tag">Optimization</span>
                     </div>
                 </div>
 
-                <div class="fade-up">
+                <div class="fade-up" style="--stagger:80ms">
                     <h3 class="skill-group-title">Generative AI &amp; Data</h3>
                     <div class="skill-tags">
                         <span class="tag">LLMs</span>
@@ -266,7 +281,7 @@
                     </div>
                 </div>
 
-                <div class="fade-up">
+                <div class="fade-up" style="--stagger:160ms">
                     <h3 class="skill-group-title">Development Tools</h3>
                     <div class="skill-tags">
                         <span class="tag">Git</span>
@@ -277,7 +292,7 @@
                     </div>
                 </div>
 
-                <div class="fade-up">
+                <div class="fade-up" style="--stagger:240ms">
                     <h3 class="skill-group-title">Languages</h3>
                     <div class="skill-tags">
                         <span class="tag">French — Fluent</span>
@@ -293,14 +308,13 @@
 
     <footer class="footer">
         <div class="footer-inner">
-            <a href="/" class="footer-wordmark">Nardi Xhepi</a>
-            <nav class="footer-links">
-                <a href="/work/">Work</a>
+            <a href="/" class="footer-wordmark"><span class="logo-dot"></span>nardi.xhepi</a>
+            <nav class="footer-links" aria-label="Footer navigation">
                 <a href="/writing/">Writing</a>
                 <a href="/about/">About</a>
                 <a href="/contact/">Contact</a>
             </nav>
-            <span class="footer-copy">© 2026</span>
+            <span class="footer-copy">© 2026 · designed &amp; built from scratch</span>
         </div>
     </footer>
 
