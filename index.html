@@ -23,7 +23,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="assets/css/main.css">
 </head>
@@ -57,10 +57,10 @@
     <section class="hero">
         <div class="hero-inner">
             <div class="hero-text">
-                <span class="hero-badge fade-up"><span class="dot"></span>ML Research Engineer @ Doctolib</span>
+                <p class="hero-status fade-up"><span class="dot"></span>currently: ML Research Engineer @ Doctolib</p>
                 <p class="hero-eyebrow fade-up" style="--stagger:60ms">Nardi Xhepi</p>
                 <h1 class="hero-title fade-up" style="--stagger:120ms">
-                    I build <em>ML systems</em> that work outside the lab.
+                    I build ML systems that work outside the <em class="serif-accent">lab</em>.
                 </h1>
                 <p class="hero-bio fade-up" style="--stagger:180ms">
                     ML Research Engineer at <strong>Doctolib</strong>, working on audio ML for
@@ -82,6 +82,9 @@
                 <img src="assets/images/photo_n.jpg" alt="Portrait of Nardi Xhepi">
                 <p class="hero-photo-caption">~/paris, france</p>
             </div>
+        </div>
+        <div class="hero-ticks" aria-hidden="true">
+            <span>0:00</span><span>0:30</span><span>1:00</span><span>1:30</span><span>2:00</span>
         </div>
     </section>
 
@@ -119,52 +122,57 @@
                 </div>
             </div>
 
-            <div class="recog-grid">
-                <article class="recog-item fade-up">
-                    <div class="recog-head">
-                        <div class="recog-logo">
-                            <img loading="lazy" src="assets/images/logo_bs.jpg" alt="BendingSpoons">
-                        </div>
-                        <div>
-                            <h3>Top 20 students in France</h3>
-                            <p class="recog-meta">BendingSpoons First Ascent · Nov 2025</p>
-                        </div>
+            <div class="recog-table">
+                <article class="recog-row fade-up">
+                    <div class="recog-logo">
+                        <img loading="lazy" src="assets/images/logo_bs.jpg" alt="BendingSpoons">
                     </div>
-                    <p class="recog-desc">Selected for BendingSpoons' exclusive First Ascent event in Milan, Italy.</p>
-                </article>
-
-                <article class="recog-item fade-up" style="--stagger:80ms">
-                    <div class="recog-head">
-                        <div class="recog-logo">
-                            <img loading="lazy" src="assets/images/logo_hiparis.png" alt="Hi!Paris">
-                        </div>
-                        <div>
-                            <h3>2× Technical Excellence Award</h3>
-                            <p class="recog-meta">Hi!Paris Hackathon · 2024 &amp; 2025</p>
-                        </div>
+                    <div class="recog-body">
+                        <h3>Top 20 students in France</h3>
+                        <p class="recog-meta">BendingSpoons First Ascent · Milan, Italy</p>
+                        <p class="recog-desc">Selected for BendingSpoons' exclusive First Ascent event.</p>
                     </div>
-                    <p class="recog-desc">Highest technical score both years, with advanced ML ensemble methods.</p>
-                    <div class="recog-links">
-                        <a href="https://www.smartcertificate.com/SmartCertificate/?1%7c49786939-fdaa-4724-975d-cbba7d676dc1%7c775f0fec-e805-468c-9b5b-d86bbdcfa2a3" target="_blank" rel="noopener">2024 Certificate ↗</a>
-                        <a href="https://www.smartcertificate.com/SmartCertificate/?1%7c168e2cc0-3f0e-407b-8596-2d390290747e%7c6146f825-93ea-4610-ae59-2ae5f9b462b6" target="_blank" rel="noopener">2025 Certificate ↗</a>
+                    <div class="recog-side">
+                        <span class="recog-year">2025</span>
                     </div>
                 </article>
 
-                <article class="recog-item fade-up" style="--stagger:160ms">
-                    <div class="recog-head">
-                        <div class="recog-logo">
-                            <img loading="lazy" src="assets/images/logo_d4g.png" alt="D4GEN">
-                        </div>
-                        <div>
-                            <h3>2nd place, 100+ researchers</h3>
-                            <p class="recog-meta">D4GEN Hackathon Genopole · May 2025</p>
+                <article class="recog-row fade-up" style="--stagger:80ms">
+                    <div class="recog-logo">
+                        <img loading="lazy" src="assets/images/logo_hiparis.png" alt="Hi!Paris">
+                    </div>
+                    <div class="recog-body">
+                        <h3>2× Technical Excellence Award</h3>
+                        <p class="recog-meta">Hi!Paris Hackathon</p>
+                        <p class="recog-desc">Highest technical score both years, with advanced ML ensemble methods.</p>
+                    </div>
+                    <div class="recog-side">
+                        <span class="recog-year">2024 · 2025</span>
+                        <div class="recog-links">
+                            <a href="https://www.smartcertificate.com/SmartCertificate/?1%7c49786939-fdaa-4724-975d-cbba7d676dc1%7c775f0fec-e805-468c-9b5b-d86bbdcfa2a3" target="_blank" rel="noopener">cert ↗</a>
+                            <a href="https://www.smartcertificate.com/SmartCertificate/?1%7c168e2cc0-3f0e-407b-8596-2d390290747e%7c6146f825-93ea-4610-ae59-2ae5f9b462b6" target="_blank" rel="noopener">cert ↗</a>
                         </div>
                     </div>
-                    <p class="recog-desc">Patient-specific breast cancer treatment solution at the Genopole biotech competition.</p>
+                </article>
+
+                <article class="recog-row fade-up" style="--stagger:160ms">
+                    <div class="recog-logo">
+                        <img loading="lazy" src="assets/images/logo_d4g.png" alt="D4GEN">
+                    </div>
+                    <div class="recog-body">
+                        <h3>2nd place, 100+ researchers</h3>
+                        <p class="recog-meta">D4GEN Hackathon Genopole</p>
+                        <p class="recog-desc">Patient-specific breast cancer treatment solution at the biotech competition.</p>
+                    </div>
+                    <div class="recog-side">
+                        <span class="recog-year">2025</span>
+                    </div>
                 </article>
             </div>
         </div>
     </section>
+
+    <div class="wave-divider" aria-hidden="true"></div>
 
     <!-- Writing teaser -->
     <section class="writing-section">
@@ -177,36 +185,33 @@
                 <a href="/writing/" class="link-arrow">All posts →</a>
             </div>
 
-            <a href="blog/posts/albanian-asr-finetuning.html" class="post-card fade-up">
-                <div class="writing-meta">
-                    <span>February 2026</span>
-                    <span>10 min read</span>
-                    <span>LLM &amp; NLP</span>
-                </div>
-                <h3 class="post-card-title">Finetuning Omnilingual ASR for Albanian</h3>
-                <p class="post-card-excerpt">
-                    How I reduced Word Error Rate by 15.7% using pseudo-labeling and knowledge
-                    distillation from a 7B model — with just two hours of training data and six
-                    minutes of compute on an A100 GPU.
-                </p>
-                <span class="read-more">Read the article →</span>
-            </a>
+            <div class="writing-entry fade-up">
+                <a href="blog/posts/albanian-asr-finetuning.html">
+                    <div class="writing-meta">
+                        <span>February 2026</span>
+                        <span>10 min read</span>
+                        <span>LLM &amp; NLP</span>
+                    </div>
+                    <div>
+                        <h3 class="writing-title">Finetuning Omnilingual ASR for Albanian</h3>
+                        <p class="writing-excerpt">
+                            How I reduced Word Error Rate by 15.7% using pseudo-labeling and knowledge
+                            distillation from a 7B model — with just two hours of training data and six
+                            minutes of compute on an A100 GPU.
+                        </p>
+                    </div>
+                    <span class="writing-arrow">→</span>
+                </a>
+            </div>
         </div>
     </section>
 
     <!-- CTA band -->
     <section class="cta-section">
         <div class="cta-inner">
-            <span class="cta-label">// contact</span>
-            <h2 class="cta-title">Let's build something <em>that ships</em>.</h2>
-            <p class="cta-sub">
-                Always happy to talk ML — research collaborations, side projects,
-                or just a good technical debate. My inbox is open.
-            </p>
-            <div class="cta-actions">
-                <a href="mailto:nardi.xhepi@polytechnique.edu" class="btn btn-primary">nardi.xhepi@polytechnique.edu →</a>
-                <a href="https://www.linkedin.com/in/nardi-xhepi/" target="_blank" rel="noopener" class="btn btn-outline">Connect on LinkedIn ↗</a>
-            </div>
+            <span class="cta-label">contact</span>
+            <h2 class="cta-title">Let's build something <em class="serif-accent">that ships</em>.</h2>
+            <a class="cta-mail" href="mailto:nardi.xhepi@polytechnique.edu">nardi.xhepi@polytechnique.edu</a>
             <div class="cta-socials">
                 <a href="https://github.com/nardi-xhepi" target="_blank" rel="noopener">github</a>
                 <a href="https://www.linkedin.com/in/nardi-xhepi/" target="_blank" rel="noopener">linkedin</a>

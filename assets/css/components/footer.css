@@ -3,9 +3,24 @@
    =================================== */
 
 .footer {
+    position: relative;
     border-top: 1px solid var(--rule);
-    padding-block: 2.25rem;
+    padding-block: 3.25rem 2.25rem;
     background: var(--bg);
+}
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 34px;
+    background: url('../../images/waveform.svg') center / 100% 100% no-repeat;
+    color: var(--accent);
+    opacity: 0.07;
+    -webkit-mask-image: linear-gradient(90deg, transparent, black 20%, black 80%, transparent);
+    mask-image: linear-gradient(90deg, transparent, black 20%, black 80%, transparent);
+    pointer-events: none;
 }
 
 .footer-inner {

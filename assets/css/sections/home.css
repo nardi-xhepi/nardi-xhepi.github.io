@@ -64,40 +64,23 @@
     .logos-divider { display: none; }
 }
 
-/* ── Recognition (home) ────────────── */
+/* ── Recognition (home) — table rows ─ */
 .recog-section {
     padding-block: clamp(64px, 9vh, 108px);
     border-bottom: 1px solid var(--rule);
 }
 
-.recog-grid {
+.recog-row {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
+    grid-template-columns: 44px 1fr auto;
+    gap: 1.4rem;
+    align-items: start;
+    padding-block: 1.5rem;
+    border-top: 1px solid var(--rule);
+    transition: background var(--t-fast);
 }
-
-.recog-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.85rem;
-    padding: 1.5rem;
-    background: #fff;
-    border: 1px solid var(--rule);
-    border-radius: var(--r-lg);
-    box-shadow: var(--shadow-sm);
-    transition: border-color var(--t-base), box-shadow var(--t-base), transform var(--t-base);
-}
-.recog-item:hover {
-    border-color: rgba(59, 91, 255, 0.4);
-    box-shadow: var(--shadow-md);
-    transform: translateY(-3px);
-}
-
-.recog-head {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
+.recog-row:last-child { border-bottom: 1px solid var(--rule); }
+.recog-row:hover { background: var(--accent-soft); }
 
 .recog-logo {
     width: 40px;
@@ -115,9 +98,9 @@
     padding: 4px;
 }
 
-.recog-item h3 {
-    font-size: 0.98rem;
-    font-weight: 600;
+.recog-body h3 {
+    font-size: 1.05rem;
+    font-weight: 650;
     letter-spacing: -0.015em;
     line-height: 1.3;
     margin-bottom: 0.15rem;
@@ -128,19 +111,36 @@
     font-size: 0.72rem;
     color: var(--ink-faint);
     line-height: 1.4;
+    margin-bottom: 0.35rem;
 }
 
 .recog-desc {
     font-size: 0.86rem;
     color: var(--ink-muted);
     line-height: 1.55;
+    max-width: 560px;
+}
+
+.recog-side {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.4rem;
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.recog-year {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    color: var(--ink-faint);
+    white-space: nowrap;
 }
 
 .recog-links {
     display: flex;
-    gap: 1rem;
+    gap: 0.8rem;
     flex-wrap: wrap;
-    margin-top: auto;
 }
 .recog-links a {
     font-size: 0.8rem;
@@ -150,8 +150,26 @@
 }
 .recog-links a:hover { color: var(--accent-h); }
 
-@media (max-width: 860px) {
-    .recog-grid { grid-template-columns: 1fr; }
+@media (max-width: 720px) {
+    .recog-row { grid-template-columns: 40px 1fr; }
+    .recog-side {
+        grid-column: 2;
+        flex-direction: row;
+        align-items: baseline;
+        gap: 1rem;
+        text-align: left;
+    }
+}
+
+/* ── Waveform divider ──────────────── */
+.wave-divider {
+    height: 44px;
+    background: url('../../images/waveform.svg') center / 100% 100% no-repeat;
+    color: var(--accent);
+    opacity: 0.1;
+    -webkit-mask-image: linear-gradient(90deg, transparent, black 20%, black 80%, transparent);
+    mask-image: linear-gradient(90deg, transparent, black 20%, black 80%, transparent);
+    border-bottom: 1px solid var(--rule);
 }
 
 /* ── 404 page ──────────────────────── */
@@ -162,7 +180,8 @@
 .nf-code {
     font-family: var(--font-display);
     font-size: clamp(4.5rem, 12vw, 8rem);
-    font-weight: 700;
+    font-weight: 800;
+    font-stretch: 125%;
     letter-spacing: -0.04em;
     line-height: 1;
     color: var(--accent);
@@ -196,35 +215,24 @@
     border-bottom: 1px solid var(--rule);
 }
 
-/* ── CTA band (dark) ───────────────── */
+/* ── CTA band (dark, typographic) ──── */
 .cta-section {
     position: relative;
     background: var(--bg-dark);
     color: #fff;
-    padding-block: clamp(72px, 11vh, 128px);
+    padding-block: clamp(80px, 13vh, 150px);
     overflow: hidden;
 }
 .cta-section::before {
     content: '';
     position: absolute;
-    inset: 0;
-    background-image:
-        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-    background-size: 56px 56px;
-    -webkit-mask-image: radial-gradient(ellipse 80% 90% at 50% 100%, black 20%, transparent 75%);
-    mask-image: radial-gradient(ellipse 80% 90% at 50% 100%, black 20%, transparent 75%);
-    pointer-events: none;
-}
-.cta-section::after {
-    content: '';
-    position: absolute;
-    bottom: -220px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 640px;
-    height: 440px;
-    background: radial-gradient(ellipse, rgba(59, 91, 255, 0.32), transparent 65%);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 120px;
+    background: url('../../images/waveform.svg') center bottom / cover no-repeat;
+    color: #fff;
+    opacity: 0.06;
     pointer-events: none;
 }
 
@@ -248,50 +256,33 @@
 
 .cta-title {
     font-size: clamp(2.2rem, 5.5vw, 3.8rem);
-    font-weight: 700;
-    letter-spacing: -0.04em;
+    font-weight: 800;
+    font-stretch: 118%;
+    letter-spacing: -0.035em;
     color: #fff;
-    margin-bottom: 1.1rem;
+    margin-bottom: 2.2rem;
 }
 .cta-title em {
-    font-style: normal;
     color: #8FA4FF;
 }
 
-.cta-sub {
-    color: rgba(255, 255, 255, 0.68);
-    max-width: 520px;
-    margin: 0 auto 2.2rem;
-    line-height: 1.7;
-    font-size: 0.98rem;
-}
-
-.cta-actions {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.9rem;
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
-}
-
-.cta-section .btn-primary {
-    background: #fff;
-    color: var(--bg-dark);
-    border-color: #fff;
-}
-.cta-section .btn-primary:hover {
-    background: var(--accent);
-    border-color: var(--accent);
+.cta-mail {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-stretch: 110%;
+    font-weight: 700;
+    font-size: clamp(1.25rem, 3.2vw, 2.1rem);
+    letter-spacing: -0.02em;
     color: #fff;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 0.18em;
+    margin-bottom: 2.4rem;
+    overflow-wrap: anywhere;
+    transition: color var(--t-fast), border-color var(--t-fast);
 }
-.cta-section .btn-outline {
-    background: transparent;
-    color: #fff;
-    border-color: rgba(255, 255, 255, 0.28);
-}
-.cta-section .btn-outline:hover {
-    border-color: #fff;
+.cta-mail:hover {
+    color: #8FA4FF;
+    border-bottom-color: #8FA4FF;
 }
 
 .cta-socials {
