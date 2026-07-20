@@ -1,6 +1,6 @@
 /* ===================================
-   HOME SECTIONS — logos, stats, work,
-   experience, writing, about, CTA
+   HOME SECTIONS — logos, recognition,
+   writing, CTA, 404
    =================================== */
 
 /* ── Logo strip (grouped) ──────────── */
@@ -64,91 +64,7 @@
     .logos-divider { display: none; }
 }
 
-/* ── Experience timeline (home) ────── */
-.xp-section {
-    padding-block: clamp(64px, 9vh, 108px);
-    border-bottom: 1px solid var(--rule);
-    background: #fff;
-}
-
-.timeline {
-    position: relative;
-}
-.timeline::before {
-    content: '';
-    position: absolute;
-    left: 21px;
-    top: 30px;
-    bottom: 30px;
-    width: 1px;
-    background: var(--rule);
-}
-
-.tl-entry {
-    position: relative;
-    display: grid;
-    grid-template-columns: 43px 1fr;
-    gap: 1.4rem;
-    padding-block: 1.6rem;
-    align-items: start;
-}
-
-.tl-logo {
-    position: relative;
-    z-index: 1;
-    width: 43px;
-    height: 43px;
-    border-radius: var(--r-md);
-    overflow: hidden;
-    border: 1px solid var(--rule);
-    background: #fff;
-    box-shadow: var(--shadow-sm);
-}
-.tl-logo img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    padding: 5px;
-}
-
-.tl-head {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-bottom: 0.2rem;
-}
-.tl-head h3 {
-    font-size: 1.12rem;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-}
-.tl-date {
-    font-family: var(--font-mono);
-    font-size: 0.74rem;
-    color: var(--ink-faint);
-    white-space: nowrap;
-}
-
-.tl-company {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 0.4rem;
-}
-
-.tl-line {
-    font-size: 0.9rem;
-    color: var(--ink-muted);
-    line-height: 1.6;
-    max-width: 600px;
-}
-
-/* ── Recognition strip (home) ──────── */
+/* ── Recognition (home) ────────────── */
 .recog-section {
     padding-block: clamp(64px, 9vh, 108px);
     border-bottom: 1px solid var(--rule);
@@ -162,9 +78,9 @@
 
 .recog-item {
     display: flex;
-    align-items: center;
-    gap: 1.1rem;
-    padding: 1.25rem 1.4rem;
+    flex-direction: column;
+    gap: 0.85rem;
+    padding: 1.5rem;
     background: #fff;
     border: 1px solid var(--rule);
     border-radius: var(--r-lg);
@@ -175,6 +91,12 @@
     border-color: rgba(59, 91, 255, 0.4);
     box-shadow: var(--shadow-md);
     transform: translateY(-3px);
+}
+
+.recog-head {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
 .recog-logo {
@@ -200,12 +122,33 @@
     line-height: 1.3;
     margin-bottom: 0.15rem;
 }
-.recog-item p {
+
+.recog-meta {
     font-family: var(--font-mono);
     font-size: 0.72rem;
     color: var(--ink-faint);
     line-height: 1.4;
 }
+
+.recog-desc {
+    font-size: 0.86rem;
+    color: var(--ink-muted);
+    line-height: 1.55;
+}
+
+.recog-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: auto;
+}
+.recog-links a {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--accent);
+    transition: color var(--t-fast);
+}
+.recog-links a:hover { color: var(--accent-h); }
 
 @media (max-width: 860px) {
     .recog-grid { grid-template-columns: 1fr; }
@@ -251,69 +194,6 @@
 .writing-section {
     padding-block: clamp(64px, 9vh, 108px);
     border-bottom: 1px solid var(--rule);
-}
-
-/* ── About teaser (home) ───────────── */
-.about-teaser {
-    padding-block: clamp(64px, 9vh, 108px);
-    border-bottom: 1px solid var(--rule);
-    background: #fff;
-}
-
-.about-teaser-grid {
-    display: grid;
-    grid-template-columns: 1.4fr 1fr;
-    gap: clamp(2.5rem, 6vw, 5rem);
-    align-items: start;
-}
-
-.about-teaser-text p {
-    color: var(--ink-muted);
-    line-height: 1.75;
-    margin-bottom: 1.1rem;
-    max-width: 560px;
-}
-.about-teaser-text strong { color: var(--ink); font-weight: 600; }
-
-.about-facts {
-    background: var(--bg-soft);
-    border: 1px solid var(--rule);
-    border-radius: var(--r-lg);
-    padding: 1.5rem;
-}
-.about-facts-title {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-    margin-bottom: 1rem;
-}
-.about-fact {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    padding-block: 0.6rem;
-    border-top: 1px solid var(--rule);
-    font-size: 0.86rem;
-}
-.about-fact:first-of-type { border-top: none; }
-.fact-key {
-    color: var(--ink-faint);
-    font-family: var(--font-mono);
-    font-size: 0.76rem;
-    padding-top: 0.15em;
-    flex-shrink: 0;
-}
-.fact-val {
-    color: var(--ink);
-    text-align: right;
-    font-weight: 500;
-}
-
-@media (max-width: 760px) {
-    .about-teaser-grid { grid-template-columns: 1fr; }
 }
 
 /* ── CTA band (dark) ───────────────── */
