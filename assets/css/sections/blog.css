@@ -103,6 +103,14 @@
     .writing-arrow { display: none; }
 }
 
+/* "More in the works" note */
+.writing-more {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+    padding-block: 1.5rem;
+}
+
 /* ── Home writing teaser ──────────── */
 .writing-header {
     display: flex;
