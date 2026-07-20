@@ -9,35 +9,13 @@
     border-bottom: 1px solid var(--rule);
 }
 
-/* Waveform motif — the audio signature */
-.hero::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 150px;
-    background: url('../../images/waveform.svg') center bottom / cover no-repeat;
+/* Tiny crafted wave mark next to the eyebrow */
+.wave-mark {
+    display: inline-flex;
+    align-items: center;
     color: var(--accent);
-    opacity: 0.13;
-    -webkit-mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
-    mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
-    pointer-events: none;
-}
-
-.hero-ticks {
-    position: absolute;
-    left: var(--pad);
-    right: var(--pad);
-    bottom: 14px;
-    display: flex;
-    justify-content: space-between;
-    font-family: var(--font-mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.06em;
-    color: var(--ink-faint);
-    opacity: 0.8;
-    pointer-events: none;
+    margin-right: 0.55em;
+    vertical-align: -0.15em;
 }
 
 .hero-inner {

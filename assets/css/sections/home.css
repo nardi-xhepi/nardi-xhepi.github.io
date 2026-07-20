@@ -161,16 +161,7 @@
     }
 }
 
-/* ── Waveform divider ──────────────── */
-.wave-divider {
-    height: 44px;
-    background: url('../../images/waveform.svg') center / 100% 100% no-repeat;
-    color: var(--accent);
-    opacity: 0.1;
-    -webkit-mask-image: linear-gradient(90deg, transparent, black 20%, black 80%, transparent);
-    mask-image: linear-gradient(90deg, transparent, black 20%, black 80%, transparent);
-    border-bottom: 1px solid var(--rule);
-}
+
 
 /* ── 404 page ──────────────────────── */
 .nf-page {
@@ -223,19 +214,6 @@
     padding-block: clamp(80px, 13vh, 150px);
     overflow: hidden;
 }
-.cta-section::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 120px;
-    background: url('../../images/waveform.svg') center bottom / cover no-repeat;
-    color: #fff;
-    opacity: 0.06;
-    pointer-events: none;
-}
-
 .cta-inner {
     position: relative;
     max-width: var(--max-w);
