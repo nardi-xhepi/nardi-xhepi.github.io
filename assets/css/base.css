@@ -4,15 +4,15 @@
 
 :root {
     /* Cool, technical light palette */
-    --bg:        #FBFCFE;
-    --bg-soft:   #F2F5FA;
+    --bg:        #F7F6F2;
+    --bg-soft:   #EEEDE7;
     --bg-dark:   #0C1222;
-    --ink:       #0F1420;
-    --ink-muted: #525A6B;
-    --ink-faint: #98A0B3;
-    --rule:      #E4E9F2;
+    --ink:       #232824;
+    --ink-muted: #575D59;
+    --ink-faint: #6B716B;
+    --rule:      #DADDD4;
 
-    --accent:      #3B5BFF;
+    --accent:      #315BDB;
     --accent-h:    #2B49E6;
     --accent-soft: rgba(59, 91, 255, 0.08);
     --green:       #12B76A;
@@ -22,7 +22,7 @@
     --font-mono:    'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
     --font-serif:   'Instrument Serif', Georgia, serif;
 
-    --max-w:      1120px;
+    --max-w:      1200px;
     --max-w-text: 720px;
     --pad:        clamp(20px, 5vw, 40px);
 

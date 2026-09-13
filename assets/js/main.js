@@ -1,51 +1,27 @@
-/**
- * NARDI XHEPI — Portfolio Scripts
- */
-
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-// ── Mobile nav toggle ────────────────────────────────
+/** Shared navigation; all page content also works without JavaScript. */
 const navToggle = document.getElementById('nav-toggle');
 const navMenu = document.getElementById('nav-menu');
-
-navToggle?.addEventListener('click', () => {
-    const open = navMenu.classList.toggle('open');
-    navToggle.classList.toggle('open', open);
-});
-
-// Close mobile nav on link click
-document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu?.classList.remove('open');
-        navToggle?.classList.remove('open');
-    });
-});
-
-// ── Navbar border/shadow on scroll ───────────────────
-const navbar = document.getElementById('navbar');
-
-const onScroll = () => {
-    navbar?.classList.toggle('scrolled', window.scrollY > 8);
+const setMenuOpen = (open) => {
+    navMenu?.classList.toggle('open', open);
+    navToggle?.classList.toggle('open', open);
+    navToggle?.setAttribute('aria-expanded', String(open));
+    navToggle?.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
 };
+navToggle?.addEventListener('click', () => setMenuOpen(!navMenu?.classList.contains('open')));
+document.querySelectorAll('.nav-link').forEach(link => link.addEventListener('click', () => setMenuOpen(false)));
+document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && navMenu?.classList.contains('open')) {
+        setMenuOpen(false);
+        navToggle?.focus();
+    }
+});
+document.addEventListener('click', event => {
+    if (!event.target.closest('.navbar')) setMenuOpen(false);
+});
+window.matchMedia('(min-width: 681px)').addEventListener('change', event => {
+    if (event.matches) setMenuOpen(false);
+});
+const navbar = document.getElementById('navbar');
+const onScroll = () => navbar?.classList.toggle('scrolled', window.scrollY > 8);
 onScroll();
 window.addEventListener('scroll', onScroll, { passive: true });
-
-// ── Fade-up scroll animation ─────────────────────────
-const fadeEls = document.querySelectorAll('.fade-up');
-
-if (fadeEls.length) {
-    if (prefersReducedMotion) {
-        fadeEls.forEach(el => el.classList.add('visible'));
-    } else {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-
-        fadeEls.forEach(el => observer.observe(el));
-    }
-}
