@@ -61,14 +61,14 @@
                 <span class="section-label">About</span>
                 <h1>ML Research Engineer<br><em class="serif-accent">at Doctolib.</em></h1>
                 <p class="fade-up">
-                    I'm an <strong>ML Research Engineer at Doctolib</strong>. I hold a M.S. in Data Science from
-                    <strong>École Polytechnique</strong> and study AI at <strong>Télécom Paris</strong>.
+                    I'm an <strong>ML Research Engineer at Doctolib</strong>. I hold an M.S. in Data Science from
+                    <strong>École Polytechnique</strong> and an engineering degree from <strong>Télécom SudParis</strong>.
                 </p>
                 <p class="fade-up" style="--stagger:80ms">
                     My main interests are <strong>large language models</strong>, <strong>time series</strong>, and <strong>computer vision</strong>.
                 </p>
                 <p class="fade-up" style="--stagger:160ms">
-                    I speak French, English, Albanian, Italian, and some German.
+                    I speak French, English, and Albanian.
                 </p>
             </div>
         </div>
@@ -92,11 +92,16 @@
                         <h3 class="xp-role">ML Research Engineer</h3>
                         <p class="xp-date">April 2026 – Present</p>
                         <ul class="xp-desc">
-                            <li>Machine learning for healthcare products used by millions of patients and practitioners.</li>
+                            <li><strong>Phone Assistant (production):</strong> shipped a streaming end-of-utterance detection model on continuous audio, raising recall from <strong>56% to 90%</strong>.</li>
+                            <li><strong>Consultation Assistant (clinical safety):</strong> built evaluation pipelines on a production golden dataset, with calibrated LLM-as-judge scoring and statistical drift monitoring.</li>
+                            <li><strong>Speech stack:</strong> benchmarked and fine-tuned speech-to-text foundation models (NVIDIA NeMo, Parakeet) and evaluated text-to-speech models, weighing accuracy, latency and serving cost; deployed in production with Ray Serve.</li>
+                            <li><strong>Data quality:</strong> ran annotation campaigns with human review, and diagnosed a pipeline bug that was corrupting 12% of the evaluation data.</li>
                         </ul>
                         <div class="xp-tags">
-                            <span class="tag">Machine Learning</span>
-                            <span class="tag">Healthcare</span>
+                            <span class="tag">Evaluation</span>
+                            <span class="tag">LLM-as-judge</span>
+                            <span class="tag">Speech</span>
+                            <span class="tag">Ray Serve</span>
                         </div>
                     </div>
                 </article>
@@ -109,11 +114,10 @@
                     <div>
                         <p class="xp-company">Dassault Systèmes</p>
                         <h3 class="xp-role">Research Scientist Intern</h3>
-                        <p class="xp-date">Feb 2025 – Aug 2025 · LLM &amp; AI Agents — ENOVIA</p>
+                        <p class="xp-date">Feb 2025 – Aug 2025 · LLMs &amp; AI Agents, ENOVIA</p>
                         <ul class="xp-desc">
-                            <li>Built generative AI features for ENOVIA: <strong>RAG pipelines</strong> on Qdrant and domain-specific knowledge graphs.</li>
-                            <li>Benchmarked multiple open-weights models (Mistral Small, SmolLM 3B, Llama 3.1) for entity extraction tasks.</li>
-                            <li>Implemented hybrid retrieval strategies combining BM25 with early and late interaction mechanisms.</li>
+                            <li><strong>Hybrid retrieval:</strong> built RAG pipelines on Qdrant and knowledge graphs, combining BM25 with neural early- and late-interaction retrievers.</li>
+                            <li><strong>Agents and extraction:</strong> developed LLM agents for entity and relation extraction on enterprise data; benchmarked open-weights models (Mistral Small, Llama 3.1, SmolLM 3B) for the trade-off between accuracy and compute.</li>
                         </ul>
                         <div class="xp-tags">
                             <span class="tag">LLM</span>
@@ -130,13 +134,12 @@
                         <img loading="lazy" src="../assets/images/logo_edf.png" alt="EDF">
                     </div>
                     <div>
-                        <p class="xp-company">Électricité de France (EDF)</p>
+                        <p class="xp-company">EDF R&amp;D</p>
                         <h3 class="xp-role">Research Scientist Intern</h3>
-                        <p class="xp-date">Jul 2024 – Jan 2025 · Anomaly Detection — DOAAT</p>
+                        <p class="xp-date">Jul 2024 – Jan 2025 · Time Series &amp; Anomaly Detection, DOAAT</p>
                         <ul class="xp-desc">
-                            <li>Designed ensemble-based anomaly detection algorithms improving <strong>AUC-PR by 15%</strong>, potentially preventing €60M in annual losses.</li>
-                            <li>Worked on time series analysis and feature-based latent space representation.</li>
-                            <li>Developed ensemble methods that outperformed previous approaches on EDF's time series anomaly detection.</li>
+                            <li><strong>Benchmark to production:</strong> designed ensemble detectors for multivariate industrial time series, improving <strong>AUC-PR by 15%</strong> over baselines, with up to €60M in avoidable annual losses at stake. Published at <strong>ICDE 2026</strong>.</li>
+                            <li><strong>Representation learning:</strong> built feature-based latent representations of time series to drive detector aggregation and transfer from benchmarks to production.</li>
                         </ul>
                         <div class="xp-tags">
                             <span class="tag">Time Series</span>
@@ -144,6 +147,27 @@
                             <span class="tag">Ensemble Methods</span>
                             <span class="tag">Python</span>
                         </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications -->
+    <section class="education-section">
+        <div class="section-inner">
+            <span class="section-label">Research</span>
+            <h2 class="section-title">Publications</h2>
+
+            <div>
+                <article class="edu-entry fade-up">
+                    <div class="edu-logo">
+                        <img loading="lazy" src="../assets/images/logo_edf.png" alt="EDF">
+                    </div>
+                    <div>
+                        <h3 class="edu-school">From Benchmarks to Production: Transferring Time Series Anomaly Detection Methods for Electricity Production Monitoring</h3>
+                        <p class="edu-degree">N. Vautier, P. Caron, N. Xhepi, F. Bizeul, M. Boumghar, et al.</p>
+                        <p class="edu-date">IEEE ICDE 2026 · Montréal, Canada · <a href="https://hal.science/hal-05630277" target="_blank" rel="noopener">hal-05630277</a></p>
                     </div>
                 </article>
             </div>
@@ -163,21 +187,8 @@
                     </div>
                     <div>
                         <h3 class="edu-school">École Polytechnique</h3>
-                        <p class="edu-degree">Master in Data Science</p>
-                        <p class="edu-date">Sep 2024 – Present · Saclay, France</p>
-                        <p class="edu-details">Deep Learning for Time Series, Optimization for Data Science, Statistical Learning Theory, Data Stream Processing</p>
-                    </div>
-                </article>
-
-                <article class="edu-entry fade-up">
-                    <div class="edu-logo">
-                        <img loading="lazy" src="../assets/images/logo_tp.png" alt="Télécom Paris">
-                    </div>
-                    <div>
-                        <h3 class="edu-school">Télécom Paris</h3>
-                        <p class="edu-degree">Master in AI</p>
-                        <p class="edu-date">Sep 2025 – Present · Palaiseau, France</p>
-                        <p class="edu-details">Deep Learning, Generative AI, Reinforcement Learning</p>
+                        <p class="edu-degree">M2 Data Science, highest honors</p>
+                        <p class="edu-date">Sep 2024 – 2026 · Palaiseau, France</p>
                     </div>
                 </article>
 
@@ -186,22 +197,9 @@
                         <img loading="lazy" src="../assets/images/logo_tsp.svg" alt="Telecom SudParis">
                     </div>
                     <div>
-                        <h3 class="edu-school">Telecom SudParis</h3>
-                        <p class="edu-degree">Computer Science &amp; Data Science</p>
-                        <p class="edu-date">Sep 2022 – Present · Évry, France</p>
-                        <p class="edu-details">Machine Learning, Deep Learning, Reinforcement Learning, Algorithms &amp; Data Structures</p>
-                    </div>
-                </article>
-
-                <article class="edu-entry fade-up">
-                    <div class="edu-logo">
-                        <img loading="lazy" src="../assets/images/lycee.png" alt="Lycée Saint-Louis">
-                    </div>
-                    <div>
-                        <h3 class="edu-school">Lycée Saint-Louis</h3>
-                        <p class="edu-degree">Preparatory Classes (CPGE)</p>
-                        <p class="edu-date">Sep 2019 – Sep 2022 · Paris, France</p>
-                        <p class="edu-details">Mathematics &amp; Physics intensive program. Research: Autonomous moon lander using RL.</p>
+                        <h3 class="edu-school">Télécom SudParis</h3>
+                        <p class="edu-degree">Diplôme d'ingénieur, Computer Science &amp; Data Science</p>
+                        <p class="edu-date">Sep 2022 – 2026 · Évry, France</p>
                     </div>
                 </article>
             </div>
@@ -216,50 +214,62 @@
 
             <div class="skills-grid">
                 <div class="fade-up">
-                    <h3 class="skill-group-title">AI &amp; Machine Learning</h3>
+                    <h3 class="skill-group-title">Production AI</h3>
+                    <div class="skill-tags">
+                        <span class="tag">Prototype to production</span>
+                        <span class="tag">Evaluation harnesses</span>
+                        <span class="tag">Observability</span>
+                        <span class="tag">Latency and cost</span>
+                        <span class="tag">Streaming inference</span>
+                    </div>
+                </div>
+                <div class="fade-up" style="--stagger:80ms">
+                    <h3 class="skill-group-title">LLMs &amp; Agents</h3>
+                    <div class="skill-tags">
+                        <span class="tag">RAG (hybrid retrieval)</span>
+                        <span class="tag">AI agents</span>
+                        <span class="tag">Fine-tuning</span>
+                        <span class="tag">Knowledge distillation</span>
+                        <span class="tag">Pseudo-labeling</span>
+                    </div>
+                </div>
+                <div class="fade-up" style="--stagger:160ms">
+                    <h3 class="skill-group-title">Evaluation</h3>
+                    <div class="skill-tags">
+                        <span class="tag">LLM-as-judge calibration</span>
+                        <span class="tag">Golden datasets</span>
+                        <span class="tag">Drift monitoring</span>
+                        <span class="tag">Human annotation</span>
+                    </div>
+                </div>
+                <div class="fade-up" style="--stagger:240ms">
+                    <h3 class="skill-group-title">Speech &amp; Time Series</h3>
+                    <div class="skill-tags">
+                        <span class="tag">STT / TTS</span>
+                        <span class="tag">Anomaly detection</span>
+                        <span class="tag">Representation learning</span>
+                    </div>
+                </div>
+                <div class="fade-up" style="--stagger:320ms">
+                    <h3 class="skill-group-title">Engineering</h3>
                     <div class="skill-tags">
                         <span class="tag">Python</span>
                         <span class="tag">PyTorch</span>
-                        <span class="tag">TensorFlow</span>
                         <span class="tag">Transformers</span>
-                        <span class="tag">Audio / Speech</span>
-                        <span class="tag">Scikit-learn</span>
-                        <span class="tag">Time Series</span>
-                        <span class="tag">Optimization</span>
-                    </div>
-                </div>
-
-                <div class="fade-up" style="--stagger:80ms">
-                    <h3 class="skill-group-title">Generative AI &amp; Data</h3>
-                    <div class="skill-tags">
-                        <span class="tag">LLMs</span>
-                        <span class="tag">RAG Pipelines</span>
-                        <span class="tag">AI Agents</span>
-                        <span class="tag">Knowledge Graphs</span>
+                        <span class="tag">scikit-learn</span>
+                        <span class="tag">Ray Serve</span>
                         <span class="tag">Qdrant</span>
-                        <span class="tag">Streamlit</span>
-                    </div>
-                </div>
-
-                <div class="fade-up" style="--stagger:160ms">
-                    <h3 class="skill-group-title">Development Tools</h3>
-                    <div class="skill-tags">
                         <span class="tag">Git</span>
-                        <span class="tag">GitHub</span>
                         <span class="tag">Bash</span>
                         <span class="tag">Linux</span>
-                        <span class="tag">Docker</span>
                     </div>
                 </div>
-
-                <div class="fade-up" style="--stagger:240ms">
+                <div class="fade-up" style="--stagger:400ms">
                     <h3 class="skill-group-title">Languages</h3>
                     <div class="skill-tags">
                         <span class="tag">French — Fluent</span>
                         <span class="tag">English — Fluent</span>
-                        <span class="tag">Albanian — Fluent</span>
-                        <span class="tag">Italian — Intermediate</span>
-                        <span class="tag">German — Basic</span>
+                        <span class="tag">Albanian — Native</span>
                     </div>
                 </div>
             </div>
