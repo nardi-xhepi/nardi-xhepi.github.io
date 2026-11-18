@@ -47,6 +47,11 @@
         .post-body figure.fig figcaption { text-align: left; margin-top: 1rem; line-height: 1.55; }
         .post-body figure.fig figcaption strong { color: var(--ink-muted); }
         .fig-scroll { overflow-x: auto; }
+        .bp-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+        .bp-link { display: inline-block; padding: .6em 1.1em; border: 1px solid currentColor; border-radius: 6px; font-family: var(--font-body); font-size: .9rem; font-weight: 600; color: inherit; text-decoration: none; }
+        .bp-link:hover { border-color: var(--accent); color: var(--accent); }
+        .bp-link-main { background: var(--accent); border-color: var(--accent); color: #fff; }
+        .bp-link-main:hover { background: var(--accent-h); border-color: var(--accent-h); color: #fff; }
         .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-block: 1.5rem; }
         .post-body .table-scroll > table { margin-block: 0; min-width: 520px; }
         .fig-scroll > svg { min-width: 540px; }
@@ -179,6 +184,10 @@
                 <span>November 2026</span>
                 <span>18 min read</span>
                 <span>Nardi Xhepi</span>
+            </div>
+            <div class="bp-links">
+                <a class="bp-link bp-link-main" href="https://huggingface.co/nardi/LFM3-TS" target="_blank" rel="noopener">Model on Hugging Face →</a>
+                <a class="bp-link" href="https://github.com/nardi-xhepi/lfm3-ts" target="_blank" rel="noopener">Code on GitHub →</a>
             </div>
         </div>
     </header>
