@@ -47,6 +47,8 @@
         .post-body figure.fig figcaption { text-align: left; margin-top: 1rem; line-height: 1.55; }
         .post-body figure.fig figcaption strong { color: var(--ink-muted); }
         .fig-scroll { overflow-x: auto; }
+        .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-block: 1.5rem; }
+        .post-body .table-scroll > table { margin-block: 0; min-width: 520px; }
         .fig-scroll > svg { min-width: 540px; }
         .fig-wide .fig-scroll > svg { min-width: 760px; }
         @media (min-width: 1000px) {
@@ -429,11 +431,6 @@
                     of a patch from its token. Its error is added to the training loss. The layer is not
                     part of the released model.
                 </p>
-                <p>
-                    One caveat, to be fair: I have not measured how much each of the two fixes contributes on
-                    its own.
-                </p>
-
                 <h2>4. The three-stage training recipe</h2>
                 <p>
                     The recipe has three stages, and each one starts from the weights of the one before, as
@@ -512,6 +509,7 @@
                     <li><strong>Learn to answer.</strong> The model sees a mixture of five data types, and
                         each type has one job (see the table below).</li>
                 </ol>
+                <div class="table-scroll">
                 <table>
                     <thead>
                         <tr><th>Data type</th><th class="num">Share</th><th>Job</th></tr>
@@ -524,6 +522,7 @@
                         <tr><td>Real series with events put in</td><td class="num">8%</td><td>Teaches that an anomaly is what a series does not usually do (section 4.3).</td></tr>
                     </tbody>
                 </table>
+                </div>
 
                 <h3>4.2 Adding real series</h3>
                 <p>
@@ -602,6 +601,7 @@
                     (A third score, for reasoning questions, needs a judge language model for most of its
                     questions, and I left it out.)
                 </p>
+                <div class="table-scroll">
                 <table>
                     <thead>
                         <tr><th></th><th class="num">Set A, categorical</th><th class="num">Set A, numerical</th><th class="num">Set B, categorical</th><th class="num">Set B, numerical</th></tr>
@@ -612,6 +612,7 @@
                         <tr><td style="white-space:nowrap">LFM3-1.7B, numbers as text</td><td class="num">10.4%</td><td class="num">4.0%</td><td class="num">14.2%</td><td class="num">3.0%</td></tr>
                     </tbody>
                 </table>
+                </div>
                 <p class="note">
                     Set A: 299 categorical and 273 numerical questions. Set B:
                     1,069 categorical and 708 numerical questions.
@@ -677,6 +678,7 @@
                         merely memorizes its training sources.
                     </figcaption>
                 </figure>
+                <div class="table-scroll">
                 <table>
                     <thead>
                         <tr><th>Part of the test set</th><th class="num">Windows with an anomaly</th><th class="num">Windows without</th></tr>
@@ -686,6 +688,7 @@
                         <tr><td>Known sources, new recordings</td><td class="num">49</td><td class="num">67</td></tr>
                     </tbody>
                 </table>
+                </div>
                 <p>
                     Both models get the same question: is there an anomaly, and where? For a window without
                     an anomaly, the correct answer is "no". (How much does the 16-point margin matter? Quite a bit, for one of the two models; more on
@@ -706,6 +709,7 @@
                 </figure>
 
                 <p>And here are the totals, for the new sources and for all windows:</p>
+                <div class="table-scroll">
                 <table>
                     <thead>
                         <tr><th></th><th class="num">Parameters</th><th class="num">Precision</th><th class="num">Recall</th><th class="num">F1</th><th class="num">False alarms</th></tr>
@@ -721,6 +725,7 @@
                         <tr><td>LFM3-1.7B, numbers as text</td><td class="num">1.7B</td><td class="num">1%</td><td class="num">2%</td><td class="num">0.01</td><td class="num">169</td></tr>
                     </tbody>
                 </table>
+                </div>
                 <p class="note">
                     Precision: of the windows where the model reports an anomaly, the share where the place is
                     correct. Recall: of the windows with an anomaly, the share where the model gives the correct
@@ -781,8 +786,7 @@
                     LFM3-TS barely moves: 60% of the anomalies with no margin at all, versus
                     64% with 16 points. ChatTS-8B needs the margin: its recall goes from
                     29% to 53%. In other words, LFM3-TS points <em>at</em> the anomaly
-                    and ChatTS-8B points near it. (To be fair to ChatTS-8B, a single point is a harder
-                    target than a stretch.)
+                    and ChatTS-8B points near it.
                 </p>
                 <p>
                     How well do the stretches of LFM3-TS match the labels? On the 73 anomalies of
@@ -842,6 +846,7 @@
                     and the highest value between points A and B?". A value counts as correct if it is
                     within a quarter of a standard deviation of the series.
                 </p>
+                <div class="table-scroll">
                 <table>
                     <thead>
                         <tr><th></th><th class="num">Value at a point</th><th class="num">Median error</th><th class="num">Lowest value of a stretch</th><th class="num">Highest value of a stretch</th></tr>
@@ -851,6 +856,7 @@
                         <tr><td>Generated series</td><td class="num">65%</td><td class="num">0.16 sd</td><td class="num">75%</td><td class="num">81%</td></tr>
                     </tbody>
                 </table>
+                </div>
                 <p class="note">
                     LFM3-TS only. Percentages: share of the answers within a quarter of a standard deviation
                     (sd) of the series. Median error: for the value at a point, in standard deviations.
@@ -924,9 +930,8 @@
                     about seven claims in ten are true, and the training data is not what holds it back.
                 </p>
                 <p>
-                    Sure, I'd guess that a dedicated detector with a tuned threshold still does better on
-                    subtle anomalies (I did not test this, so take it as an educated guess). But a detector
-                    doesn't tell you what it saw, and it doesn't answer a follow-up question.
+                    A dedicated detector gives you a score. It doesn't tell you what it saw, and it doesn't
+                    answer a follow-up question.
                 </p>
                 <p>
                     If there is one thing I'd take away from this project, it's that a falling loss says
