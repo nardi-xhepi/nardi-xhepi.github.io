@@ -609,11 +609,17 @@
                     <tbody>
                         <tr><td style="white-space:nowrap">LFM3-TS (1.8B)</td><td class="num">82.0%</td><td class="num">77.5%</td><td class="num">79.5%</td><td class="num">76.8%</td></tr>
                         <tr><td style="white-space:nowrap">ChatTS-8B</td><td class="num"><strong>83.8%</strong></td><td class="num"><strong>82.3%</strong></td><td class="num"><strong>84.6%</strong></td><td class="num"><strong>82.9%</strong></td></tr>
+                        <tr><td style="white-space:nowrap">LFM3-1.7B, numbers as text</td><td class="num">10.4%</td><td class="num">4.0%</td><td class="num">14.2%</td><td class="num">3.0%</td></tr>
                     </tbody>
                 </table>
                 <p class="note">
                     Set A: 299 categorical and 273 numerical questions. Set B:
                     1,069 categorical and 708 numerical questions.
+                </p>
+                <p>
+                    The last row is the starting point: LFM3-1.7B itself, with no encoder, given the values of
+                    each series as a list of numbers in the prompt. It barely registers on either set. So the
+                    scores of LFM3-TS come from the encoder and the training, not from the language model alone.
                 </p>
                 <p>
                     ChatTS-8B is ahead on all four scores: by 2 to 5 points on set A, and by 5 to 6 points
@@ -708,15 +714,31 @@
                         <tr><th colspan="6">New sources (105 windows with an anomaly, 129 without)</th></tr>
                         <tr><td>LFM3-TS</td><td class="num">1.8B</td><td class="num">66%</td><td class="num">64%</td><td class="num"><strong>0.65</strong></td><td class="num"><strong>28</strong></td></tr>
                         <tr><td>ChatTS-8B</td><td class="num">8B</td><td class="num">40%</td><td class="num">53%</td><td class="num">0.46</td><td class="num">61</td></tr>
+                        <tr><td>LFM3-1.7B, numbers as text</td><td class="num">1.7B</td><td class="num">1%</td><td class="num">1%</td><td class="num">0.01</td><td class="num">111</td></tr>
                         <tr><th colspan="6">All windows (154 with an anomaly, 196 without)</th></tr>
                         <tr><td>LFM3-TS</td><td class="num">1.8B</td><td class="num">67%</td><td class="num">67%</td><td class="num"><strong>0.67</strong></td><td class="num"><strong>42</strong></td></tr>
                         <tr><td>ChatTS-8B</td><td class="num">8B</td><td class="num">41%</td><td class="num">57%</td><td class="num">0.48</td><td class="num">95</td></tr>
+                        <tr><td>LFM3-1.7B, numbers as text</td><td class="num">1.7B</td><td class="num">1%</td><td class="num">2%</td><td class="num">0.01</td><td class="num">169</td></tr>
                     </tbody>
                 </table>
                 <p class="note">
                     Precision: of the windows where the model reports an anomaly, the share where the place is
                     correct. Recall: of the windows with an anomaly, the share where the model gives the correct
                     place. False alarms: the number of windows without an anomaly where the model reports one.
+                </p>
+
+                <p>
+                    The third row is again LFM3-1.7B on its own, given the 512 values as text. It reasons at
+                    length over the numbers and gives a final answer in 220 of the
+                    350 windows. When it does answer, it says "yes" to most windows, with or
+                    without an anomaly, and names the correct place in only 3 of them.
+                </p>
+                <p>
+                    I also tried OpenTSLM, another open time-series language model. Its released checkpoints
+                    are each trained for one task (captioning, activity or sleep classification, ECG
+                    questions), and none answers an open question like this one. Asked these questions, the 1B
+                    and 3B versions mostly return nothing, and score under 1% on both ChatTS sets, so I left
+                    them out of the tables.
                 </p>
 
                 <p>Looking at the new sources, I take away four things:</p>
